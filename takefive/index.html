@@ -70,6 +70,7 @@ kbd {
 header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
 .eyebrow { font: 600 13px/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
 h1 { font: 700 clamp(40px, 7vw, 64px)/0.95 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h1 .app-icon { height: 0.95em; width: auto; vertical-align: -0.12em; margin-right: 0.22em; }
 h1 .sep { color: var(--muted); font-weight: 500; }
 .lede { margin: 0; max-width: 68ch; color: var(--muted); }
 .toggle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
@@ -218,7 +219,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 
 <header class="top">
   <div class="eyebrow">Take 5 · version 0.4.2 · cheat sheet</div>
-  <h1>Record <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
+  <h1><img class="app-icon" src="icons/favicon.svg" alt="">Record <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
   <p class="lede">The keys and steps to take a song from the microphone to a finished file. Keys are Take 5's
   default set (the Logic-style one). Single-letter keys work whenever you're not typing in a box, and almost
   everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
