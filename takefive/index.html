@@ -180,7 +180,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 .task > summary:hover { background: var(--card); }
 .task[open] > summary { font-weight: 600; }
 .ref-sec > summary:focus-visible, .task > summary:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
-.task-body { padding: 2px 12px 16px 32px; max-width: 78ch; display: grid; gap: 8px; }
+.task-body { padding: 2px 12px 16px 32px; display: grid; gap: 8px; }
 .task-body p { margin: 0; }
 .task-body ul, .task-body ol { margin: 0; padding-left: 1.3em; display: grid; gap: 3px; }
 .task-body code { font: 0.9em var(--mono); }
@@ -241,7 +241,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 </div>
 
 <!-- ============ START ============ -->
-<details class="stage first" open>
+<details class="stage first">
   <summary class="stage-head">
     <h2>Before you start</h2>
     <p>Set up the sound once, learn a dozen keys, and know where everything is on screen.</p>
@@ -332,7 +332,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 </details>
 
 <!-- ============ RECORDING ============ -->
-<details class="stage rec" open>
+<details class="stage rec">
   <summary class="stage-head">
     <h2>Recording</h2>
     <p>Takes are saved in the song's Audio folder, and the song saves itself after every take.</p>
@@ -428,7 +428,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 </details>
 
 <!-- ============ MIXING ============ -->
-<details class="stage mixing" open>
+<details class="stage mixing">
   <summary class="stage-head">
     <h2>Mixing</h2>
     <p>Press <span class="ks"><kbd>X</kbd></span> for the mixer. <span class="menu">View &gt; Mixer Below Tracks</span> or <span class="menu">Mixer in Own Window</span> to place it.</p>
@@ -557,7 +557,7 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 </details>
 
 <!-- ============ MASTERING ============ -->
-<details class="stage master" open>
+<details class="stage master">
   <summary class="stage-head">
     <h2>Mastering &amp; export</h2>
     <p>Make the finished mix loud enough, check it against a song you like, and export it.</p>
@@ -1038,7 +1038,7 @@ the user guide (docs/GUIDE.md), which the Assistant also answers “how do I…�
     if (!words.length) {
       units.forEach(function (u) { u.hidden = false; });
       document.querySelectorAll(".stage-body [hidden]").forEach(function (e) { e.hidden = false; });
-      stages.forEach(function (s) { s.hidden = false; s.open = true; });
+      stages.forEach(function (s) { s.hidden = false; s.open = false; });
       sections.forEach(function (s) { s.hidden = false; s.open = false; });
       tasks.forEach(function (t) { t.open = false; });
       count.textContent = "";
