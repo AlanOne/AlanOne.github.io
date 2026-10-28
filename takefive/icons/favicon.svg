@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
+  <!-- Take 5's app icon on Windows: takefive-icon.svg's drawing, filling nearly all of its
+       square (Windows icons have no margin for a shadow, so Apple's grid looked small on the
+       taskbar). Rendered to PNG by scripts/render-icon.sh. -->
+  <defs>
+    <linearGradient id="tile" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#252830"/>
+      <stop offset="1" stop-color="#16181d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Drawn on a 60 unit tile -->
+  <g transform="translate(24 24) scale(16.2667)">
+    <rect width="60" height="60" rx="12" fill="url(#tile)"/>
+    <g fill="#ffb02e">
+      <rect x="5.7" y="25" width="5" height="10" rx="2.5"/>
+      <rect x="13.2" y="17" width="5" height="26" rx="2.5"/>
+      <rect x="20.7" y="10" width="5" height="40" rx="2.5"/>
+      <rect x="28.2" y="19" width="5" height="22" rx="2.5"/>
+      <rect x="35.7" y="13" width="5" height="34" rx="2.5"/>
+      <rect x="43.2" y="22" width="5" height="16" rx="2.5"/>
+    </g>
+    <circle cx="51.7" cy="30" r="2.6" fill="#ff3b30"/>
+  </g>
+</svg>
