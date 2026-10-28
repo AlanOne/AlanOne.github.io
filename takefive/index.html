@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Take 5 cheat sheet: recording, mixing and mastering, with keyboard shortcuts for Windows and Mac. Printable.">
+<title>Take 5 Cheat Sheet</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a channel-strip notebook. One A4 page per stage (start, record, mix, master),
+   each with its colour from the app's own transport: record red, fader blue, meter green. */
+:root {
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --ink: #16191d;
+  --muted: #59626e;
+  --line: #d8dce2;
+  --key-bg: #ffffff;
+  --key-edge: #b4bcc7;
+  --rec: #c4342a;
+  --mix: #2667c0;
+  --master: #1b7f53;
+  --start: #4b5563;
+  --pin-ink: #ffffff;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+    --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+    --start: #a3acb8; --pin-ink: #101215; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+  --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+  --start: #a3acb8; --pin-ink: #101215; color-scheme: dark;
+}
+
+body {
+  background: var(--paper); color: var(--ink);
+  font: 15px/1.5 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 40px; }
+
+/* Platform: Windows keys unless the viewer picks Mac */
+.ks.m { display: none; }
+html.mac .ks.w { display: none; }
+html.mac .ks.m { display: inline-flex; }
+.ks { display: inline-flex; gap: 2px; vertical-align: baseline; white-space: nowrap; }
+kbd {
+  font: 500 0.78em/1 var(--mono);
+  min-width: 1.7em; padding: 0.28em 0.42em 0.22em; text-align: center;
+  background: var(--key-bg); color: var(--ink);
+  border: 1px solid var(--key-edge); border-bottom-width: 2px; border-radius: 4px;
+}
+
+header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.eyebrow { font: 600 13px/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(40px, 7vw, 64px)/0.95 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h1 .sep { color: var(--muted); font-weight: 500; }
+.lede { margin: 0; max-width: 68ch; color: var(--muted); }
+.toggle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.toggle .seg { display: inline-flex; border: 1px solid var(--key-edge); border-radius: 6px; overflow: hidden; }
+.toggle button {
+  font: 600 14px/1 var(--body); color: var(--ink); background: transparent;
+  border: 0; padding: 8px 14px; cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.toggle button:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+
+section.stage { --accent: var(--start); display: grid; gap: 22px; }
+section.rec { --accent: var(--rec); }
+section.mixing { --accent: var(--mix); }
+section.master { --accent: var(--master); }
+.stage-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-top: 6px solid var(--accent); padding-top: 12px; }
+.stage-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); }
+.stage-head p { margin: 0; color: var(--muted); flex: 1 1 280px; }
+
+h3 { font: 600 19px/1.2 var(--display); margin: 0 0 6px; letter-spacing: 0.01em; text-wrap: balance; }
+h3 small { font: 500 13px var(--body); color: var(--muted); letter-spacing: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 28px; }
+.grid > * { min-width: 0; }
+.recipe ol, .recipe ul { margin: 0; padding-left: 1.25em; display: grid; gap: 3px; }
+.recipe p { margin: 0 0 4px; }
+.recipe li::marker { color: var(--accent); font-weight: 600; }
+.menu { font-weight: 600; }
+.tip { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; color: var(--muted); font-size: 14px; }
+.tip strong { color: var(--ink); }
+
+/* Key tables */
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 16px; }
+.keys div { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.keys-title { font: 600 13px var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+/* Screenshots with numbered pins */
+figure { margin: 0; display: grid; gap: 10px; }
+.shot { position: relative; width: 100%; max-width: 100%; }
+.crop { position: relative; overflow: hidden; aspect-ratio: var(--w) / var(--h); border-radius: 6px; border: 1px solid var(--line); background: #2b2b2b; }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+.pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 19px; height: 19px; border-radius: 50%;
+  background: var(--accent); color: var(--pin-ink);
+  font: 700 11px/19px var(--body); text-align: center;
+  box-shadow: 0 0 0 2px #ffffffd9;
+}
+figcaption { font-size: 13.5px; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 20px; font-size: 14px; }
+.legend li { position: relative; padding-left: 26px; }
+.legend li > b:first-child { position: absolute; left: 0; top: 0.12em; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--pin-ink); font: 700 11px/18px var(--body); text-align: center; }
+.side { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.side.narrow { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); }
+@media (max-width: 640px) { .side, .side.narrow { grid-template-columns: 1fr; } .side.narrow .shot { max-width: 180px; } }
+
+table.targets { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+table.targets th, table.targets td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.targets th { font: 600 12px var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.trouble { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; font-size: 14px; }
+.trouble p { margin: 0; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+@media print {
+  :root, :root[data-theme="dark"] {
+    --paper: #fff; --card: #fff; --ink: #111; --muted: #4a525c; --line: #cfd4da;
+    --key-bg: #fff; --key-edge: #9aa2ad; --rec: #b52d24; --mix: #1f5fb4; --master: #17734b;
+    --start: #4b5563; --pin-ink: #fff; color-scheme: light;
+  }
+  @page { size: A4; margin: 11mm 12mm; }
+  body { font-size: 9.6pt; padding: 0; }
+  .wrap { gap: 18px; max-width: none; }
+  .toggle { display: none; }
+  section.stage { break-before: page; gap: 12px; }
+  section.stage.first { break-before: auto; }
+  .recipe, figure, .keys div, .tip, table, .trouble p { break-inside: avoid; }
+  .grid { gap: 10px 20px; }
+  h1 { font-size: 34pt; }
+  .stage-head h2 { font-size: 22pt; }
+  .crop, .pin, .legend b { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+}
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap">
+
+<header class="top">
+  <div class="eyebrow">Take 5 · version 0.4 · cheat sheet</div>
+  <h1>Record <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
+  <p class="lede">The keys and steps to take a song from the microphone to a finished file. Keys are Take 5's
+  default set (the Logic-style one). Single-letter keys work whenever you're not typing in a box, and almost
+  everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
+  <div class="toggle" role="group" aria-label="Show keys for">
+    <span>Show keys for</span>
+    <span class="seg">
+      <button type="button" id="os-win" aria-pressed="true">Windows</button>
+      <button type="button" id="os-mac" aria-pressed="false">Mac</button>
+    </span>
+    <span>The keys you pick here are the ones that print.</span>
+  </div>
+</header>
+
+<!-- ============ START ============ -->
+<section class="stage first">
+  <div class="stage-head">
+    <h2>Before you start</h2>
+    <p>Set up the sound once, learn a dozen keys, and know where everything is on screen.</p>
+  </div>
+
+  <div class="grid">
+    <div class="recipe">
+      <h3>Set up your audio interface</h3>
+      <ol>
+        <li>Plug in the interface (and install its driver) before opening Take 5.</li>
+        <li><span class="menu">Settings &gt; Audio Settings…</span> <span class="ks w"><kbd>Ctrl</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>,</kbd></span>: pick the driver type (ASIO on Windows), then the interface for input and output.</li>
+        <li>Tick the inputs you'll record from and the outputs you'll listen on. Press <b>Test</b> to hear a tone.</li>
+        <li>Buffer size: <b>128</b> samples for recording, <b>512–1024</b> for mixing a big song. Hear crackles? Go up one step.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Find any command</h3>
+      <ul>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>P</kbd></span> <span class="menu">Command Palette</span>: type part of a name and press Return.</li>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>/</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>/</kbd></span> <span class="menu">Shortcuts</span> panel: every key and mouse gesture, beside the tracks.</li>
+        <li><span class="menu">Help &gt; Tutorial</span>: a guided tour on the open song.</li>
+        <li>Hover any button for a tooltip; the status line at the bottom gives hints.</li>
+        <li>Prefer Pro Tools, Cubase, Reaper, Ableton or FL Studio keys? <span class="menu">Settings &gt; Key Commands…</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <div class="keys-title">The keys to learn first</div>
+    <div class="keys">
+      <div><span class="ks"><kbd>Space</kbd></span><span>Play / stop</span></div>
+      <div><span class="ks"><kbd>R</kbd></span><span>Record</span></div>
+      <div><span><span class="ks"><kbd>Return</kbd></span> <span class="ks"><kbd>Home</kbd></span></span><span>Go to start</span></div>
+      <div><span class="ks"><kbd>K</kbd></span><span>Metronome (click) on/off</span></div>
+      <div><span class="ks"><kbd>C</kbd></span><span>Loop on/off</span></div>
+      <div><span class="ks"><kbd>X</kbd></span><span>Show / hide the mixer</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>S</kbd></span><span>Save</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span><span>Undo</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>Z</kbd></span><span>Redo</span></div>
+      <div><span class="ks"><kbd>Z</kbd></span><span>Zoom to fit (again to go back)</span></div>
+      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>=</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>=</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>-</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>-</kbd></span></span><span>Zoom in / out</span></div>
+      <div><span class="ks"><kbd>T</kbd></span><span>Tool menu (pointer, marquee, scissors…)</span></div>
+    </div>
+  </div>
+
+  <figure>
+    <div class="shot " style="--w:700;--h:108"><div class="crop"><img src="screenshots/arrange.jpg" alt="" style="width:228.571%;left:-0.000%;top:-0.000%"></div><span class="pin" style="left:15.00%;top:9.26%">1</span><span class="pin" style="left:42.86%;top:9.26%">2</span><span class="pin" style="left:63.14%;top:9.26%">3</span><span class="pin" style="left:69.14%;top:9.26%">4</span><span class="pin" style="left:75.29%;top:9.26%">5</span><span class="pin" style="left:83.14%;top:9.26%">6</span><span class="pin" style="left:89.29%;top:9.26%">7</span><span class="pin" style="left:95.43%;top:9.26%">8</span><span class="pin" style="left:8.14%;top:56.48%">9</span><span class="pin" style="left:25.00%;top:56.48%">10</span><span class="pin" style="left:42.86%;top:56.48%">11</span></div>
+    <div class="shot " style="--w:900;--h:62"><div class="crop"><img src="screenshots/arrange.jpg" alt="" style="width:177.778%;left:-77.778%;top:-0.000%"></div><span class="pin" style="left:1.33%;top:48.39%">12</span><span class="pin" style="left:19.44%;top:48.39%">13</span><span class="pin" style="left:33.11%;top:48.39%">14</span><span class="pin" style="left:51.78%;top:48.39%">15</span><span class="pin" style="left:62.44%;top:51.61%">16</span></div>
+    <ul class="legend">
+      <li><b>1</b>Click volume</li>
+      <li><b>2</b>Count-in before recording</li>
+      <li><b>3</b>Go to start</li>
+      <li><b>4</b>Play</li>
+      <li><b>5</b>Record</li>
+      <li><b>6</b>Loop</li>
+      <li><b>7</b>Punch in</li>
+      <li><b>8</b>Metronome</li>
+      <li><b>9</b>Add a track</li>
+      <li><b>10</b>Feel: straight or swing</li>
+      <li><b>11</b>Snap grid</li>
+      <li><b>12</b>Bar | beat | tick</li>
+      <li><b>13</b>Time</li>
+      <li><b>14</b>Tempo (click to change)</li>
+      <li><b>15</b>Time signature</li>
+      <li><b>16</b>Loudness meter (LUFS, true peak)</li>
+    </ul>
+    <figcaption>The transport bar across the top of the window.</figcaption>
+  </figure>
+
+  <figure>
+    <div class="side">
+      <div class="shot " style="--w:375;--h:122"><div class="crop"><img src="screenshots/arrange.jpg" alt="" style="width:426.667%;left:-0.000%;top:-244.262%"></div><span class="pin" style="left:26.67%;top:13.93%">1</span><span class="pin" style="left:54.67%;top:13.93%">2</span><span class="pin" style="left:8.00%;top:39.34%">3</span><span class="pin" style="left:77.33%;top:59.02%">4</span><span class="pin" style="left:93.87%;top:59.02%">5</span><span class="pin" style="left:3.73%;top:75.41%">6</span><span class="pin" style="left:46.67%;top:91.80%">7</span><span class="pin" style="left:68.00%;top:91.80%">8</span></div>
+      <ul class="legend">
+        <li><b>1</b>Track name (double-click to rename)</li>
+        <li><b>2</b><span><b>R</b> arm · headphones = monitoring · <b>M</b> mute · <b>S</b> solo · <b>A</b> automation</span></li>
+        <li><b>3</b>Volume fader</li>
+        <li><b>4</b>Level in dB</li>
+        <li><b>5</b>Pan</li>
+        <li><b>6</b>Input (which mic or guitar jack)</li>
+        <li><b>7</b>Add a plugin</li>
+        <li><b>8</b>Plugins on the track (click to open)</li>
+      </ul>
+    </div>
+    <figcaption>A track header, on the left of every track. Right-click it for everything else (rename, colour, send, freeze…).</figcaption>
+  </figure>
+</section>
+
+<!-- ============ RECORDING ============ -->
+<section class="stage rec">
+  <div class="stage-head">
+    <h2>Recording</h2>
+    <p>Takes are saved in the song's Audio folder, and the song saves itself after every take.</p>
+  </div>
+
+  <div class="grid">
+    <div class="recipe">
+      <h3>Record a guitar or a vocal</h3>
+      <ol>
+        <li>Add an audio track: <b>+ Track</b> or <span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>N</kbd></span>.</li>
+        <li>Pick its input in the track header's input menu.</li>
+        <li>Click the track's <b>R</b> to arm it. Play: the meter should move without hitting the top.</li>
+        <li>Press <span class="ks"><kbd>K</kbd></span> for the click and choose a <b>Count-in</b> (1 bar is a good start).</li>
+        <li>Press <span class="ks"><kbd>R</kbd></span> to record, <span class="ks"><kbd>Space</kbd></span> to stop.</li>
+        <li>Recorded over an old take? It's kept as a take, not lost.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Hear yourself while recording</h3>
+      <p>Click the headphones button in the track header to cycle:</p>
+      <ul>
+        <li><b>Auto</b>: you hear the input while the track is armed.</li>
+        <li><b>On</b>: always. <b>Off</b>: never (use when your interface's direct monitoring is on).</li>
+      </ul>
+      <p>You hear the input through the track's plugins, so you can play through the Amp. Hear a delay? Lower the buffer, or turn on <span class="menu">Transport &gt; Low-Latency Mode</span>.</p>
+    </div>
+    <div class="recipe">
+      <h3>Record a whole band at once</h3>
+      <ol>
+        <li>Tick every input in Audio Settings.</li>
+        <li><span class="menu">Track &gt; New Tracks for Unused Inputs</span> makes a track for each.</li>
+        <li>Arm them: Shift-click an <b>R</b> arms the selected tracks; <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-click an <b>R</b> arms every track.</li>
+        <li>Press <span class="ks"><kbd>R</kbd></span>: each input records onto its own track.</li>
+      </ol>
+      <p class="tip">Headphone mixes per player: <span class="menu">Track &gt; New Cue Mix…</span></p>
+    </div>
+    <div class="recipe">
+      <h3>Fix one part (punch in)</h3>
+      <ol>
+        <li>Drag in the ruler over the bars to fix.</li>
+        <li>Turn on the punch button (it goes red).</li>
+        <li>Arm the track, start before the bars, press <span class="ks"><kbd>R</kbd></span>. Only the punched part is replaced.</li>
+      </ol>
+      <p class="tip"><span class="menu">Transport &gt; Pre-roll for Punch-in</span> plays 1 or 2 bars first so you can play yourself in.</p>
+    </div>
+    <div class="recipe">
+      <h3>Loop-record takes, then comp the best</h3>
+      <ol>
+        <li>Drag in the ruler to set the range, press <span class="ks"><kbd>C</kbd></span> to loop.</li>
+        <li>Arm and press <span class="ks"><kbd>R</kbd></span>. Every pass becomes a take. Stop when you have enough.</li>
+        <li>Click the track's <b>Takes</b> button to show the take lanes.</li>
+        <li>Drag across the best part of each take: it goes into the comp. Click a lane to use a whole take.</li>
+        <li>Right-click the track &gt; <b>Flatten Comp</b> to make it one clip.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Click, count-in and tuning</h3>
+      <ul>
+        <li><span class="ks"><kbd>K</kbd></span> click on/off; the slider beside it is the click volume.</li>
+        <li><span class="menu">Transport &gt; Click Sound</span>: woodblock, cowbell, hi-hat, beep…</li>
+        <li><span class="menu">Transport &gt; Click Only When Recording</span>.</li>
+        <li><span class="menu">Transport &gt; Click Output</span>: send the click only to the drummer's headphones.</li>
+        <li><span class="ks w"><kbd>Alt</kbd><kbd>T</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>T</kbd></span> <span class="menu">Tuner</span>: guitar, bass or chromatic, many tunings.</li>
+      </ul>
+      <p class="tip">The click is never in an export.</p>
+    </div>
+  </div>
+
+  <div>
+    <div class="keys-title">Recording keys</div>
+    <div class="keys">
+      <div><span class="ks"><kbd>R</kbd></span><span>Record / stop recording</span></div>
+      <div><span class="ks"><kbd>Space</kbd></span><span>Play / stop</span></div>
+      <div><span class="ks"><kbd>K</kbd></span><span>Metronome</span></div>
+      <div><span class="ks"><kbd>C</kbd></span><span>Loop</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>U</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>U</kbd></span><span>Loop the selected clips or range</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>N</kbd></span><span>New audio track</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span><span>New instrument track</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>R</kbd></span><span>Capture what you just played on a MIDI keyboard</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>K</kbd></span><span>Play notes from the computer keyboard</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>T</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>T</kbd></span><span>Tuner</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>T</kbd></span><span>Tap tempo</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span><span>Add a section marker at the playhead</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>T</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>T</kbd></span><span>Split clip at the playhead</span></div>
+      <div><span class="ks"><kbd>Q</kbd></span><span>Quantise selected notes or audio</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>I</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>I</kbd></span><span>Import audio or MIDI files</span></div>
+    </div>
+  </div>
+
+  <p class="tip"><strong>Takes land late?</strong> Connect a cable from an output to an input, then <span class="menu">Settings &gt; Recording Latency…</span> &gt; <b>Measure</b>. Take 5 corrects every recording from then on.</p>
+</section>
+
+<!-- ============ MIXING ============ -->
+<section class="stage mixing">
+  <div class="stage-head">
+    <h2>Mixing</h2>
+    <p>Press <span class="ks"><kbd>X</kbd></span> for the mixer. <span class="menu">View &gt; Mixer Below Tracks</span> or <span class="menu">Mixer in Own Window</span> to place it.</p>
+  </div>
+
+  <figure>
+    <div class="side">
+      <div class="shot " style="--w:375;--h:413"><div class="crop"><img src="screenshots/mixer.jpg" alt="" style="width:426.667%;left:-66.667%;top:-120.339%"></div><span class="pin" style="left:33.07%;top:5.08%">1</span><span class="pin" style="left:33.07%;top:26.39%">2</span><span class="pin" style="left:33.07%;top:42.37%">3</span><span class="pin" style="left:33.07%;top:60.05%">4</span><span class="pin" style="left:33.07%;top:79.66%">5</span><span class="pin" style="left:33.07%;top:86.68%">6</span><span class="pin" style="left:33.07%;top:94.92%">7</span></div>
+      <div class="recipe">
+        <ul class="legend" style="grid-template-columns:1fr">
+          <li><b>1</b>Plugin slots: <b>+</b> adds one, click one to open it</li>
+          <li><b>2</b>Sends to buses (reverb, delay), each with its level knob</li>
+          <li><b>3</b>Pan, and stereo width beside it</li>
+          <li><b>4</b>Fader and level meter</li>
+          <li><b>5</b>Ø flips polarity · the level in dB</li>
+          <li><b>6</b>R arm · M mute · S solo</li>
+          <li><b>7</b>Track name (drag to reorder)</li>
+        </ul>
+        <div class="keys" style="margin-top:14px">
+          <div><span>Double-click</span><span>Fader back to 0 dB, pan to centre</span></div>
+          <div><span><span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-click</span><span>Type an exact value: <code>-6</code>, <code>L30</code>, <code>120%</code></span></div>
+          <div><span><span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-drag</span><span>Fine adjustment</span></div>
+        </div>
+      </div>
+    </div>
+    <figcaption>Three mixer strips from the demo song. The master strip is on the right of the mixer (see Mastering).</figcaption>
+  </figure>
+
+  <div class="grid">
+    <div class="recipe">
+      <h3>Balance first</h3>
+      <ol>
+        <li>Set every level with the faders before adding any plugin.</li>
+        <li>Then pan: guitars left and right, kick, snare, bass and vocal in the middle.</li>
+        <li>Keep the master meter out of the red; turn tracks down, not the master up.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Solo and mute</h3>
+      <ul>
+        <li><b>M</b> mutes, <b>S</b> solos (a soloed track keeps its reverb).</li>
+        <li><span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click <b>S</b>: solo only this track.</li>
+        <li>Shift-click <b>S</b>: dry solo, without its reverb and delay (shows <b>D</b>).</li>
+        <li>Right-click <b>S</b> &gt; <b>Solo-Safe</b>: a reverb bus that stays on.</li>
+        <li><span class="menu">Mix &gt; Unsolo All</span> / <span class="menu">Unmute All</span>.</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>Clean up and shape each track</h3>
+      <p>Select a track, <span class="menu">Mix &gt; Add Channel Strip</span>: a Gate, EQ and Compressor before the fader.</p>
+      <ul>
+        <li><b>Gate</b>: raise Threshold to silence noise between notes.</li>
+        <li><b>EQ</b>: cut what's muddy or harsh before boosting anything.</li>
+        <li><b>Compressor</b>: Threshold and Ratio even out the level, Makeup brings it back up.</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>Reverb and delay on a bus</h3>
+      <ol>
+        <li><span class="menu">Track &gt; New Bus</span>, then add <b>Reverb</b>, <b>Convolution Reverb</b> or <b>Delay</b> on it, fully wet.</li>
+        <li>On each track: right-click &gt; <b>Send To</b> &gt; the bus (or <b>+ Send</b> on the strip).</li>
+        <li>Turn each send's knob for how much of that track goes in.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Group tracks</h3>
+      <ul>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>D</kbd></span> <span class="menu">Group into Folder</span>: a folder is a bus, so one fader and plugins for all the drums.</li>
+        <li><span class="menu">Track &gt; Group into VCA</span>: one fader moves all their faders together.</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>Automate (moves during the song)</h3>
+      <ol>
+        <li>Click the track's <b>A</b> to show its Volume, Pan and send lanes; pick any plugin knob from the lane's menu.</li>
+        <li>Click in a lane to add a point, drag to shape, <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click a point to delete it.</li>
+        <li>Or set the mode to <b>Touch</b> or <b>Latch</b> and ride the fader while it plays.</li>
+        <li>Right-click a lane &gt; <b>Draw Shape</b>: fade, swell, duck over a selected range.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Duck the bass under the kick</h3>
+      <p>Put a Compressor on the bass, right-click its slot &gt; <b>Sidechain From</b> &gt; the kick track.</p>
+    </div>
+    <div class="recipe">
+      <h3>Fewer knobs, less CPU</h3>
+      <ul>
+        <li><span class="ks"><kbd>B</kbd></span> <span class="menu">Smart Controls</span>: a few big knobs (Drive, Tone, Squash, Space) that each move several settings.</li>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Control</kbd><kbd>B</kbd></span> <span class="menu">Bounce in Place</span>: the track becomes audio, effects and all.</li>
+        <li>Right-click a track &gt; <b>Freeze</b> to free CPU and keep it playing.</li>
+      </ul>
+    </div>
+  </div>
+
+  <figure>
+    <div class="side narrow">
+      <div class="shot " style="--w:1104;--h:1540"><div class="crop"><img src="screenshots/eq.jpg" alt="" style="width:100.000%;left:-0.000%;top:-0.000%"></div></div>
+      <div class="recipe">
+        <h3>Using a built-in plugin window <small>(here, the EQ)</small></h3>
+        <ul>
+          <li>Drag a knob up or down; double-click it for its default; type a value in the box under it.</li>
+          <li>EQ: drag a numbered handle for frequency and gain, Shift-drag for frequency only, scroll over it for width (Q), double-click it for 0 dB.</li>
+          <li>The power button bypasses the plugin, to hear before and after.</li>
+          <li>Right-click a slot: <b>Bypass</b>, <b>Save Preset…</b>, <b>Load Preset</b>, <b>Remove</b>.</li>
+        </ul>
+        <p class="tip"><strong>Built in:</strong> Amp, EQ, Saturator, Low Pass, Compressor, Gate, Transient Shaper, Limiter, De-esser, Level Rider, Doubler, Reverb, Convolution Reverb, Delay, Chorus, Phaser, Hardware Insert, Channel Strip.</p>
+      </div>
+    </div>
+  </figure>
+
+  <div>
+    <div class="keys-title">Mixing keys</div>
+    <div class="keys">
+      <div><span class="ks"><kbd>X</kbd></span><span>Mixer</span></div>
+      <div><span class="ks"><kbd>B</kbd></span><span>Smart Controls for the selected track</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>D</kbd></span><span>Group selected tracks into a folder</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Control</kbd><kbd>B</kbd></span><span>Bounce in place</span></div>
+      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>↑</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↑</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>↓</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↓</kbd></span></span><span>Taller / shorter tracks</span></div>
+      <div><span><span class="ks w"><kbd>Alt</kbd><kbd>←</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>←</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>→</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>→</kbd></span></span><span>Nudge clips one grid step</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>R</kbd></span><span>Switch to the reference track and back</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>M</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>M</kbd></span><span>Master Off (matched loudness)</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MASTERING ============ -->
+<section class="stage master">
+  <div class="stage-head">
+    <h2>Mastering &amp; export</h2>
+    <p>Make the finished mix loud enough, check it against a song you like, and export it.</p>
+  </div>
+
+  <figure>
+    <div class="side">
+      <div style="display:grid;grid-template-columns:minmax(0,130px) minmax(0,1fr);gap:20px;align-items:start">
+        <div class="shot " style="--w:125;--h:413"><div class="crop"><img src="screenshots/mixer.jpg" alt="" style="width:1280.000%;left:-1180.000%;top:-120.339%"></div><span class="pin" style="left:100.00%;top:5.08%">1</span><span class="pin" style="left:100.00%;top:46.73%">2</span><span class="pin" style="left:100.00%;top:75.79%">3</span><span class="pin" style="left:0.00%;top:82.81%">4</span><span class="pin" style="left:100.00%;top:82.81%">5</span><span class="pin" style="left:100.00%;top:89.59%">6</span></div>
+        <div style="display:grid;gap:8px">
+          <div class="shot " style="--w:318;--h:42"><div class="crop"><img src="screenshots/arrange.jpg" alt="" style="width:503.145%;left:-400.000%;top:-28.571%"></div></div>
+          <figcaption>The loudness meter, top right: <b>S</b> short-term and <b>I</b> integrated LUFS, <b>TP</b> true peak (red at −1 dBTP or above). Click it to reset.</figcaption>
+        </div>
+      </div>
+      <ul class="legend" style="grid-template-columns:1fr">
+        <li><b>1</b>Master plugins: the mastering chain goes here</li>
+        <li><b>2</b>Master fader and meter</li>
+        <li><b>3</b>Master level in dB</li>
+        <li><b>4</b><b>Mono</b>: hear the mix in mono</li>
+        <li><b>5</b><b>Dim</b>: 20 dB quieter</li>
+        <li><b>6</b><b>Mix / Ref</b>: switch to the reference track</li>
+      </ul>
+    </div>
+    <figcaption>The master strip at the right end of the mixer. Mono, Dim, Reference and Master Off only change what you hear, never the export.</figcaption>
+  </figure>
+
+  <div class="grid">
+    <div class="recipe">
+      <h3>Build a mastering chain</h3>
+      <ol>
+        <li>On the master strip, click <b>+</b> &gt; <b>Built-in</b> and add, in order: <b>EQ</b>, <b>Compressor</b>, <b>Limiter</b>.</li>
+        <li>EQ: small, broad moves (1–2 dB).</li>
+        <li>Compressor: gentle, a low ratio, 1–3 dB of gain reduction.</li>
+        <li>Limiter last: raise its gain while watching <b>I</b> and <b>TP</b> on the loudness meter. Keep TP under −1 dB.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Compare with a reference song</h3>
+      <ol>
+        <li><span class="menu">Mix &gt; Choose Reference Track…</span>: pick a finished song you like.</li>
+        <li><span class="ks w"><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>R</kbd></span> (or <b>Mix / Ref</b>) switches between your mix and it, at the same place in the song.</li>
+        <li>Leave <span class="menu">Match Reference Loudness</span> on so louder doesn't fool you. After changes: <span class="menu">Measure Mix Loudness Again</span>.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Check the master</h3>
+      <ul>
+        <li><span class="ks w"><kbd>Alt</kbd><kbd>M</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>M</kbd></span> <span class="menu">Master Off</span>: the mix without the master's plugins, at the same loudness. Does the master actually help?</li>
+        <li><span class="menu">Mix &gt; Mono</span>: does the bass or vocal disappear?</li>
+        <li><span class="menu">Mix &gt; Dim</span>: does it still work quietly?</li>
+        <li><span class="menu">Mix &gt; Analyser</span>: the spectrum (bass on the left) and stereo correlation.</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>Or let the assistant master it</h3>
+      <ol>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>A</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>A</kbd></span> opens the <b>Assistant</b> (needs Claude Code installed and signed in).</li>
+        <li>Ask: “master this for streaming, punchy” or “master it like the reference, −14 LUFS”.</li>
+        <li>It measures, sets the EQ, compressor and Limiter, and checks again. One <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> undoes it all.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Export the song</h3>
+      <ol>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>E</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>E</kbd></span> <span class="menu">File &gt; Export…</span></li>
+        <li>Tick formats: WAV, AIFF, FLAC, MP3 (one file each). 24-bit for masters, 16-bit for CDs.</li>
+        <li><b>Whole song</b>, or <b>Loop range</b> for part of it.</li>
+        <li>Loudness: <b>As mixed</b>, or a target from the table below.</li>
+        <li>Fill in Title, Artist, Album, Year. The status line then shows loudness and true peak.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Other exports</h3>
+      <ul>
+        <li><b>Stems</b>: one file per track, folder and bus, for another studio.</li>
+        <li><b>Each section</b>: one file per section marker (add markers with <span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span>).</li>
+        <li><span class="menu">File &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
+        <li><span class="menu">File &gt; Export AAF…</span> for Pro Tools, Resolve, Media Composer.</li>
+        <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div>
+      <div class="keys-title">Loudness targets in the export dialog</div>
+      <table class="targets">
+        <thead><tr><th>For</th><th>Target</th><th>True peak</th></tr></thead>
+        <tbody>
+          <tr><td>Spotify, YouTube, most streaming</td><td>−14 LUFS</td><td>under −1 dBTP</td></tr>
+          <tr><td>Podcasts, Apple</td><td>−16 LUFS</td><td>under −1 dBTP</td></tr>
+          <tr><td>Broadcast (TV, radio)</td><td>−23 LUFS</td><td>under −1 dBTP</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="recipe">
+      <div class="keys-title">Before you export</div>
+      <ul>
+        <li>Nothing soloed or muted by mistake: the export plays what you hear.</li>
+        <li>The click, the reference, Mono, Dim and Master Off are left out by themselves.</li>
+        <li>Saved with <span class="ks w"><kbd>Ctrl</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>S</kbd></span>. Want a safe point? <span class="menu">File &gt; Save Snapshot…</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div>
+    <div class="keys-title">If something goes wrong</div>
+    <div class="trouble">
+      <p><strong>No sound:</strong> Audio Settings &gt; <b>Test</b>; check Dim is off and nothing is soloed (<span class="menu">Mix &gt; Unsolo All</span>).</p>
+      <p><strong>Crackles:</strong> raise the buffer size; freeze heavy tracks; on Windows use ASIO.</p>
+      <p><strong>Stuck notes:</strong> <span class="menu">Transport &gt; Panic</span>, or double-click the play button.</p>
+      <p><strong><span class="ks"><kbd>Space</kbd></span> or <span class="ks"><kbd>R</kbd></span> does nothing:</strong> you're typing in a box. Click an empty part of the tracks.</p>
+      <p><strong>Lost work:</strong> <span class="menu">File &gt; Song History…</span> lists earlier saves to listen to and restore. Take 5 also keeps a recovery copy every 2 minutes.</p>
+    </div>
+  </div>
+</section>
+
+<footer>Take 5 is free and open source. Screenshots are from the demo song on macOS; Windows looks the same, with the menus inside the window. Full guide: <span class="menu">docs/GUIDE.md</span>, or ask the Assistant “how do I…”.</footer>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var win = document.getElementById("os-win"), mac = document.getElementById("os-mac");
+  function set(os) {
+    root.classList.toggle("mac", os === "mac");
+    win.setAttribute("aria-pressed", String(os !== "mac"));
+    mac.setAttribute("aria-pressed", String(os === "mac"));
+  }
+  var saved = null;
+  try { saved = localStorage.getItem("take5-keys"); } catch (e) {}
+  set(saved || (/Mac/.test(navigator.platform || navigator.userAgent) ? "mac" : "win"));
+  function pick(os) { set(os); try { localStorage.setItem("take5-keys", os); } catch (e) {} }
+  win.addEventListener("click", function () { pick("win"); });
+  mac.addEventListener("click", function () { pick("mac"); });
+})();
+</script>
+
+</body>
+</html>
