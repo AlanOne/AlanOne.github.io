@@ -1,0 +1,57 @@
+name: Deploy the site to GitHub Pages
+
+# One site, alanone.github.io, from this repo:
+#   /undefined-behavior/  the Hugo blog in undefined-behavior/ (built here)
+#   everything else       plain files, served as they are (takefive/, ...)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: "0.165.0"
+          extended: true
+      - name: Plain pages
+        run: |
+          mkdir _site
+          rsync -a --exclude '.*' --exclude _site --exclude undefined-behavior --exclude README.md ./ _site/
+      - name: Build Undefined Behavior
+        run: hugo --minify --source undefined-behavior --destination "$GITHUB_WORKSPACE/_site/undefined-behavior"
+      - name: The site's 404 page
+        # GitHub Pages shows a user site's /404.html for any missing page, the blog's included.
+        run: cp _site/undefined-behavior/404.html _site/404.html
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./_site
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
