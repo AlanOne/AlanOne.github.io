@@ -1212,12 +1212,12 @@ mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1
 <section class="reference" id="whats-left">
   <div class="ref-head">
     <h2>What's left</h2>
-    <p>Where Take 5's development is, from its plan (PLAN.md): 0 milestones still to build, most
+    <p>Where Take 5's development is, from its plan (PLAN.md): 1 milestones still to build, most
     useful first, and what's built but still to finish or check by hand.</p>
   </div>
   <details class="ref-sec" id="left-next">
-<summary><span class="ref-title">Next milestones, most useful first</span><span class="ref-count">0</span></summary>
-<div class="ref-body"></div>
+<summary><span class="ref-title">Next milestones, most useful first</span><span class="ref-count">1</span></summary>
+<div class="ref-body"><details class="task" id="left--code-review-2026-10-29"><summary>Code review (2026-10-29)</summary><div class="task-body"><ul><li>Sections: Insert/Delete/Duplicate Section, Delete and Close Gap and Insert Silence move clips and markers but not automation, chords and lyrics (moveRange already does)</li><li>Glue and MIDI Flatten Comp drop controllers (CC, pitch bend); stretchRange leaves them</li><li>A change inside a linked audio clip's effects rebuilds every copy's plugins</li><li>Repairs write the whole file each time, keep the old repaired files, and keep the original's path absolute (Take Off Repairs breaks if the song moves)</li><li>Automation edits remove points one by one (slow on recorded lanes, a big undo step)</li><li>Saving: an atomic replace of the song file (the engine deletes then moves), the autosave through a temp file, and recovery looking at a left-over .tmp_ file</li><li>AAF: extracting embedded audio fails under a non-ASCII path (libaaf's fopen); a missing media file searches the whole folder each time (index it once); exported channel files can share a name ("Vox?" and "Vox")</li><li>TONE3000: two token refreshes at once sign out; the bearer token goes to any model URL</li><li>The band folder's check reads files on the message thread every 20 s</li><li>A sandboxed plugin's parameter text is a 500 ms round trip while drawing</li><li>The assistant: analyse renders the song on the message thread (the window freezes); tone3000's tool waits on the network there; times and lengths have no upper limit; a long request on Windows goes over the command line's 32,767 characters; the chat rebuilds every message on each change</li><li>The main window rebuilds every track row (and the mixer every strip) on any track or take change; recording repaints whole growing clips 30 times a second; every header and strip polls 8 times a second, seen or not; a selection change repaints every clip</li><li>The Pitch editor draws its pitch line frames x notes; Notation keeps raw clip and note pointers for its selection; the listen bus is skipped while its state is saved</li></ul></div></details></div>
 </details>
 <details class="ref-sec" id="left-finish">
 <summary><span class="ref-title">To finish and check</span><span class="ref-count">22</span></summary>
