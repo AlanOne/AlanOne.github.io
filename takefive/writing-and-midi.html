@@ -225,6 +225,9 @@ nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
 .m-card li a { color: var(--ink); text-decoration: none; }
 .m-card li a:hover { color: var(--accent); text-decoration: underline; }
 .m-card li span { color: var(--muted); font-variant-numeric: tabular-nums; }
+/* Seven parts in rows of three (or two): the last, Help, takes a row of its own, its areas side by side */
+.m-card:last-child { grid-column: 1 / -1; }
+.m-card:last-child ul { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 28px; }
 
 /* Search results from the manual (under the quick sheet's search, and in a part page's sidebar) */
 .m-results { display: grid; gap: 6px; }
