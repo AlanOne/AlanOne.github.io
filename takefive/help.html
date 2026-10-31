@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Take 5 manual: Help.">
+<title>Help · Take 5 Manual</title>
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a channel-strip notebook. One A4 page per stage (start, record, mix, master),
+   each with its colour from the app's own transport: record red, fader blue, meter green. */
+:root {
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --ink: #16191d;
+  --muted: #59626e;
+  --line: #d8dce2;
+  --key-bg: #ffffff;
+  --key-edge: #b4bcc7;
+  --rec: #c4342a;
+  --mix: #2667c0;
+  --master: #1b7f53;
+  --edit: #7446b8;
+  --write: #a55d0c;
+  --start: #4b5563;
+  --pin-ink: #ffffff;
+  --mark: #ffe28a;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+    --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+  --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+}
+
+body {
+  background: var(--paper); color: var(--ink);
+  font: 15px/1.5 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 40px; }
+
+/* Platform: Windows keys unless the viewer picks Mac */
+.ks.m { display: none; }
+html.mac .ks.w { display: none; }
+html.mac .ks.m { display: inline-flex; }
+.ks { display: inline-flex; gap: 2px; vertical-align: baseline; white-space: nowrap; }
+kbd {
+  font: 500 0.78em/1 var(--mono);
+  min-width: 1.7em; padding: 0.28em 0.42em 0.22em; text-align: center;
+  background: var(--key-bg); color: var(--ink);
+  border: 1px solid var(--key-edge); border-bottom-width: 2px; border-radius: 4px;
+}
+
+header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.eyebrow { font: 600 13px/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(40px, 7vw, 64px)/0.95 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h1 .app-icon { height: 0.95em; width: auto; vertical-align: -0.12em; margin-right: 0.22em; }
+h1 .sep { color: var(--muted); font-weight: 500; }
+.lede { margin: 0; color: var(--muted); }
+.about { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.toggle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download a.dl { border: 1px solid var(--key-edge); border-radius: 6px; padding: 5px 11px; color: var(--ink); text-decoration: none; font-weight: 600; }
+.download a.dl:hover, .download a.dl:focus-visible { background: var(--ink); color: var(--paper); }
+.download a.all { color: var(--muted); }
+.toggle .seg { display: inline-flex; border: 1px solid var(--key-edge); border-radius: 6px; overflow: hidden; }
+.toggle button {
+  font: 600 14px/1 var(--body); color: var(--ink); background: transparent;
+  border: 0; padding: 8px 14px; cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.toggle button:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+
+.stage, .ref-part { --accent: var(--start); }
+.stage.rec, .ref-part.rec { --accent: var(--rec); }
+.stage.edit, .ref-part.edit { --accent: var(--edit); }
+.stage.write, .ref-part.write { --accent: var(--write); }
+.stage.mixing, .ref-part.mixing { --accent: var(--mix); }
+.stage.master, .ref-part.master { --accent: var(--master); }
+.stage-body { display: grid; gap: 22px; padding-top: 22px; }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.stage-head::after { content: ""; width: 10px; height: 10px; margin-left: auto; align-self: center; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.15s; }
+details.stage:not([open]) > .stage-head::after { transform: rotate(-45deg); }
+.stage-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.stage-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-top: 6px solid var(--accent); padding-top: 12px; }
+.stage-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); }
+.stage-head p { margin: 0; color: var(--muted); flex: 1 1 280px; }
+
+h3 { font: 600 19px/1.2 var(--display); margin: 0 0 6px; letter-spacing: 0.01em; text-wrap: balance; }
+h3 small { font: 500 13px var(--body); color: var(--muted); letter-spacing: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 28px; }
+.grid > * { min-width: 0; }
+.recipe ol, .recipe ul { margin: 0; padding-left: 1.25em; display: grid; gap: 3px; }
+.recipe p { margin: 0 0 4px; }
+.recipe li::marker { color: var(--accent); font-weight: 600; }
+.menu { font-weight: 600; }
+.tip { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; color: var(--muted); font-size: 14px; }
+.tip strong { color: var(--ink); }
+
+/* Key tables */
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 16px; }
+.keys div { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.keys-title { font: 600 13px var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+/* Screenshots with numbered pins */
+figure { margin: 0; display: grid; gap: 10px; }
+.shot { position: relative; width: 100%; max-width: 100%; }
+.crop { position: relative; overflow: hidden; aspect-ratio: var(--w) / var(--h); border-radius: 6px; border: 1px solid var(--line); background: #2b2b2b; }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+.pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 19px; height: 19px; border-radius: 50%;
+  background: var(--accent); color: var(--pin-ink);
+  font: 700 11px/19px var(--body); text-align: center;
+  box-shadow: 0 0 0 2px #ffffffd9;
+}
+figcaption { font-size: 13.5px; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 20px; font-size: 14px; }
+.legend li { position: relative; padding-left: 26px; }
+.legend li > b:first-child { position: absolute; left: 0; top: 0.12em; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--pin-ink); font: 700 11px/18px var(--body); text-align: center; }
+.side { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.side.narrow { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); }
+@media (max-width: 640px) { .side, .side.narrow { grid-template-columns: 1fr; } .side.narrow .shot { max-width: 180px; } }
+
+table.targets { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+table.targets th, table.targets td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.targets th { font: 600 12px var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.trouble { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; font-size: 14px; }
+.trouble p { margin: 0; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+[hidden] { display: none !important; }
+
+/* Search: stays at the top while scrolling */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.finder { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 10px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.finder input {
+  flex: 1 1 260px; min-width: 0; font: 500 16px/1.2 var(--body); color: var(--ink);
+  background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 10px 14px;
+}
+.finder input:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+.finder .count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 9ch; }
+.finder button {
+  font: 600 13px/1 var(--body); color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--key-edge); border-radius: 6px; padding: 8px 11px;
+}
+.finder button:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+.no-results { color: var(--muted); }
+
+/* The full reference: every task in the user guide */
+.reference { display: grid; gap: 4px; }
+.reference details { scroll-margin-top: 90px; }
+.ref-head { display: grid; gap: 6px; border-top: 6px solid var(--ink); padding-top: 12px; margin-bottom: 8px; }
+.ref-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; }
+.ref-head p { margin: 0; color: var(--muted); max-width: 70ch; }
+.ref-part { display: grid; gap: 4px; margin-top: 20px; }
+.ref-part-title { display: flex; align-items: center; gap: 10px; margin: 0; padding-bottom: 6px; border-bottom: 3px solid var(--accent); color: var(--accent); font: 700 16px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase; }
+.ref-sec > summary { display: flex; align-items: center; gap: 10px; padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.ref-title { font: 600 21px/1.2 var(--display); letter-spacing: 0.01em; }
+.ref-count { font: 600 12px/1 var(--body); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font-variant-numeric: tabular-nums; }
+.ref-sec > summary::after, .task > summary::before {
+  content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg); transition: transform 0.15s; flex: none;
+}
+.ref-sec > summary::after { margin-left: auto; }
+.ref-sec[open] > summary::after, .task[open] > summary::before { transform: rotate(45deg); }
+.ref-body { display: grid; gap: 2px; padding: 8px 0 18px; }
+.task > summary { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 6px; font-weight: 500; }
+.task > summary:hover { background: var(--card); }
+.task[open] > summary { font-weight: 600; }
+.ref-sec > summary:focus-visible, .task > summary:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+.task-body { padding: 2px 12px 16px 32px; display: grid; gap: 8px; }
+.task-body p { margin: 0; }
+.task-body ul, .task-body ol { margin: 0; padding-left: 1.3em; display: grid; gap: 3px; }
+.task-body code { font: 0.9em var(--mono); }
+.ref-shots { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
+.ref-shot { display: block; max-width: 100%; }
+.ref-shot img { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 640px) { .task-body { padding-left: 12px; } }
+
+/* The bar across every page: the quick sheet, and the manual's parts */
+nav.site { display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; font-size: 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+nav.site a { color: var(--muted); text-decoration: none; font-weight: 600; }
+nav.site a:hover, nav.site a:focus-visible { color: var(--ink); }
+nav.site .brand { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); font: 700 18px/1 var(--display); letter-spacing: 0.02em; margin-right: auto; }
+nav.site .brand img { height: 20px; width: auto; }
+nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
+.site-parts { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.site-parts a { --accent: var(--start); border-bottom: 2px solid transparent; padding-bottom: 2px; }
+.site-parts a.rec { --accent: var(--rec); } .site-parts a.edit { --accent: var(--edit); } .site-parts a.write { --accent: var(--write); }
+.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); }
+.site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* The manual's contents on the front page */
+.m-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin-top: 12px; }
+.m-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; margin: 0; }
+.m-card h3 { display: flex; align-items: center; gap: 10px; margin: 0; font: 700 22px/1.1 var(--display); text-transform: uppercase; letter-spacing: 0.03em; }
+.m-card h3 a { color: var(--accent); text-decoration: none; }
+.m-card h3 a:hover { text-decoration: underline; }
+.m-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.m-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 14px; }
+.m-card li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding: 3px 0; }
+.m-card li a { color: var(--ink); text-decoration: none; }
+.m-card li a:hover { color: var(--accent); text-decoration: underline; }
+.m-card li span { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Search results from the manual (under the quick sheet's search, and in a part page's sidebar) */
+.m-results { display: grid; gap: 6px; }
+.m-results.wide { margin-top: -24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.m-res-count { margin: 0; font: 600 12px/1.2 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.m-results ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.m-results.wide ol { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4px 20px; }
+.m-results a { display: grid; gap: 1px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.m-results a:hover, .m-results a:focus-visible { background: var(--paper); outline: none; }
+.m-results b { font-weight: 600; }
+.m-results span { font-size: 12px; color: var(--muted); }
+.m-results small { font-size: 13px; color: var(--muted); }
+
+/* A part of the manual */
+.wrap.manual { max-width: 1200px; gap: 28px; }
+.m-head { display: grid; gap: 10px; border-top: 6px solid var(--accent); padding-top: 14px; }
+.m-head h1 { color: var(--accent); text-transform: uppercase; }
+.m-head .lede { max-width: 70ch; font-size: 17px; }
+.m-body { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 40px; align-items: start; }
+.m-side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; display: grid; gap: 10px; align-content: start; padding-right: 4px; }
+.m-find input { width: 100%; font: 500 15px/1.2 var(--body); color: var(--ink); background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 9px 12px; }
+.m-find input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.m-toc > summary { font: 600 12px/1.2 var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 4px 0; }
+.m-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; font-size: 14px; }
+.m-toc > ol > li > a { display: block; font-weight: 600; color: var(--ink); margin-top: 10px; }
+.m-toc ol ol { padding-left: 10px; border-left: 2px solid var(--line); margin-top: 3px; }
+.m-toc ol ol a { display: block; color: var(--muted); padding: 2px 6px; border-radius: 4px; line-height: 1.3; }
+.m-toc a { text-decoration: none; }
+.m-toc a:hover { color: var(--accent); }
+.m-toc a.on { color: var(--accent); background: var(--card); }
+.m-main { display: grid; gap: 34px; min-width: 0; }
+.m-area { display: grid; gap: 26px; scroll-margin-top: 16px; }
+.m-area > h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 8px; }
+.m-task { display: grid; gap: 10px; scroll-margin-top: 16px; max-width: 76ch; }
+.m-task h3 { font: 600 24px/1.15 var(--display); margin: 0; }
+.m-task h3 a { color: var(--ink); text-decoration: none; }
+.m-task h3 a:hover { color: var(--accent); }
+.m-task p { margin: 0; }
+.m-task ul, .m-task ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.m-task li::marker { color: var(--accent); }
+.m-task code { font: 0.9em var(--mono); }
+.m-task:target h3 { background: var(--mark); border-radius: 4px; box-shadow: 0 0 0 4px var(--mark); }
+.m-shots { display: grid; gap: 12px; padding-top: 4px; }
+.m-shot { display: block; justify-self: start; max-width: 100%; }
+.m-shot img { display: block; max-width: 100%; max-height: 560px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+.m-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; }
+.m-pager a { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); text-decoration: none; font: 600 20px/1.1 var(--display); }
+.m-pager a span { font: 500 12px var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.m-pager a:hover { border-color: var(--accent); }
+.m-pager .next { grid-column: 2; text-align: right; }
+@media (max-width: 860px) {
+  .m-body { grid-template-columns: 1fr; gap: 24px; }
+  .m-side { position: static; max-height: none; overflow: visible; }
+  .m-toc:not([open]) > ol { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap manual ref-part start">
+<nav class="site" aria-label="The manual"><a class="brand" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.18.5</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="start here" href="help.html">Help</a></div></nav>
+<header class="m-head">
+  <div class="eyebrow">Take 5 v0.18.5 · manual · 17 tasks</div>
+  <h1>Help</h1>
+  <p class="lede">The assistant, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p>
+  <div class="toggle" role="group" aria-label="Show keys for">
+    <span>Show keys for</span>
+    <span class="seg">
+      <button type="button" id="os-win" aria-pressed="true">Windows</button>
+      <button type="button" id="os-mac" aria-pressed="false">Mac</button>
+    </span>
+  </div>
+</header>
+<div class="m-body">
+<aside class="m-side">
+  <div class="m-find" role="search">
+    <input id="m-find" type="search" placeholder="Search the manual" aria-label="Search the whole manual" autocomplete="off">
+  </div>
+  <div id="m-results" class="m-results" hidden aria-live="polite"></div>
+  <details class="m-toc" open><summary>On this page</summary><ol><li><a href="#the-assistant">The assistant</a><ol><li><a href="#the-assistant--set-up-the-assistant">Set up the assistant</a></li><li><a href="#the-assistant--ask-the-assistant-to-change-the-song">Ask the assistant to change the song</a></li><li><a href="#the-assistant--ask-the-assistant-about-the-song-or-about-take-5">Ask the assistant about the song or about Take 5</a></li><li><a href="#the-assistant--what-the-assistant-can-and-can-t-do">What the assistant can and can&#x27;t do</a></li></ol></li><li><a href="#troubleshooting">Troubleshooting</a><ol><li><a href="#troubleshooting--i-can-t-hear-anything">I can&#x27;t hear anything</a></li><li><a href="#troubleshooting--i-can-t-hear-my-guitar-or-mic-while-recording">I can&#x27;t hear my guitar or mic while recording</a></li><li><a href="#troubleshooting--my-recording-is-late-or-out-of-sync-with-the-click">My recording is late or out of sync with the click</a></li><li><a href="#troubleshooting--i-hear-crackles-clicks-or-dropouts">I hear crackles, clicks or dropouts</a></li><li><a href="#troubleshooting--my-midi-keyboard-doesn-t-play-anything">My MIDI keyboard doesn&#x27;t play anything</a></li><li><a href="#troubleshooting--my-keyboard-plays-some-notes-twice">My keyboard plays some notes twice</a></li><li><a href="#troubleshooting--notes-or-sounds-are-stuck-on">Notes or sounds are stuck on</a></li><li><a href="#troubleshooting--a-plugin-is-missing-from-the-menu">A plugin is missing from the menu</a></li><li><a href="#troubleshooting--space-or-r-doesn-t-do-anything">Space or R doesn&#x27;t do anything</a></li><li><a href="#troubleshooting--send-a-bug-report">Send a bug report</a></li></ol></li><li><a href="#windows-and-mac-differences">Windows and Mac differences</a><ol><li><a href="#windows-and-mac-differences--shortcuts-and-menus-on-windows">Shortcuts and menus on Windows</a></li><li><a href="#windows-and-mac-differences--where-take-5-keeps-things">Where Take 5 keeps things</a></li><li><a href="#windows-and-mac-differences--what-s-different-on-windows">What&#x27;s different on Windows</a></li></ol></li></ol></details>
+</aside>
+<main class="m-main">
+<section class="m-area" id="the-assistant"><h2>The assistant</h2><section class="m-task" id="the-assistant--set-up-the-assistant"><h3><a href="#the-assistant--set-up-the-assistant">Set up the assistant</a></h3><p>The assistant makes changes you ask for in plain words, through Claude Code on your own Claude plan, or free through Google's Gemini. With Claude Code:</p><ol><li>Install Claude Code from claude.com/code.</li><li>Open Terminal (on Windows, a command prompt), type claude, and sign in once.</li><li>In Take 5, <b>View &gt; Panels &gt; Assistant</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>A</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>A</kbd></span>. If it was open before Claude Code was installed, press <b>Look Again</b> (also in its ... menu).</li></ol><p>With Gemini (no Claude plan needed):</p><ol><li><b>Settings &gt; Assistant...</b>, then <b>Get a Free Key...</b>: sign in to Google AI Studio with a Google account and create a key (no card needed).</li><li>Paste it into <b>Gemini key</b>, set <b>Use</b> to <b>Gemini</b> (or leave it on <b>Automatic</b>, which uses Claude Code when it's installed and Gemini otherwise) and press <b>Save</b>.</li><li>Open the assistant: <b>View &gt; Panels &gt; Assistant</b>.</li></ol><p><b>Gemini model</b> is the model it asks (gemini-flash-latest, the newest Flash, unless you change it). Gemini's free tier has limits per minute and per day: when one is reached the assistant says so, and waits a moment when the wait is short. Google may use what's sent on the free tier to improve its products. The key is kept in Take 5's settings on this computer and never written to the log. The panel's ... menu shows what it runs on, and has <b>Assistant Settings...</b>.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/assistant.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/assistant.jpg" loading="lazy" alt="Screenshot: Set up the assistant"></a></div></section><section class="m-task" id="the-assistant--ask-the-assistant-to-change-the-song"><h3><a href="#the-assistant--ask-the-assistant-to-change-the-song">Ask the assistant to change the song</a></h3><p>Type a request in the assistant panel and press <span class="ks"><kbd>Return</kbd></span>: "compress the bass a bit", "make the chorus 2 dB louder", "add a bar of silence before the outro", "pan the rhythm guitars wider", "transpose the arp up an octave", "set the tempo to 120". It says what it changed. Each request is one undo step: <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> takes the whole request back (Edit &gt; Undo names it "Assistant: ..."). While it works, <b>Send</b> becomes <b>Stop</b>: it stops after the step it's on. A reply too long for the panel opens at its start.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/assistant.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/assistant.jpg" loading="lazy" alt="Screenshot: Ask the assistant to change the song"></a></div></section><section class="m-task" id="the-assistant--ask-the-assistant-about-the-song-or-about-take-5"><h3><a href="#the-assistant--ask-the-assistant-about-the-song-or-about-take-5">Ask the assistant about the song or about Take 5</a></h3><p>Ask questions too: "why does the mix sound muddy?" makes it analyse the mix before answering, without changing anything. It can also answer "how do I..." questions from this guide, find menu commands and their shortcuts, run commands (show the mixer, start the tuner, turn on the loop), and read and change settings. It asks before changing anything that could cut the sound, such as the audio device or buffer size, and changes it only once you've said yes. It knows every plugin you have, built in and installed: it can add one by name, turn any of its knobs ("set the reverb's mix to 30%"), load or save its presets, and put another instrument on a track ("give the keys a grand piano sound"). It won't open, close or save songs, quit, or undo for you. Click one of its messages and press <span class="ks w"><kbd>Ctrl</kbd><kbd>C</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>C</kbd></span> to copy it; right-click for <b>Copy Conversation</b>.</p></section><section class="m-task" id="the-assistant--what-the-assistant-can-and-can-t-do"><h3><a href="#the-assistant--what-the-assistant-can-and-can-t-do">What the assistant can and can&#x27;t do</a></h3><p>It works only on the open song and Take 5's own commands and settings: it can't open files, run other programs or touch anything outside the app. Only the song's details (track names, levels, plugins, notes, measurements) go to Claude (or Gemini), never audio. It remembers the conversation until you choose ... &gt; <b>Clear Conversation</b> or open another song. If Claude Code isn't installed, isn't signed in, Gemini's key is wrong or its limit is reached, or the internet is off, the panel says so and the song isn't touched.</p></section></section><section class="m-area" id="troubleshooting"><h2>Troubleshooting</h2><section class="m-task" id="troubleshooting--i-can-t-hear-anything"><h3><a href="#troubleshooting--i-can-t-hear-anything">I can&#x27;t hear anything</a></h3><ol><li>Check <b>Settings &gt; Audio Settings...</b>: the right output device, its output channels ticked, and press <b>Test</b> for a tone.</li><li>Check the master fader and that <b>Mix &gt; Dim</b> isn't on; check nothing is soloed (<b>Mix &gt; Unsolo All</b>) or muted (<b>Mix &gt; Unmute All</b>).</li><li>Check the track's output (right-click &gt; <b>Output</b>) is <b>Master</b> or an output you're listening to.</li><li>A deactivated track (greyed out) is silent: right-click &gt; <b>Activate Track</b>.</li><li>If something went extremely loud, the output mutes itself for 2 seconds to protect your ears and the status line says so.</li></ol></section><section class="m-task" id="troubleshooting--i-can-t-hear-my-guitar-or-mic-while-recording"><h3><a href="#troubleshooting--i-can-t-hear-my-guitar-or-mic-while-recording">I can&#x27;t hear my guitar or mic while recording</a></h3><ol><li>In <b>Settings &gt; Audio Settings...</b>, the interface is the input device and its input channel is ticked.</li><li>The track's input menu shows that input (not "No input").</li><li>The track is armed (<span class="ks"><kbd>R</kbd></span>): its meter should move when you play. If not, check the interface's gain and cable.</li><li>Input monitoring (the headphones button) is <b>Auto</b> or <b>On</b>, not <b>Off</b>.</li><li>On a Mac, Take 5 must be allowed the microphone: System Settings &gt; Privacy &amp; Security &gt; Microphone.</li><li>Some interfaces have a direct-monitor knob or switch; if you hear yourself twice, set monitoring to <b>Off</b>.</li></ol></section><section class="m-task" id="troubleshooting--my-recording-is-late-or-out-of-sync-with-the-click"><h3><a href="#troubleshooting--my-recording-is-late-or-out-of-sync-with-the-click">My recording is late or out of sync with the click</a></h3><p>Take 5 moves recordings earlier by the latency the interface reports. If takes still land late or early, measure the real round trip: a cable from an output straight to an input, <b>Settings &gt; Recording Latency...</b>, <b>Measure</b> (see "Measure recording latency so takes line up"). Plugins that delay the sound are compensated on playback; while recording, <b>Transport &gt; Low-Latency Mode</b> keeps what you hear immediate. Bluetooth headphones lag too much to record with.</p></section><section class="m-task" id="troubleshooting--i-hear-crackles-clicks-or-dropouts"><h3><a href="#troubleshooting--i-hear-crackles-clicks-or-dropouts">I hear crackles, clicks or dropouts</a></h3><ol><li>Raise the buffer size in <b>Settings &gt; Audio Settings...</b> (for example 128 to 256, or 512 for mixing).</li><li>On Windows, use the interface's ASIO driver rather than Windows Audio or DirectSound.</li><li>Find the heavy ones in <b>View &gt; Panels &gt; CPU Use</b> (or click the CPU reading at the bottom right), then freeze or deactivate them (right-click a track &gt; <b>Freeze</b> or <b>Deactivate Track</b>).</li><li>Clicks at clip edits: turn on <b>Edit &gt; Edit Options &gt; Snap Edits to Zero Crossings</b>, or add short fades.</li><li>Clicks only in a mix that's very loud may be clipping: watch the master meter and the TRUE PEAK readout.</li></ol></section><section class="m-task" id="troubleshooting--my-midi-keyboard-doesn-t-play-anything"><h3><a href="#troubleshooting--my-midi-keyboard-doesn-t-play-anything">My MIDI keyboard doesn&#x27;t play anything</a></h3><ol><li>Plug it in before starting Take 5 (or reopen <b>Settings &gt; Audio Settings...</b>) and check it's ticked under the MIDI inputs there.</li><li>Play an instrument track (<b>Track &gt; New Instrument Track...</b>), not an audio track, and arm it (<span class="ks"><kbd>R</kbd></span>).</li><li>The instrument track's input should be "All MIDI Ins" or your keyboard.</li><li>Check the instrument makes sound: click a key on the piano roll's keyboard, or a Drum Machine pad.</li><li>A bundled instrument only plays its own range: Musical Typing dims keys out of reach.</li><li>Notes stuck on? <b>Transport &gt; Panic</b>, or double-click the play button.</li></ol></section><section class="m-task" id="troubleshooting--my-keyboard-plays-some-notes-twice"><h3><a href="#troubleshooting--my-keyboard-plays-some-notes-twice">My keyboard plays some notes twice</a></h3><p>Some keyboards with worn contacts send a note twice. <b>Settings &gt; Ignore Notes Sent Twice By</b> and tick the keyboard: a doubled note sounds and records once, while fast repeated notes still work. For notes already recorded, <b>MIDI &gt; Remove Doubled Notes</b>.</p></section><section class="m-task" id="troubleshooting--notes-or-sounds-are-stuck-on"><h3><a href="#troubleshooting--notes-or-sounds-are-stuck-on">Notes or sounds are stuck on</a></h3><p><b>Transport &gt; Panic</b>, or double-click the play/stop button: every plugin is reset and all notes, sounds and the sustain pedal are released on every track and MIDI input, including plugins in their own processes. If a note keeps sticking, check the keyboard's sustain pedal and cable, and see "My MIDI keyboard doesn't play anything".</p></section><section class="m-task" id="troubleshooting--a-plugin-is-missing-from-the-menu"><h3><a href="#troubleshooting--a-plugin-is-missing-from-the-menu">A plugin is missing from the menu</a></h3><ol><li>Scan again: <b>Settings &gt; Plugins...</b>. A plugin that crashes during the scan is skipped.</li><li>Check its format:, VST3, Audio Units or CLAP; on Windows, VST3 or CLAP.</li><li>Check it's installed where plugins go (on Windows, C:\Program Files\Common Files\VST3 for VST3s).</li><li>Instruments are listed under <b>Track &gt; New Instrument Track...</b> &gt; <b>Plugins</b>, effects under the + slot &gt; <b>Plugins</b>.</li></ol></section><section class="m-task" id="troubleshooting--space-or-r-doesn-t-do-anything"><h3><a href="#troubleshooting--space-or-r-doesn-t-do-anything">Space or R doesn&#x27;t do anything</a></h3><p>Single-key shortcuts don't work while you're typing in a text box (a track name, a value box): click an empty part of the tracks first. While <b>Musical Typing</b> is open, letters play notes. If you changed the key set, check <b>Settings &gt; Key Commands...</b> or the cheat sheet (<span class="ks w"><kbd>Ctrl</kbd><kbd>/</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>/</kbd></span>).</p></section><section class="m-task" id="troubleshooting--send-a-bug-report"><h3><a href="#troubleshooting--send-a-bug-report">Send a bug report</a></h3><p><b>Help &gt; Show Log Files</b> opens the folder with this launch's log selected ("Take 5 &lt;date&gt; &lt;time&gt;.log"). Send it to Alan with what you did; it already has your computer, system, audio device and everything the app did. For a plugin problem, send "Plugin Hosts.log" from the same folder too. If Take 5 won't start, the logs are in ~/Library/Logs/Take 5 and %APPDATA%\Take 5\Logs on Windows. <b>Help &gt; Detailed Log</b> writes more, for chasing a problem.</p></section></section><section class="m-area" id="windows-and-mac-differences"><h2>Windows and Mac differences</h2><section class="m-task" id="windows-and-mac-differences--shortcuts-and-menus-on-windows"><h3><a href="#windows-and-mac-differences--shortcuts-and-menus-on-windows">Shortcuts and menus on Windows</a></h3><p>Where this guide says Cmd, use Ctrl; where it says Opt, use Alt (Ctrl+S saves, Ctrl+Z undoes). The two shortcuts that are Control on the Mac, Bounce in Place and Mute Notes, are Ctrl+B and Ctrl+M on Windows. The menu bar is inside the Take 5 window. Finder is Explorer, and the Trash is the Recycle Bin. On some European keyboards, Ctrl+Alt is AltGr, which types characters like @ and { in text boxes: if a Ctrl+Alt shortcut gets in the way, change it in <b>Settings &gt; Key Commands...</b>.</p></section><section class="m-task" id="windows-and-mac-differences--where-take-5-keeps-things"><h3><a href="#windows-and-mac-differences--where-take-5-keeps-things">Where Take 5 keeps things</a></h3><ul><li>Songs: Music/Take 5 (Mac), Music\Take 5 (Windows).</li><li>Settings, templates and presets: ~/Library/Take 5 (Mac), %APPDATA%\Take 5 (Windows).</li><li>Logs: ~/Library/Logs/Take 5 (Mac), %APPDATA%\Take 5\Logs (Windows).</li><li>Backups: in each song's own Backups folder, on both.</li></ul></section><section class="m-task" id="windows-and-mac-differences--what-s-different-on-windows"><h3><a href="#windows-and-mac-differences--what-s-different-on-windows">What&#x27;s different on Windows</a></h3><ul><li>Audio: ASIO (with your interface's driver) or Windows Audio, instead of CoreAudio.</li><li>Plugins: VST3 and CLAP (Audio Units are Mac-only).</li><li>Printing sheet music opens the PDF in your PDF viewer to print from.</li><li>The Bluetooth-headset microphone switch and Rosetta for Intel-only plugins are Mac-only.</li><li>The first launch may show SmartScreen's "Windows protected your PC": <b>More info</b>, <b>Run anyway</b>.</li><li><b>About Take 5</b> and <b>Check for Updates...</b> are in the Help menu (on the Mac, in the Take 5 menu), and an update installs itself and opens Take 5 again; on the Mac you drag the new one into Applications.</li></ul><p>Everything else (songs, templates, song packages, parts) works the same on both. A song folder copied from one to the other opens with its audio: a song saved on Windows names its audio files the Windows way, and the Mac reads that too (saved again, it's written the way both read).</p></section></section>
+<nav class="m-pager" aria-label="Parts"><a class="prev" href="finishing-and-sharing.html"><span>Previous</span>Finishing and sharing</a></nav>
+</main>
+</div>
+<footer>Take 5 is free and open source. This manual is Take 5's user guide (docs/GUIDE.md), which the
+assistant in the app also answers "how do I…" from. Keys are the default set (the Logic-style one).</footer>
+</div>
+<script src="search.js"></script>
+<script>T5.manualPage();</script>
+
+</body>
+</html>

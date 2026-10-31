@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Take 5 manual: Setting up.">
+<title>Setting up · Take 5 Manual</title>
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a channel-strip notebook. One A4 page per stage (start, record, mix, master),
+   each with its colour from the app's own transport: record red, fader blue, meter green. */
+:root {
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --ink: #16191d;
+  --muted: #59626e;
+  --line: #d8dce2;
+  --key-bg: #ffffff;
+  --key-edge: #b4bcc7;
+  --rec: #c4342a;
+  --mix: #2667c0;
+  --master: #1b7f53;
+  --edit: #7446b8;
+  --write: #a55d0c;
+  --start: #4b5563;
+  --pin-ink: #ffffff;
+  --mark: #ffe28a;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+    --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+  --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+}
+
+body {
+  background: var(--paper); color: var(--ink);
+  font: 15px/1.5 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 40px; }
+
+/* Platform: Windows keys unless the viewer picks Mac */
+.ks.m { display: none; }
+html.mac .ks.w { display: none; }
+html.mac .ks.m { display: inline-flex; }
+.ks { display: inline-flex; gap: 2px; vertical-align: baseline; white-space: nowrap; }
+kbd {
+  font: 500 0.78em/1 var(--mono);
+  min-width: 1.7em; padding: 0.28em 0.42em 0.22em; text-align: center;
+  background: var(--key-bg); color: var(--ink);
+  border: 1px solid var(--key-edge); border-bottom-width: 2px; border-radius: 4px;
+}
+
+header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.eyebrow { font: 600 13px/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(40px, 7vw, 64px)/0.95 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h1 .app-icon { height: 0.95em; width: auto; vertical-align: -0.12em; margin-right: 0.22em; }
+h1 .sep { color: var(--muted); font-weight: 500; }
+.lede { margin: 0; color: var(--muted); }
+.about { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.toggle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download a.dl { border: 1px solid var(--key-edge); border-radius: 6px; padding: 5px 11px; color: var(--ink); text-decoration: none; font-weight: 600; }
+.download a.dl:hover, .download a.dl:focus-visible { background: var(--ink); color: var(--paper); }
+.download a.all { color: var(--muted); }
+.toggle .seg { display: inline-flex; border: 1px solid var(--key-edge); border-radius: 6px; overflow: hidden; }
+.toggle button {
+  font: 600 14px/1 var(--body); color: var(--ink); background: transparent;
+  border: 0; padding: 8px 14px; cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.toggle button:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+
+.stage, .ref-part { --accent: var(--start); }
+.stage.rec, .ref-part.rec { --accent: var(--rec); }
+.stage.edit, .ref-part.edit { --accent: var(--edit); }
+.stage.write, .ref-part.write { --accent: var(--write); }
+.stage.mixing, .ref-part.mixing { --accent: var(--mix); }
+.stage.master, .ref-part.master { --accent: var(--master); }
+.stage-body { display: grid; gap: 22px; padding-top: 22px; }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.stage-head::after { content: ""; width: 10px; height: 10px; margin-left: auto; align-self: center; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.15s; }
+details.stage:not([open]) > .stage-head::after { transform: rotate(-45deg); }
+.stage-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.stage-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-top: 6px solid var(--accent); padding-top: 12px; }
+.stage-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); }
+.stage-head p { margin: 0; color: var(--muted); flex: 1 1 280px; }
+
+h3 { font: 600 19px/1.2 var(--display); margin: 0 0 6px; letter-spacing: 0.01em; text-wrap: balance; }
+h3 small { font: 500 13px var(--body); color: var(--muted); letter-spacing: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 28px; }
+.grid > * { min-width: 0; }
+.recipe ol, .recipe ul { margin: 0; padding-left: 1.25em; display: grid; gap: 3px; }
+.recipe p { margin: 0 0 4px; }
+.recipe li::marker { color: var(--accent); font-weight: 600; }
+.menu { font-weight: 600; }
+.tip { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; color: var(--muted); font-size: 14px; }
+.tip strong { color: var(--ink); }
+
+/* Key tables */
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 16px; }
+.keys div { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.keys-title { font: 600 13px var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+/* Screenshots with numbered pins */
+figure { margin: 0; display: grid; gap: 10px; }
+.shot { position: relative; width: 100%; max-width: 100%; }
+.crop { position: relative; overflow: hidden; aspect-ratio: var(--w) / var(--h); border-radius: 6px; border: 1px solid var(--line); background: #2b2b2b; }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+.pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 19px; height: 19px; border-radius: 50%;
+  background: var(--accent); color: var(--pin-ink);
+  font: 700 11px/19px var(--body); text-align: center;
+  box-shadow: 0 0 0 2px #ffffffd9;
+}
+figcaption { font-size: 13.5px; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 20px; font-size: 14px; }
+.legend li { position: relative; padding-left: 26px; }
+.legend li > b:first-child { position: absolute; left: 0; top: 0.12em; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--pin-ink); font: 700 11px/18px var(--body); text-align: center; }
+.side { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.side.narrow { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); }
+@media (max-width: 640px) { .side, .side.narrow { grid-template-columns: 1fr; } .side.narrow .shot { max-width: 180px; } }
+
+table.targets { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+table.targets th, table.targets td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.targets th { font: 600 12px var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.trouble { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; font-size: 14px; }
+.trouble p { margin: 0; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+[hidden] { display: none !important; }
+
+/* Search: stays at the top while scrolling */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.finder { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 10px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.finder input {
+  flex: 1 1 260px; min-width: 0; font: 500 16px/1.2 var(--body); color: var(--ink);
+  background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 10px 14px;
+}
+.finder input:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+.finder .count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 9ch; }
+.finder button {
+  font: 600 13px/1 var(--body); color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--key-edge); border-radius: 6px; padding: 8px 11px;
+}
+.finder button:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+.no-results { color: var(--muted); }
+
+/* The full reference: every task in the user guide */
+.reference { display: grid; gap: 4px; }
+.reference details { scroll-margin-top: 90px; }
+.ref-head { display: grid; gap: 6px; border-top: 6px solid var(--ink); padding-top: 12px; margin-bottom: 8px; }
+.ref-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; }
+.ref-head p { margin: 0; color: var(--muted); max-width: 70ch; }
+.ref-part { display: grid; gap: 4px; margin-top: 20px; }
+.ref-part-title { display: flex; align-items: center; gap: 10px; margin: 0; padding-bottom: 6px; border-bottom: 3px solid var(--accent); color: var(--accent); font: 700 16px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase; }
+.ref-sec > summary { display: flex; align-items: center; gap: 10px; padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.ref-title { font: 600 21px/1.2 var(--display); letter-spacing: 0.01em; }
+.ref-count { font: 600 12px/1 var(--body); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font-variant-numeric: tabular-nums; }
+.ref-sec > summary::after, .task > summary::before {
+  content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg); transition: transform 0.15s; flex: none;
+}
+.ref-sec > summary::after { margin-left: auto; }
+.ref-sec[open] > summary::after, .task[open] > summary::before { transform: rotate(45deg); }
+.ref-body { display: grid; gap: 2px; padding: 8px 0 18px; }
+.task > summary { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 6px; font-weight: 500; }
+.task > summary:hover { background: var(--card); }
+.task[open] > summary { font-weight: 600; }
+.ref-sec > summary:focus-visible, .task > summary:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+.task-body { padding: 2px 12px 16px 32px; display: grid; gap: 8px; }
+.task-body p { margin: 0; }
+.task-body ul, .task-body ol { margin: 0; padding-left: 1.3em; display: grid; gap: 3px; }
+.task-body code { font: 0.9em var(--mono); }
+.ref-shots { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
+.ref-shot { display: block; max-width: 100%; }
+.ref-shot img { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 640px) { .task-body { padding-left: 12px; } }
+
+/* The bar across every page: the quick sheet, and the manual's parts */
+nav.site { display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; font-size: 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+nav.site a { color: var(--muted); text-decoration: none; font-weight: 600; }
+nav.site a:hover, nav.site a:focus-visible { color: var(--ink); }
+nav.site .brand { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); font: 700 18px/1 var(--display); letter-spacing: 0.02em; margin-right: auto; }
+nav.site .brand img { height: 20px; width: auto; }
+nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
+.site-parts { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.site-parts a { --accent: var(--start); border-bottom: 2px solid transparent; padding-bottom: 2px; }
+.site-parts a.rec { --accent: var(--rec); } .site-parts a.edit { --accent: var(--edit); } .site-parts a.write { --accent: var(--write); }
+.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); }
+.site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* The manual's contents on the front page */
+.m-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin-top: 12px; }
+.m-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; margin: 0; }
+.m-card h3 { display: flex; align-items: center; gap: 10px; margin: 0; font: 700 22px/1.1 var(--display); text-transform: uppercase; letter-spacing: 0.03em; }
+.m-card h3 a { color: var(--accent); text-decoration: none; }
+.m-card h3 a:hover { text-decoration: underline; }
+.m-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.m-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 14px; }
+.m-card li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding: 3px 0; }
+.m-card li a { color: var(--ink); text-decoration: none; }
+.m-card li a:hover { color: var(--accent); text-decoration: underline; }
+.m-card li span { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Search results from the manual (under the quick sheet's search, and in a part page's sidebar) */
+.m-results { display: grid; gap: 6px; }
+.m-results.wide { margin-top: -24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.m-res-count { margin: 0; font: 600 12px/1.2 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.m-results ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.m-results.wide ol { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4px 20px; }
+.m-results a { display: grid; gap: 1px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.m-results a:hover, .m-results a:focus-visible { background: var(--paper); outline: none; }
+.m-results b { font-weight: 600; }
+.m-results span { font-size: 12px; color: var(--muted); }
+.m-results small { font-size: 13px; color: var(--muted); }
+
+/* A part of the manual */
+.wrap.manual { max-width: 1200px; gap: 28px; }
+.m-head { display: grid; gap: 10px; border-top: 6px solid var(--accent); padding-top: 14px; }
+.m-head h1 { color: var(--accent); text-transform: uppercase; }
+.m-head .lede { max-width: 70ch; font-size: 17px; }
+.m-body { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 40px; align-items: start; }
+.m-side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; display: grid; gap: 10px; align-content: start; padding-right: 4px; }
+.m-find input { width: 100%; font: 500 15px/1.2 var(--body); color: var(--ink); background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 9px 12px; }
+.m-find input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.m-toc > summary { font: 600 12px/1.2 var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 4px 0; }
+.m-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; font-size: 14px; }
+.m-toc > ol > li > a { display: block; font-weight: 600; color: var(--ink); margin-top: 10px; }
+.m-toc ol ol { padding-left: 10px; border-left: 2px solid var(--line); margin-top: 3px; }
+.m-toc ol ol a { display: block; color: var(--muted); padding: 2px 6px; border-radius: 4px; line-height: 1.3; }
+.m-toc a { text-decoration: none; }
+.m-toc a:hover { color: var(--accent); }
+.m-toc a.on { color: var(--accent); background: var(--card); }
+.m-main { display: grid; gap: 34px; min-width: 0; }
+.m-area { display: grid; gap: 26px; scroll-margin-top: 16px; }
+.m-area > h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 8px; }
+.m-task { display: grid; gap: 10px; scroll-margin-top: 16px; max-width: 76ch; }
+.m-task h3 { font: 600 24px/1.15 var(--display); margin: 0; }
+.m-task h3 a { color: var(--ink); text-decoration: none; }
+.m-task h3 a:hover { color: var(--accent); }
+.m-task p { margin: 0; }
+.m-task ul, .m-task ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.m-task li::marker { color: var(--accent); }
+.m-task code { font: 0.9em var(--mono); }
+.m-task:target h3 { background: var(--mark); border-radius: 4px; box-shadow: 0 0 0 4px var(--mark); }
+.m-shots { display: grid; gap: 12px; padding-top: 4px; }
+.m-shot { display: block; justify-self: start; max-width: 100%; }
+.m-shot img { display: block; max-width: 100%; max-height: 560px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+.m-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; }
+.m-pager a { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); text-decoration: none; font: 600 20px/1.1 var(--display); }
+.m-pager a span { font: 500 12px var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.m-pager a:hover { border-color: var(--accent); }
+.m-pager .next { grid-column: 2; text-align: right; }
+@media (max-width: 860px) {
+  .m-body { grid-template-columns: 1fr; gap: 24px; }
+  .m-side { position: static; max-height: none; overflow: visible; }
+  .m-toc:not([open]) > ol { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap manual ref-part start">
+<nav class="site" aria-label="The manual"><a class="brand" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.18.5</span></a><div class="site-parts"><a class="start here" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="start" href="help.html">Help</a></div></nav>
+<header class="m-head">
+  <div class="eyebrow">Take 5 v0.18.5 · manual · 27 tasks</div>
+  <h1>Setting up</h1>
+  <p class="lede">Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p>
+  <div class="toggle" role="group" aria-label="Show keys for">
+    <span>Show keys for</span>
+    <span class="seg">
+      <button type="button" id="os-win" aria-pressed="true">Windows</button>
+      <button type="button" id="os-mac" aria-pressed="false">Mac</button>
+    </span>
+  </div>
+</header>
+<div class="m-body">
+<aside class="m-side">
+  <div class="m-find" role="search">
+    <input id="m-find" type="search" placeholder="Search the manual" aria-label="Search the whole manual" autocomplete="off">
+  </div>
+  <div id="m-results" class="m-results" hidden aria-live="polite"></div>
+  <details class="m-toc" open><summary>On this page</summary><ol><li><a href="#getting-started">Getting started</a><ol><li><a href="#getting-started--open-take-5-for-the-first-time">Open Take 5 for the first time</a></li><li><a href="#getting-started--update-take-5-check-for-updates">Update Take 5 (Check for Updates)</a></li><li><a href="#getting-started--take-the-guided-tour-tutorial">Take the guided tour (tutorial)</a></li><li><a href="#getting-started--find-where-my-songs-are-saved">Find where my songs are saved</a></li><li><a href="#getting-started--start-a-new-song">Start a new song</a></li><li><a href="#getting-started--open-a-song">Open a song</a></li><li><a href="#getting-started--open-the-demo-song">Open the demo song</a></li><li><a href="#getting-started--know-the-parts-of-the-window">Know the parts of the window</a></li><li><a href="#getting-started--find-any-command-or-shortcut">Find any command or shortcut</a></li><li><a href="#getting-started--bring-a-song-over-from-another-daw">Bring a song over from another DAW</a></li><li><a href="#getting-started--import-an-aaf-from-pro-tools-logic-or-media-composer">Import an AAF from Pro Tools, Logic or Media Composer</a></li></ol></li><li><a href="#audio-and-midi-setup">Audio and MIDI setup</a><ol><li><a href="#audio-and-midi-setup--set-up-an-audio-interface">Set up an audio interface</a></li><li><a href="#audio-and-midi-setup--choose-a-sample-rate">Choose a sample rate</a></li><li><a href="#audio-and-midi-setup--choose-a-buffer-size-latency-vs-dropouts">Choose a buffer size (latency vs dropouts)</a></li><li><a href="#audio-and-midi-setup--use-asio-on-windows">Use ASIO on Windows</a></li><li><a href="#audio-and-midi-setup--measure-recording-latency-so-takes-line-up">Measure recording latency so takes line up</a></li><li><a href="#audio-and-midi-setup--connect-a-midi-keyboard">Connect a MIDI keyboard</a></li><li><a href="#audio-and-midi-setup--send-midi-clock-to-a-drum-machine-or-another-app">Send MIDI clock to a drum machine or another app</a></li><li><a href="#audio-and-midi-setup--use-bluetooth-headphones-mac">Use Bluetooth headphones (Mac)</a></li></ol></li><li><a href="#customising">Customising</a><ol><li><a href="#customising--change-the-look-themes">Change the look (themes)</a></li><li><a href="#customising--make-everything-bigger-or-smaller">Make everything bigger or smaller</a></li><li><a href="#customising--use-another-daw-s-shortcuts">Use another DAW&#x27;s shortcuts</a></li><li><a href="#customising--arrange-the-screen-layouts-and-panels">Arrange the screen (layouts and panels)</a></li><li><a href="#customising--arrange-the-top-bars-customize-top-bars">Arrange the top bars (Customize Top Bars)</a></li><li><a href="#customising--work-in-cubase-s-layout">Work in Cubase&#x27;s layout</a></li><li><a href="#customising--run-several-commands-from-one-key-macros">Run several commands from one key (macros)</a></li><li><a href="#customising--make-stop-go-back-to-where-i-started-playing">Make stop go back to where I started playing</a></li></ol></li></ol></details>
+</aside>
+<main class="m-main">
+<section class="m-area" id="getting-started"><h2>Getting started</h2><section class="m-task" id="getting-started--open-take-5-for-the-first-time"><h3><a href="#getting-started--open-take-5-for-the-first-time">Open Take 5 for the first time</a></h3><ol><li>On a Mac, drag Take 5 into Applications. The first time, macOS asks you to confirm an app that isn't from the App Store: on macOS 11 to 14, <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Control</kbd></span>-click Take 5 and choose <b>Open</b>; on macOS 15 or later, double-click it, click <b>Done</b>, then go to System Settings &gt; Privacy &amp; Security and click <b>Open Anyway</b>.</li><li>On Windows, run the installer (it installs just for you, no administrator password). If Windows says "Windows protected your PC", click <b>More info</b>, then <b>Run anyway</b>. To update later, use <b>Help &gt; Check for Updates...</b> (see "Update Take 5"), or run a newer installer: it installs over the old version, copying only what changed, and if Take 5 is open it asks to close it first (Take 5 asks about unsaved songs).</li><li>When Take 5 asks to use the microphone (Mac), click <b>Allow</b>: it needs that to record.</li><li>Take 5 opens an empty "Untitled Song" (or the song you had open last time), and a short guided tour starts by itself the first time.</li><li>Choose your audio interface or headphones in <b>Settings &gt; Audio Settings...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>,</kbd></span>. See "Set up an audio interface".</li></ol></section><section class="m-task" id="getting-started--update-take-5-check-for-updates"><h3><a href="#getting-started--update-take-5-check-for-updates">Update Take 5 (Check for Updates)</a></h3><p>Each time Take 5 opens, it first asks the internet whether there's a newer Take 5 (in the background). If there is, a window says <b>An update is available</b>, with what's new in it (its release notes: what's new, changed and fixed; scroll for more) and two buttons: <b>Install Now</b> and <b>Close</b> (which leaves it for now). <b>Help &gt; Check for Updates...</b> (on the Mac, <b>Take 5 &gt; Check for Updates...</b>) asks any time. Install Now downloads it with a progress bar (Cancel stops it) and checks it's exactly the file that was published, then:</p><ul><li>On Windows, Take 5 closes (asking about unsaved changes first), the installer runs by itself and Take 5 opens again, in a minute or so. Your songs and settings stay as they were.</li><li>On the Mac, the disk image opens in Finder: quit Take 5, drag the new Take 5 onto Applications (replacing the old one) and open it.</li></ul><p>The downloaded installer (a few hundred MB) is deleted the next time Take 5 opens, once that version (or a newer one) is the one running. The check when Take 5 opens says nothing unless there's a newer version; <b>Check for Updates at Startup</b>, next to it, turns it off. Which version you have is in <b>Help &gt; About Take 5</b> (<b>Take 5 &gt; About Take 5</b>), with the build it is ("Take 5 v0.17.1"). The online cheat sheet and manual (alanone.github.io/takefive) links to the latest under its title (Windows installer, Mac disk image, All releases).</p></section><section class="m-task" id="getting-started--take-the-guided-tour-tutorial"><h3><a href="#getting-started--take-the-guided-tour-tutorial">Take the guided tour (tutorial)</a></h3><p><b>Help &gt; Tutorial</b> starts a tour of the basics on the song that's open. It highlights the real controls one at a time: playing and recording, adding a track, a track's controls, plugins, instrument tracks, writing notes, the mixer, recording takes, saving and exporting, and making Take 5 your own. Do what a step says (it moves on by itself once it's done), or press <b>Next</b>. <b>Back</b> goes to the previous step and <b>Skip</b> ends the tour. The tour runs on its own the first time Take 5 starts, and you can open it again any time from the Help menu. The keys it mentions follow your chosen Key Commands set.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/tutorial.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/tutorial.jpg" loading="lazy" alt="Screenshot: Take the guided tour (tutorial)"></a></div></section><section class="m-task" id="getting-started--find-where-my-songs-are-saved"><h3><a href="#getting-started--find-where-my-songs-are-saved">Find where my songs are saved</a></h3><p>Each song is a folder of its own in your Music folder, under <b>Take 5</b> (Music/Take 5, Music\Take 5 on Windows). Inside it are the song file (ending in .tracktionedit), an <b>Audio</b> folder with every recording and imported file, a <b>Backups</b> folder with earlier saves, and <b>Snapshots</b> if you've saved any. Recordings always go into the song's Audio folder, so the folder can be copied or moved as a whole. <b>File &gt; Show Song Folder</b> opens it in Finder (Explorer on Windows).</p></section><section class="m-task" id="getting-started--start-a-new-song"><h3><a href="#getting-started--start-a-new-song">Start a new song</a></h3><p><b>File &gt; New Song...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>N</kbd></span>, asks for a name and creates the song's folder in Music/Take 5. If you chose a template in <b>Settings &gt; Template for New Songs</b>, the new song starts from it instead (its tracks, plugins, buses and settings). <b>File &gt; New Song from Template</b> picks any saved song template. Without a template a new song has one audio track.</p></section><section class="m-task" id="getting-started--open-a-song"><h3><a href="#getting-started--open-a-song">Open a song</a></h3><p><b>File &gt; Open Song...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>O</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>O</kbd></span>, opens a song's .tracktionedit file, or a song package (.take5song) a bandmate sent you. <b>File &gt; Open Recent</b> lists the songs you've opened, by name (with the folder too when two have the same name; <b>Clear Menu</b> empties it). Take 5 reopens the last song by itself when it starts. If the song has unsaved changes, Take 5 asks whether to save them first. Double-clicking a song or a package in Finder (Explorer on Windows) while Take 5 is open opens it in that window, not in a second Take 5.</p></section><section class="m-task" id="getting-started--open-the-demo-song"><h3><a href="#getting-started--open-the-demo-song">Open the demo song</a></h3><p>The demo song "Take 5 Demo" plays on Take 5's own sounds (the Amp, the Drum Machine, the built-in synth), so it needs nothing else installed. On the Mac, copy the "Take 5 Demo" folder from the download window into your Music folder; on Windows the installer puts it in Music\Take 5\Take 5 Demo. Then <b>File &gt; Open Song...</b> and open "Take 5 Demo.tracktionedit" inside it.</p></section><section class="m-task" id="getting-started--know-the-parts-of-the-window"><h3><a href="#getting-started--know-the-parts-of-the-window">Know the parts of the window</a></h3><ul><li><b>The transport bar</b> (top): go to start, play, record, loop, punch and click buttons; the display with bar, beat and tick, time, tempo and time signature; the click volume and <b>Count-in</b> on the left; the output loudness meter on the right. In a narrow window the bar goes compact (no captions under the display, narrower controls) so everything still fits.</li><li><b>Track headers</b> (left): name, input, R (arm), M (mute), S (solo), the headphones (monitoring), A (automation), the fader, pan, meter and plugin slots.</li><li><b>The ruler and the lanes</b> above the tracks: tempo, sections, chords and the reference track. Each lane's header (in the track headers' column) shows what it says at the playhead: the time signature and tempo, the section, the chord. Hover a header and click its x to hide the lane; <b>View &gt; Lanes &gt; Tempo Lane</b> (<span class="ks"><kbd>G</kbd></span>), <b>Sections Lane</b> (<span class="ks"><kbd>Shift</kbd><kbd>G</kbd></span>), <b>Chord Lane</b> (<span class="ks w"><kbd>Alt</kbd><kbd>G</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>G</kbd></span>) and <b>Reference Lane</b> (<span class="ks w"><kbd>Alt</kbd><kbd>Shift</kbd><kbd>G</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Option</kbd><kbd>G</kbd></span>) show and hide them.</li><li><b>The tracks</b> with their clips; below or instead of them, the <b>mixer</b> and the <b>MIDI editor</b> or <b>Pitch editor</b>.</li><li><b>Side panels</b> on the right: the cheat sheet, the audio file browser, notes, the assistant.</li><li><b>The Inspector</b> on the left (<span class="ks"><kbd>I</kbd></span>): the selected track's and clip's settings (see "See a track's settings in the Inspector").</li><li><b>The status line</b> at the bottom says what just happened and gives hints.</li></ul><div class="m-shots"><a class="m-shot" href="screenshots/reference/arrange.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/arrange.jpg" loading="lazy" alt="Screenshot: Know the parts of the window"></a><a class="m-shot" href="screenshots/reference/transport.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/transport.jpg" loading="lazy" alt="Screenshot: Know the parts of the window"></a><a class="m-shot" href="screenshots/reference/track-header.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/track-header.jpg" loading="lazy" alt="Screenshot: Know the parts of the window"></a><a class="m-shot" href="screenshots/reference/lanes.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/lanes.jpg" loading="lazy" alt="Screenshot: Know the parts of the window"></a></div></section><section class="m-task" id="getting-started--find-any-command-or-shortcut"><h3><a href="#getting-started--find-any-command-or-shortcut">Find any command or shortcut</a></h3><p>The menus keep the commands used most at the top level and the rest in submenus by kind: in <b>View</b>, <b>Lanes</b>, <b>Panels</b>, <b>Windows</b>, <b>Top Bars</b>, <b>Zoom</b> and <b>Automation</b>; <b>Edit &gt; Tools</b> and <b>Edit &gt; Edit Options</b>; <b>File &gt; Export Other Formats</b>; <b>Track &gt; Other New Tracks</b> and <b>Track &gt; Group</b>; <b>Mix &gt; Reference Track</b>. Every command keeps its key wherever it is.</p><ul><li><b>View &gt; Command Palette...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>P</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>P</kbd></span>: type part of a command's name, the first letters of its words ("nit" finds New Instrument Track) or words from what it does; Up/Down and <span class="ks"><kbd>Return</kbd></span> run one. Recent commands come first; ones that can't run right now are dimmed. A slip in the typing still finds it ("mxier", "metronme"), and so do its letters in order ("mxr"). When no command matches, it suggests the nearest ("Did you mean...") and the guide's tasks about what you typed ("tone3000" finds the NAM captures task), which open in the online manual.</li><li><b>View &gt; Panels &gt; Shortcuts</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>/</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>/</kbd></span>: the cheat sheet beside the tracks, with every key and every mouse gesture, grouped by area. It follows your Key Commands set.</li><li>Hover over any button for a tooltip.</li></ul><div class="m-shots"><a class="m-shot" href="screenshots/reference/command-palette.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/command-palette.jpg" loading="lazy" alt="Screenshot: Find any command or shortcut"></a><a class="m-shot" href="screenshots/reference/panel-shortcuts.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/panel-shortcuts.jpg" loading="lazy" alt="Screenshot: Find any command or shortcut"></a></div></section><section class="m-task" id="getting-started--bring-a-song-over-from-another-daw"><h3><a href="#getting-started--bring-a-song-over-from-another-daw">Bring a song over from another DAW</a></h3><p><b>File &gt; Import Project from Another DAW...</b> opens a Reaper project (.rpp), an Ableton Live set (.als), a DAWproject file (Bitwig, Studio One, Cubase 14 and later), an AAF session (from Logic, Pro Tools, Cubase, Media Composer, DaVinci Resolve) or a folder of stems and MIDI files, as a new song. Tracks, folders, names, volume, pan, mute, colours, audio clips (copied into the song) and MIDI come over, plus the starting tempo and time signature. Plugins, automation, sends and tempo changes don't: an import report lists what didn't come in. Logic, Pro Tools, Cubase and FL Studio's own project files can't be read: export an AAF (or stems and MIDI) from them, and Take 5 explains how when you choose one. OMF isn't supported: export AAF instead. While it imports, a window says which file it's copying into the song (a session's audio can be gigabytes, so it can take a while).</p></section><section class="m-task" id="getting-started--import-an-aaf-from-pro-tools-logic-or-media-composer"><h3><a href="#getting-started--import-an-aaf-from-pro-tools-logic-or-media-composer">Import an AAF from Pro Tools, Logic or Media Composer</a></h3><p>In the other app, export the session as AAF (Logic: File &gt; Export &gt; Project as AAF File; Pro Tools: Export &gt; Selected Tracks as New AAF/OMF, choosing AAF; Resolve: File &gt; Export &gt; Timeline as AAF). In Take 5, <b>File &gt; Import Project from Another DAW...</b> and pick the .aaf. Clips land where they were, with their fades, crossfades, clip gain and clip volume envelopes, track volume and pan (automation too, in the track's lanes), mute, solo and markers. If the session started at a timecode (01:00:00:00, say), the song keeps it: an AAF exported from the song starts there too, so it lines up again in the editor. If the audio isn't next to the AAF, Take 5 asks for the folder it's in; for Media Composer, choose the drive's "Avid MediaFiles" folder (its MXF audio is converted to WAV files in the song's Audio folder). The import report lists anything missing.</p></section></section><section class="m-area" id="audio-and-midi-setup"><h2>Audio and MIDI setup</h2><section class="m-task" id="audio-and-midi-setup--set-up-an-audio-interface"><h3><a href="#audio-and-midi-setup--set-up-an-audio-interface">Set up an audio interface</a></h3><ol><li>Connect the interface (and install its driver, if it has one) before opening Take 5.</li><li>Open <b>Settings &gt; Audio Settings...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>,</kbd></span>.</li><li>Choose the type of driver (on Windows, ASIO for most interfaces; see "Use ASIO on Windows"), then the interface as the output and the input.</li><li>Tick the input channels you'll record from and the output channels you'll listen on.</li><li>Pick the sample rate and buffer size (see "Choose a buffer size").</li><li>Use the <b>Test</b> button to hear a tone on the outputs.</li></ol><p>The interface's name shows at the right end of the status line. Each ticked input appears in the tracks' input menus; inputs are mono, one per track, unless you make a pair one stereo input (see "Record a stereo source on one track"). Settings are remembered between launches.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/audio-settings.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/audio-settings.jpg" loading="lazy" alt="Screenshot: Set up an audio interface"></a></div></section><section class="m-task" id="audio-and-midi-setup--choose-a-sample-rate"><h3><a href="#audio-and-midi-setup--choose-a-sample-rate">Choose a sample rate</a></h3><p>The sample rate is set in <b>Settings &gt; Audio Settings...</b>. 44.1 kHz or 48 kHz is right for most music; higher rates use more CPU. Exports default to the interface's current rate and can be changed in the export dialog. Change it before recording a song, so every take is at the same rate.</p></section><section class="m-task" id="audio-and-midi-setup--choose-a-buffer-size-latency-vs-dropouts"><h3><a href="#audio-and-midi-setup--choose-a-buffer-size-latency-vs-dropouts">Choose a buffer size (latency vs dropouts)</a></h3><p>The buffer size in <b>Settings &gt; Audio Settings...</b> decides how long the sound takes to get through the computer. Smaller is quicker (better for playing through an amp sim or monitoring a vocal) but works the computer harder; too small gives crackles and dropouts. 128 samples is a good start for recording, 64 or 32 on a fast computer with a good interface; raise it to 512 or 1024 for mixing a big song with lots of plugins. If you hear crackles, raise it one step. While recording, <b>Transport &gt; Low-Latency Mode</b> helps too (see "Play through plugins with less delay").</p></section><section class="m-task" id="audio-and-midi-setup--use-asio-on-windows"><h3><a href="#audio-and-midi-setup--use-asio-on-windows">Use ASIO on Windows</a></h3><p>For the lowest latency on Windows, choose <b>ASIO</b> as the driver type in <b>Settings &gt; Audio Settings...</b> and your interface's ASIO driver (for example "Focusrite USB ASIO"). The interface's own control panel (buffer size and so on) opens from the <b>Control Panel</b> button there. ASIO is built into Take 5: nothing extra to install but the interface's own driver. Without ASIO, "Windows Audio" works out of the box but runs at about 10 ms; its Exclusive Mode can go lower. On a Focusrite Scarlett, ASIO at 64 or 128 samples plays without dropouts.</p></section><section class="m-task" id="audio-and-midi-setup--measure-recording-latency-so-takes-line-up"><h3><a href="#audio-and-midi-setup--measure-recording-latency-so-takes-line-up">Measure recording latency so takes line up</a></h3><p>Take 5 moves every recording earlier by the delay the interface reports, so takes line up with what you played along to. Some interfaces report it wrongly. To correct it exactly:</p><ol><li>Connect a cable from an output of the interface straight to an input.</li><li><b>Settings &gt; Recording Latency...</b>: choose that output and input.</li><li>Press <b>Measure</b>: a short burst of clicks plays and Take 5 listens for it. It shows the round trip and the correction it now applies to that input.</li></ol><p>If nothing comes back, check the cable and that the channels are ticked in Audio Settings.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/recording-latency.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/recording-latency.jpg" loading="lazy" alt="Screenshot: Measure recording latency so takes line up"></a></div></section><section class="m-task" id="audio-and-midi-setup--connect-a-midi-keyboard"><h3><a href="#audio-and-midi-setup--connect-a-midi-keyboard">Connect a MIDI keyboard</a></h3><ol><li>Plug in the keyboard (USB, or through the interface's MIDI in) before opening Take 5, or open <b>Settings &gt; Audio Settings...</b> after plugging it in.</li><li>In Audio Settings, make sure it's ticked under the MIDI inputs.</li><li>Add an instrument track (<b>Track &gt; New Instrument Track...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span>). Instrument tracks listen to "All MIDI Ins", so any connected keyboard plays them.</li><li>Arm the track (its <b>R</b> button) to play it live and record it.</li></ol><p>No keyboard? Use <b>MIDI &gt; Musical Typing</b> (<span class="ks w"><kbd>Ctrl</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>K</kbd></span>) to play from the computer keyboard.</p></section><section class="m-task" id="audio-and-midi-setup--send-midi-clock-to-a-drum-machine-or-another-app"><h3><a href="#audio-and-midi-setup--send-midi-clock-to-a-drum-machine-or-another-app">Send MIDI clock to a drum machine or another app</a></h3><p><b>Settings &gt; Send MIDI Clock To</b> lists your MIDI outputs: tick one and it follows Take 5's tempo and start/stop. Tick it again to stop sending. The option is greyed out when no MIDI output is connected: plug in the device (or start the other app's virtual MIDI port) and open the menu again.</p></section><section class="m-task" id="audio-and-midi-setup--use-bluetooth-headphones-mac"><h3><a href="#audio-and-midi-setup--use-bluetooth-headphones-mac">Use Bluetooth headphones (Mac)</a></h3><p>Bluetooth headphones are fine for listening but lag too much for recording. Opening AirPods' (or another headset's) microphone switches them to a low-quality call mode, so when the output is a Bluetooth headset, Take 5 records from the built-in microphone instead and the headphones stay in music mode. For recording, use wired headphones on an interface.</p></section></section><section class="m-area" id="customising"><h2>Customising</h2><section class="m-task" id="customising--change-the-look-themes"><h3><a href="#customising--change-the-look-themes">Change the look (themes)</a></h3><p><b>View &gt; Theme</b>: <b>Take 5</b> (the default: a studio look, near-black, with knobs and fader caps that look made, buttons that light up, slots and fields set into the panel, an LCD in soft green), <b>Light</b>, <b>Logic-like</b> (the default before), <b>Midnight</b>, or looks like other DAWs: <b>Pro Tools-like</b>, <b>Ableton-like</b>, <b>Reaper-like</b>, <b>Cubase-like</b>, <b>Studio One-like</b>, <b>FL Studio-like</b>. In every dark theme a knob's arc says what it does: amber for level (Gain, Threshold, Drive), blue for time and tone (Attack, Frequency), teal for blends (Mix, Width); a plugin slot's light is green when it's on, red when it's off (bypassed), and amber with a "!" if it crashed. Everything switches (tracks, mixer, editors, panels, menus); the song stays open. Remembered between launches.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/theme-light.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-light.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-midnight.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-midnight.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-pro-tools.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-pro-tools.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-ableton.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-ableton.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-reaper.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-reaper.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-cubase.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-cubase.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-studio-one.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-studio-one.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a><a class="m-shot" href="screenshots/reference/theme-fl-studio.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/theme-fl-studio.jpg" loading="lazy" alt="Screenshot: Change the look (themes)"></a></div></section><section class="m-task" id="customising--make-everything-bigger-or-smaller"><h3><a href="#customising--make-everything-bigger-or-smaller">Make everything bigger or smaller</a></h3><p><b>View &gt; Display Size</b>: 90%, 100%, 110%, 125% or 150%. Everything scales and stays sharp; remembered after a relaunch. Useful on a big screen, from across the room, or for tired eyes. For taller or shorter tracks only, use <b>View &gt; Zoom &gt; Taller Tracks</b> / <b>Shorter Tracks</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>↑</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↑</kbd></span> / <span class="ks w"><kbd>Ctrl</kbd><kbd>↓</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↓</kbd></span>.</p></section><section class="m-task" id="customising--use-another-daw-s-shortcuts"><h3><a href="#customising--use-another-daw-s-shortcuts">Use another DAW&#x27;s shortcuts</a></h3><p><b>Settings &gt; Key Commands...</b>: under "Work like:", choose Logic Pro (the default), Pro Tools, Reaper, Cubase, Ableton Live or FL Studio. Then change any single shortcut: click + to add a key, click a key to change or remove it. A note warns when a key is one the system takes first (on the Mac, Spotlight's or Spaces'; on Windows, Alt+Tab and the like). The cheat sheet, tooltips and tutorial follow your keys.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/key-commands.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/key-commands.jpg" loading="lazy" alt="Screenshot: Use another DAW&#x27;s shortcuts"></a></div></section><section class="m-task" id="customising--arrange-the-screen-layouts-and-panels"><h3><a href="#customising--arrange-the-screen-layouts-and-panels">Arrange the screen (layouts and panels)</a></h3><ul><li><b>View &gt; Layouts</b>: built-in arrangements (Default, Logic Pro, Pro Tools, Ableton Live, Reaper, Cubase, Studio One, FL Studio, Recording, Mixing), <b>Save Current Layout...</b> for your own, and <b>Delete Saved Layout</b>. The Cubase one also turns on <b>View &gt; Top Bars &gt; Cubase Layout</b> and the Inspector.</li><li>Side panels (<b>Shortcuts</b>, <b>Audio File Browser</b>, <b>Notes</b>, <b>Assistant</b>) each open and close on their own key; several open at once stack on the right. <b>View &gt; Windows &gt; Side Panels Side by Side</b> puts them in columns; <b>View &gt; Windows &gt; Side Panels in Own Windows</b> floats them.</li><li><b>View &gt; Windows &gt; MIDI Editor in Own Window</b> and <b>Mixer in Own Window</b> float those.</li><li>Drag the edge between panes (tracks and mixer, the editor, the side panels, the track headers' right edge) to resize; double-click an edge for its default size. Sizes are kept between launches and in saved layouts.</li></ul><div class="m-shots"><a class="m-shot" href="screenshots/reference/panel-shortcuts.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/panel-shortcuts.jpg" loading="lazy" alt="Screenshot: Arrange the screen (layouts and panels)"></a><a class="m-shot" href="screenshots/reference/panel-browser.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/panel-browser.jpg" loading="lazy" alt="Screenshot: Arrange the screen (layouts and panels)"></a><a class="m-shot" href="screenshots/reference/panel-notes.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/panel-notes.jpg" loading="lazy" alt="Screenshot: Arrange the screen (layouts and panels)"></a></div></section><section class="m-task" id="customising--arrange-the-top-bars-customize-top-bars"><h3><a href="#customising--arrange-the-top-bars-customize-top-bars">Arrange the top bars (Customize Top Bars)</a></h3><p>The top of the window is made of blocks: the click and count-in, the transport's buttons, loop, punch and metronome, the position display (position, time, tempo, signature), the loudness, and the toolbar's undo and redo, <b>M S L R W A</b>, follow, the tools, snap and grid with <b>Q</b>, the output level, the zones, the status line and the info line. Put them where you like, in up to four rows:</p><ol><li><b>View &gt; Top Bars &gt; Customize Top Bars...</b> (or right-click an empty part of the bars). Each block gets an outline, and a strip under the bars says how.</li><li>Drag a block to move it: let go in the left, middle or right third of a row to put it at that row's left, in its middle or at its right (a line shows where it lands among the blocks there); let go under the last row to start a new row. A row you empty goes.</li><li>Right-click a block to hide it; <b>Show a Block...</b> brings a hidden one back (at the end of the last row). <b>Reset</b> goes back to the layout's own arrangement.</li><li><b>Done</b>.</li></ol><p>The arrangement is kept with the layout: save it with <b>View &gt; Layouts &gt; Save Current Layout...</b> to have it as a layout of your own. <b>View &gt; Top Bars &gt; Toolbar</b>, <b>Status Line</b> and <b>Info Line</b> hide those blocks, or bring them back on a row of their own, in any layout. In a window too narrow for a row, what doesn't fit goes onto a line under it.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/customise-top-bars.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/customise-top-bars.jpg" loading="lazy" alt="Screenshot: Arrange the top bars (Customize Top Bars)"></a></div></section><section class="m-task" id="customising--work-in-cubase-s-layout"><h3><a href="#customising--work-in-cubase-s-layout">Work in Cubase&#x27;s layout</a></h3><p><b>View &gt; Top Bars &gt; Cubase Layout</b> (or <b>View &gt; Layouts &gt; Cubase</b>, which also opens the Inspector and the mixer below the tracks) arranges the window as Cubase's project window and MixConsole do, with any theme (<b>View &gt; Theme &gt; Cubase-like</b> gives its colours too). Choose it again to go back to Take 5's own.</p><ul><li><b>The toolbar</b>, under the transport, across the window. At the left: undo and redo; <b>M</b> (lit when a track is muted: click to unmute them all), <b>S</b> (the same for solos), <b>L</b> (the listen bus), <b>R</b> (every track reads its automation), <b>W</b> (every track writes it, in Touch; again, back to Read), <b>A</b> (the next track with automation); following the playhead. In the middle: the tools (pointer, marquee, scissors, glue, mute, zoom, draw, play); snapping on or off with its grid; <b>Q</b> to quantise. At the right: the output's level and the zones: the Inspector, the mixer below the tracks, the side panels. (Where the playhead is shows in the transport above.) In a narrow window the middle moves over, and what doesn't fit is left out.</li><li><b>The status line</b> under it, across the window: whether the audio inputs and outputs are connected (amber when not), the listen bus, how long can be recorded on the song's disk, the record format, the pan law and the buffer size. Click one to change it (Audio Settings, the listen bus).</li><li><b>The info line</b> under that, across the window in pills like the status line's: the selected clip's name, start, end, length, fades, volume and mute; with no clip selected, the selected track's name, volume, pan, mute and solo; a hint when nothing is. Several selected: how many, and the first one's. Click a value to type a new one, as in the Inspector; click Mute or Solo to switch it.</li><li>Hide any of these three rows with <b>View &gt; Top Bars &gt; Toolbar</b>, <b>View &gt; Top Bars &gt; Status Line</b> and <b>View &gt; Top Bars &gt; Info Line</b>; the tracks get the room. To move their blocks around (or onto the transport's row, or into Take 5's own layout), see "Arrange the top bars". They're kept with the layout.</li><li><b>Track headers</b>: the track's number, M S, its name and level on top; under them record, monitor, <b>R</b> and <b>W</b> (this track's automation read, or written in Touch), <b>e</b> (its settings, in the Inspector) and <b>A</b> (its automation lanes); a picture of what it is; the meter down the right edge.</li><li><b>The mixer</b>: under each name a <b>Routing</b> section (its input and output); <b>Pre</b>, the channel's input stage: Ø (polarity), its input gain (-24 to +24 dB) and a low cut and a high cut (12 dB an octave), each switched on with <b>LC</b> or <b>HC</b>, before any plugin; then <b>Inserts</b> and <b>Sends</b>, each with a switch that turns all of them on or off at once and, for the inserts, the delay their plugins add (in ms); pan and width as bars; <b>e</b> beside M and S. The mixer's title bar has <b>Configurations</b> (save how the mixer looks under a name, and recall it), <b>Racks</b> (which of Routing, Pre, Inserts and Sends the strips show), <b>Narrow</b> / <b>Wide</b> strips (more fit when narrow), <b>Q-Link</b> (lit: moving a fader, pan, mute or send on one of the selected channels moves the others too, as <b>Mix &gt; Link Selected Channels</b>), and <b>M</b> and <b>S</b> to unmute and unsolo everything.</li></ul><div class="m-shots"><a class="m-shot" href="screenshots/reference/cubase-layout.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/cubase-layout.jpg" loading="lazy" alt="Screenshot: Work in Cubase&#x27;s layout"></a></div></section><section class="m-task" id="customising--run-several-commands-from-one-key-macros"><h3><a href="#customising--run-several-commands-from-one-key-macros">Run several commands from one key (macros)</a></h3><p><b>Settings &gt; Macros...</b>: <b>New</b> makes one ("Prepare a vocal track"); <b>Add a Command...</b> adds any menu command to its list (New Track, Arm Track, Input Monitoring, Channel Strip...), in order; <b>Move Up</b>, <b>Move Down</b> and <b>Remove</b> change it, <b>Run</b> tries it. <b>Set Key...</b> opens <b>Key Commands</b>, where the macros are under <b>Macros</b>: give it a key there. Then the key (or <b>Settings &gt; Run Macro</b>) runs its commands one after another. Macros are kept in the app's settings, for every song.</p></section><section class="m-task" id="customising--make-stop-go-back-to-where-i-started-playing"><h3><a href="#customising--make-stop-go-back-to-where-i-started-playing">Make stop go back to where I started playing</a></h3><p><b>Settings &gt; Stop Returns to Where Play Started</b>: when on, stopping puts the playhead back where playing started; off, it stays where it stopped. <b>Transport &gt; Go to Start</b>, <span class="ks"><kbd>Return</kbd></span> or <span class="ks"><kbd>Home</kbd></span>, always goes to the start. Handy for playing the same passage again and again while mixing. The setting is kept between launches.</p></section></section>
+<nav class="m-pager" aria-label="Parts"><a class="prev" href="index.html"><span>Back to</span>The quick sheet</a><a class="next" href="recording.html"><span>Next</span>Recording</a></nav>
+</main>
+</div>
+<footer>Take 5 is free and open source. This manual is Take 5's user guide (docs/GUIDE.md), which the
+assistant in the app also answers "how do I…" from. Keys are the default set (the Logic-style one).</footer>
+</div>
+<script src="search.js"></script>
+<script>T5.manualPage();</script>
+
+</body>
+</html>

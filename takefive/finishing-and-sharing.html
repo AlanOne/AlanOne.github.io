@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="The Take 5 manual: Finishing and sharing.">
+<title>Finishing and sharing · Take 5 Manual</title>
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a channel-strip notebook. One A4 page per stage (start, record, mix, master),
+   each with its colour from the app's own transport: record red, fader blue, meter green. */
+:root {
+  --paper: #f5f6f8;
+  --card: #ffffff;
+  --ink: #16191d;
+  --muted: #59626e;
+  --line: #d8dce2;
+  --key-bg: #ffffff;
+  --key-edge: #b4bcc7;
+  --rec: #c4342a;
+  --mix: #2667c0;
+  --master: #1b7f53;
+  --edit: #7446b8;
+  --write: #a55d0c;
+  --start: #4b5563;
+  --pin-ink: #ffffff;
+  --mark: #ffe28a;
+  --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Barlow", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+    --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
+  --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
+  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+}
+
+body {
+  background: var(--paper); color: var(--ink);
+  font: 15px/1.5 var(--body);
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 48px;
+}
+.wrap { max-width: 1040px; margin: 0 auto; display: grid; gap: 40px; }
+
+/* Platform: Windows keys unless the viewer picks Mac */
+.ks.m { display: none; }
+html.mac .ks.w { display: none; }
+html.mac .ks.m { display: inline-flex; }
+.ks { display: inline-flex; gap: 2px; vertical-align: baseline; white-space: nowrap; }
+kbd {
+  font: 500 0.78em/1 var(--mono);
+  min-width: 1.7em; padding: 0.28em 0.42em 0.22em; text-align: center;
+  background: var(--key-bg); color: var(--ink);
+  border: 1px solid var(--key-edge); border-bottom-width: 2px; border-radius: 4px;
+}
+
+header.top { display: grid; gap: 14px; border-bottom: 2px solid var(--ink); padding-bottom: 18px; }
+.eyebrow { font: 600 13px/1 var(--display); letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); }
+h1 { font: 700 clamp(40px, 7vw, 64px)/0.95 var(--display); margin: 0; letter-spacing: -0.01em; text-wrap: balance; }
+h1 .app-icon { height: 0.95em; width: auto; vertical-align: -0.12em; margin-right: 0.22em; }
+h1 .sep { color: var(--muted); font-weight: 500; }
+.lede { margin: 0; color: var(--muted); }
+.about { margin: 0; font-size: 17px; line-height: 1.5; color: var(--ink); }
+.toggle { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; font-size: 14px; color: var(--muted); }
+.download a.dl { border: 1px solid var(--key-edge); border-radius: 6px; padding: 5px 11px; color: var(--ink); text-decoration: none; font-weight: 600; }
+.download a.dl:hover, .download a.dl:focus-visible { background: var(--ink); color: var(--paper); }
+.download a.all { color: var(--muted); }
+.toggle .seg { display: inline-flex; border: 1px solid var(--key-edge); border-radius: 6px; overflow: hidden; }
+.toggle button {
+  font: 600 14px/1 var(--body); color: var(--ink); background: transparent;
+  border: 0; padding: 8px 14px; cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--paper); }
+.toggle button:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+
+.stage, .ref-part { --accent: var(--start); }
+.stage.rec, .ref-part.rec { --accent: var(--rec); }
+.stage.edit, .ref-part.edit { --accent: var(--edit); }
+.stage.write, .ref-part.write { --accent: var(--write); }
+.stage.mixing, .ref-part.mixing { --accent: var(--mix); }
+.stage.master, .ref-part.master { --accent: var(--master); }
+.stage-body { display: grid; gap: 22px; padding-top: 22px; }
+summary { cursor: pointer; list-style: none; }
+summary::-webkit-details-marker { display: none; }
+.stage-head::after { content: ""; width: 10px; height: 10px; margin-left: auto; align-self: center; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted); transform: rotate(45deg); transition: transform 0.15s; }
+details.stage:not([open]) > .stage-head::after { transform: rotate(-45deg); }
+.stage-head:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.stage-head { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; border-top: 6px solid var(--accent); padding-top: 12px; }
+.stage-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); }
+.stage-head p { margin: 0; color: var(--muted); flex: 1 1 280px; }
+
+h3 { font: 600 19px/1.2 var(--display); margin: 0 0 6px; letter-spacing: 0.01em; text-wrap: balance; }
+h3 small { font: 500 13px var(--body); color: var(--muted); letter-spacing: 0; }
+
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px 28px; }
+.grid > * { min-width: 0; }
+.recipe ol, .recipe ul { margin: 0; padding-left: 1.25em; display: grid; gap: 3px; }
+.recipe p { margin: 0 0 4px; }
+.recipe li::marker { color: var(--accent); font-weight: 600; }
+.menu { font-weight: 600; }
+.tip { border-left: 3px solid var(--accent); padding: 4px 0 4px 12px; color: var(--muted); font-size: 14px; }
+.tip strong { color: var(--ink); }
+
+/* Key tables */
+.keys { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 6px 16px; }
+.keys div { display: grid; grid-template-columns: 9.5em 1fr; gap: 10px; align-items: baseline; padding: 6px 0; border-bottom: 1px dashed var(--line); font-size: 14px; }
+.keys-title { font: 600 13px var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+
+/* Screenshots with numbered pins */
+figure { margin: 0; display: grid; gap: 10px; }
+.shot { position: relative; width: 100%; max-width: 100%; }
+.crop { position: relative; overflow: hidden; aspect-ratio: var(--w) / var(--h); border-radius: 6px; border: 1px solid var(--line); background: #2b2b2b; }
+.crop img { position: absolute; max-width: none; height: auto; display: block; }
+.pin {
+  position: absolute; transform: translate(-50%, -50%);
+  width: 19px; height: 19px; border-radius: 50%;
+  background: var(--accent); color: var(--pin-ink);
+  font: 700 11px/19px var(--body); text-align: center;
+  box-shadow: 0 0 0 2px #ffffffd9;
+}
+figcaption { font-size: 13.5px; color: var(--muted); }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 4px 20px; font-size: 14px; }
+.legend li { position: relative; padding-left: 26px; }
+.legend li > b:first-child { position: absolute; left: 0; top: 0.12em; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--pin-ink); font: 700 11px/18px var(--body); text-align: center; }
+.side { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 20px; align-items: start; }
+.side.narrow { grid-template-columns: minmax(0, 150px) minmax(0, 1fr); }
+@media (max-width: 640px) { .side, .side.narrow { grid-template-columns: 1fr; } .side.narrow .shot { max-width: 180px; } }
+
+table.targets { border-collapse: collapse; width: 100%; font-size: 14px; font-variant-numeric: tabular-nums; }
+table.targets th, table.targets td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+table.targets th { font: 600 12px var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+.trouble { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px 24px; font-size: 14px; }
+.trouble p { margin: 0; }
+footer { color: var(--muted); font-size: 13px; border-top: 1px solid var(--line); padding-top: 12px; }
+
+[hidden] { display: none !important; }
+
+/* Search: stays at the top while scrolling */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--paper); }
+.finder { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--paper); padding-block: 10px; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; }
+.finder input {
+  flex: 1 1 260px; min-width: 0; font: 500 16px/1.2 var(--body); color: var(--ink);
+  background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 10px 14px;
+}
+.finder input:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+.finder .count { font-size: 14px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 9ch; }
+.finder button {
+  font: 600 13px/1 var(--body); color: var(--ink); background: transparent; cursor: pointer;
+  border: 1px solid var(--key-edge); border-radius: 6px; padding: 8px 11px;
+}
+.finder button:focus-visible { outline: 2px solid var(--mix); outline-offset: 1px; }
+mark { background: var(--mark); color: inherit; border-radius: 2px; padding: 0 1px; }
+.no-results { color: var(--muted); }
+
+/* The full reference: every task in the user guide */
+.reference { display: grid; gap: 4px; }
+.reference details { scroll-margin-top: 90px; }
+.ref-head { display: grid; gap: 6px; border-top: 6px solid var(--ink); padding-top: 12px; margin-bottom: 8px; }
+.ref-head h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; }
+.ref-head p { margin: 0; color: var(--muted); max-width: 70ch; }
+.ref-part { display: grid; gap: 4px; margin-top: 20px; }
+.ref-part-title { display: flex; align-items: center; gap: 10px; margin: 0; padding-bottom: 6px; border-bottom: 3px solid var(--accent); color: var(--accent); font: 700 16px/1 var(--display); letter-spacing: 0.12em; text-transform: uppercase; }
+.ref-sec > summary { display: flex; align-items: center; gap: 10px; padding: 11px 2px; border-bottom: 1px solid var(--line); }
+.ref-title { font: 600 21px/1.2 var(--display); letter-spacing: 0.01em; }
+.ref-count { font: 600 12px/1 var(--body); color: var(--muted); border: 1px solid var(--line); border-radius: 999px; padding: 3px 8px; font-variant-numeric: tabular-nums; }
+.ref-sec > summary::after, .task > summary::before {
+  content: ""; width: 8px; height: 8px; border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+  transform: rotate(-45deg); transition: transform 0.15s; flex: none;
+}
+.ref-sec > summary::after { margin-left: auto; }
+.ref-sec[open] > summary::after, .task[open] > summary::before { transform: rotate(45deg); }
+.ref-body { display: grid; gap: 2px; padding: 8px 0 18px; }
+.task > summary { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 6px; font-weight: 500; }
+.task > summary:hover { background: var(--card); }
+.task[open] > summary { font-weight: 600; }
+.ref-sec > summary:focus-visible, .task > summary:focus-visible { outline: 2px solid var(--mix); outline-offset: -2px; }
+.task-body { padding: 2px 12px 16px 32px; display: grid; gap: 8px; }
+.task-body p { margin: 0; }
+.task-body ul, .task-body ol { margin: 0; padding-left: 1.3em; display: grid; gap: 3px; }
+.task-body code { font: 0.9em var(--mono); }
+.ref-shots { display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px; }
+.ref-shot { display: block; max-width: 100%; }
+.ref-shot img { display: block; max-width: 100%; max-height: 420px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+@media (max-width: 640px) { .task-body { padding-left: 12px; } }
+
+/* The bar across every page: the quick sheet, and the manual's parts */
+nav.site { display: flex; align-items: center; gap: 6px 18px; flex-wrap: wrap; font-size: 14px; border-bottom: 1px solid var(--line); padding-bottom: 10px; }
+nav.site a { color: var(--muted); text-decoration: none; font-weight: 600; }
+nav.site a:hover, nav.site a:focus-visible { color: var(--ink); }
+nav.site .brand { display: inline-flex; align-items: center; gap: 7px; color: var(--ink); font: 700 18px/1 var(--display); letter-spacing: 0.02em; margin-right: auto; }
+nav.site .brand img { height: 20px; width: auto; }
+nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
+.site-parts { display: flex; flex-wrap: wrap; gap: 4px 14px; }
+.site-parts a { --accent: var(--start); border-bottom: 2px solid transparent; padding-bottom: 2px; }
+.site-parts a.rec { --accent: var(--rec); } .site-parts a.edit { --accent: var(--edit); } .site-parts a.write { --accent: var(--write); }
+.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); }
+.site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
+
+/* The manual's contents on the front page */
+.m-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin-top: 12px; }
+.m-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; margin: 0; }
+.m-card h3 { display: flex; align-items: center; gap: 10px; margin: 0; font: 700 22px/1.1 var(--display); text-transform: uppercase; letter-spacing: 0.03em; }
+.m-card h3 a { color: var(--accent); text-decoration: none; }
+.m-card h3 a:hover { text-decoration: underline; }
+.m-card p { margin: 0; color: var(--muted); font-size: 14px; }
+.m-card ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; font-size: 14px; }
+.m-card li { display: flex; justify-content: space-between; gap: 10px; border-bottom: 1px dashed var(--line); padding: 3px 0; }
+.m-card li a { color: var(--ink); text-decoration: none; }
+.m-card li a:hover { color: var(--accent); text-decoration: underline; }
+.m-card li span { color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* Search results from the manual (under the quick sheet's search, and in a part page's sidebar) */
+.m-results { display: grid; gap: 6px; }
+.m-results.wide { margin-top: -24px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; }
+.m-res-count { margin: 0; font: 600 12px/1.2 var(--display); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.m-results ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+.m-results.wide ol { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 4px 20px; }
+.m-results a { display: grid; gap: 1px; padding: 6px 8px; border-radius: 6px; color: var(--ink); text-decoration: none; }
+.m-results a:hover, .m-results a:focus-visible { background: var(--paper); outline: none; }
+.m-results b { font-weight: 600; }
+.m-results span { font-size: 12px; color: var(--muted); }
+.m-results small { font-size: 13px; color: var(--muted); }
+
+/* A part of the manual */
+.wrap.manual { max-width: 1200px; gap: 28px; }
+.m-head { display: grid; gap: 10px; border-top: 6px solid var(--accent); padding-top: 14px; }
+.m-head h1 { color: var(--accent); text-transform: uppercase; }
+.m-head .lede { max-width: 70ch; font-size: 17px; }
+.m-body { display: grid; grid-template-columns: 270px minmax(0, 1fr); gap: 40px; align-items: start; }
+.m-side { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow: auto; display: grid; gap: 10px; align-content: start; padding-right: 4px; }
+.m-find input { width: 100%; font: 500 15px/1.2 var(--body); color: var(--ink); background: var(--card); border: 1px solid var(--key-edge); border-radius: 8px; padding: 9px 12px; }
+.m-find input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.m-toc > summary { font: 600 12px/1.2 var(--display); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); padding: 4px 0; }
+.m-toc ol { list-style: none; margin: 0; padding: 0; display: grid; gap: 1px; font-size: 14px; }
+.m-toc > ol > li > a { display: block; font-weight: 600; color: var(--ink); margin-top: 10px; }
+.m-toc ol ol { padding-left: 10px; border-left: 2px solid var(--line); margin-top: 3px; }
+.m-toc ol ol a { display: block; color: var(--muted); padding: 2px 6px; border-radius: 4px; line-height: 1.3; }
+.m-toc a { text-decoration: none; }
+.m-toc a:hover { color: var(--accent); }
+.m-toc a.on { color: var(--accent); background: var(--card); }
+.m-main { display: grid; gap: 34px; min-width: 0; }
+.m-area { display: grid; gap: 26px; scroll-margin-top: 16px; }
+.m-area > h2 { font: 700 34px/1 var(--display); margin: 0; text-transform: uppercase; letter-spacing: 0.02em; color: var(--accent); border-bottom: 3px solid var(--accent); padding-bottom: 8px; }
+.m-task { display: grid; gap: 10px; scroll-margin-top: 16px; max-width: 76ch; }
+.m-task h3 { font: 600 24px/1.15 var(--display); margin: 0; }
+.m-task h3 a { color: var(--ink); text-decoration: none; }
+.m-task h3 a:hover { color: var(--accent); }
+.m-task p { margin: 0; }
+.m-task ul, .m-task ol { margin: 0; padding-left: 1.3em; display: grid; gap: 4px; }
+.m-task li::marker { color: var(--accent); }
+.m-task code { font: 0.9em var(--mono); }
+.m-task:target h3 { background: var(--mark); border-radius: 4px; box-shadow: 0 0 0 4px var(--mark); }
+.m-shots { display: grid; gap: 12px; padding-top: 4px; }
+.m-shot { display: block; justify-self: start; max-width: 100%; }
+.m-shot img { display: block; max-width: 100%; max-height: 560px; width: auto; height: auto; border: 1px solid var(--line); border-radius: 6px; }
+.m-pager { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; border-top: 1px solid var(--line); padding-top: 18px; }
+.m-pager a { display: grid; gap: 2px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); text-decoration: none; font: 600 20px/1.1 var(--display); }
+.m-pager a span { font: 500 12px var(--body); color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; }
+.m-pager a:hover { border-color: var(--accent); }
+.m-pager .next { grid-column: 2; text-align: right; }
+@media (max-width: 860px) {
+  .m-body { grid-template-columns: 1fr; gap: 24px; }
+  .m-side { position: static; max-height: none; overflow: visible; }
+  .m-toc:not([open]) > ol { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+<style>:root{color-scheme:light}body{margin:0}img{max-width:100%}</style>
+</head>
+<body>
+
+<div class="wrap manual ref-part master">
+<nav class="site" aria-label="The manual"><a class="brand" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.18.5</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master here" href="finishing-and-sharing.html">Finishing and sharing</a><a class="start" href="help.html">Help</a></div></nav>
+<header class="m-head">
+  <div class="eyebrow">Take 5 v0.18.5 · manual · 24 tasks</div>
+  <h1>Finishing and sharing</h1>
+  <p class="lede">Mastering against a reference, exporting, sharing a song with the band, and backups and history.</p>
+  <div class="toggle" role="group" aria-label="Show keys for">
+    <span>Show keys for</span>
+    <span class="seg">
+      <button type="button" id="os-win" aria-pressed="true">Windows</button>
+      <button type="button" id="os-mac" aria-pressed="false">Mac</button>
+    </span>
+  </div>
+</header>
+<div class="m-body">
+<aside class="m-side">
+  <div class="m-find" role="search">
+    <input id="m-find" type="search" placeholder="Search the manual" aria-label="Search the whole manual" autocomplete="off">
+  </div>
+  <div id="m-results" class="m-results" hidden aria-live="polite"></div>
+  <details class="m-toc" open><summary>On this page</summary><ol><li><a href="#finishing-and-exporting">Finishing and exporting</a><ol><li><a href="#finishing-and-exporting--export-the-mix-as-wav-mp3-or-flac">Export the mix as WAV, MP3 or FLAC</a></li><li><a href="#finishing-and-exporting--export-at-a-loudness-target-for-streaming">Export at a loudness target for streaming</a></li><li><a href="#finishing-and-exporting--master-the-song-for-streaming-with-the-assistant">Master the song for streaming (with the assistant)</a></li><li><a href="#finishing-and-exporting--export-stems">Export stems</a></li><li><a href="#finishing-and-exporting--export-each-section-as-its-own-file">Export each section as its own file</a></li><li><a href="#finishing-and-exporting--export-just-part-of-the-song">Export just part of the song</a></li><li><a href="#finishing-and-exporting--put-songs-together-as-an-album-or-ep">Put songs together as an album or EP</a></li><li><a href="#finishing-and-exporting--hand-a-song-to-bitwig-studio-one-or-another-daw-dawproject">Hand a song to Bitwig, Studio One or another DAW (DAWproject)</a></li><li><a href="#finishing-and-exporting--export-an-aaf-for-pro-tools-resolve-or-media-composer">Export an AAF for Pro Tools, Resolve or Media Composer</a></li></ol></li><li><a href="#sharing-with-bandmates">Sharing with bandmates</a><ol><li><a href="#sharing-with-bandmates--put-my-name-on-parts-and-comments">Put my name on parts and comments</a></li><li><a href="#sharing-with-bandmates--send-a-song-to-a-bandmate-song-package">Send a song to a bandmate (song package)</a></li><li><a href="#sharing-with-bandmates--work-on-a-song-through-a-shared-band-folder">Work on a song through a shared band folder</a></li><li><a href="#sharing-with-bandmates--import-parts-a-bandmate-sent">Import parts a bandmate sent</a></li><li><a href="#sharing-with-bandmates--leave-a-comment-at-a-point-in-the-song">Leave a comment at a point in the song</a></li></ol></li><li><a href="#backups-history-and-recovery">Backups, history and recovery</a><ol><li><a href="#backups-history-and-recovery--undo-several-steps-at-once">Undo several steps at once</a></li><li><a href="#backups-history-and-recovery--how-autosave-and-backups-work">How autosave and backups work</a></li><li><a href="#backups-history-and-recovery--recover-after-a-crash">Recover after a crash</a></li><li><a href="#backups-history-and-recovery--go-back-to-an-earlier-save">Go back to an earlier save</a></li><li><a href="#backups-history-and-recovery--bring-back-a-deleted-track">Bring back a deleted track</a></li><li><a href="#backups-history-and-recovery--save-a-named-snapshot">Save a named snapshot</a></li><li><a href="#backups-history-and-recovery--keep-a-second-copy-on-another-disk-or-in-the-cloud">Keep a second copy on another disk or in the cloud</a></li><li><a href="#backups-history-and-recovery--start-songs-from-a-template">Start songs from a template</a></li><li><a href="#backups-history-and-recovery--tidy-up-a-song-folder">Tidy up a song folder</a></li><li><a href="#backups-history-and-recovery--find-files-a-song-is-missing">Find files a song is missing</a></li></ol></li></ol></details>
+</aside>
+<main class="m-main">
+<section class="m-area" id="finishing-and-exporting"><h2>Finishing and exporting</h2><section class="m-task" id="finishing-and-exporting--export-the-mix-as-wav-mp3-or-flac"><h3><a href="#finishing-and-exporting--export-the-mix-as-wav-mp3-or-flac">Export the mix as WAV, MP3 or FLAC</a></h3><p><b>File &gt; Export...</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>E</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>E</kbd></span>. Tick one or more formats (WAV, AIFF, FLAC, MP3: one file each), the bit depth (16 or 24-bit) or MP3 bit rate, the sample rate, and <b>Whole song</b> or <b>Loop range</b>. Fill in Title, Artist, Album and Year for MP3 tags (the artist is remembered). The export respects mute and solo and leaves out the click, the reference, Mono and Dim. The export window shows each file as it's written (its name and the folder it goes in) with a progress bar and <b>Cancel</b>. When it's done it says <b>Export finished</b>, with the files and their integrated loudness, true peak and loudness range (the status line says it too): <b>Open in Explorer</b> (<b>Open in Finder</b>) opens the folder with the file selected, <b>Close Window</b> closes it. MP3 works out of the box and Windows: the LAME encoder is built in.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/export.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/export.jpg" loading="lazy" alt="Screenshot: Export the mix as WAV, MP3 or FLAC"></a></div></section><section class="m-task" id="finishing-and-exporting--export-at-a-loudness-target-for-streaming"><h3><a href="#finishing-and-exporting--export-at-a-loudness-target-for-streaming">Export at a loudness target for streaming</a></h3><p>In <b>File &gt; Export...</b>, set the loudness to <b>-14 LUFS (streaming)</b>, <b>-16 LUFS (podcast/Apple)</b> or <b>-23 LUFS (broadcast)</b> instead of <b>As mixed</b>. The export is brought to that loudness with the true peak kept under -1 dBTP. For a louder master, put the <b>Limiter</b> on the master and push its gain while watching the TRUE PEAK reading in the transport bar.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/export.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/export.jpg" loading="lazy" alt="Screenshot: Export at a loudness target for streaming"></a><a class="m-shot" href="screenshots/reference/plugin-limiter.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/plugin-limiter.jpg" loading="lazy" alt="Screenshot: Export at a loudness target for streaming"></a></div></section><section class="m-task" id="finishing-and-exporting--master-the-song-for-streaming-with-the-assistant"><h3><a href="#finishing-and-exporting--master-the-song-for-streaming-with-the-assistant">Master the song for streaming (with the assistant)</a></h3><p>Ask the assistant: "master this for streaming, punchy", "master it like the reference, -14 LUFS". It measures the mix (loudness, true peak, and the balance in third-octave bands, compared band by band with the reference track if you've chosen one, at matched loudness), sets up the master's EQ, compressor and Limiter from what it measured, measures again, and adjusts until it's within 0.5 LU of the target with the true peak at or under -1 dB. It's one request, so one Undo takes it all back. Then use <b>Master Off</b> to hear whether the master helps.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/assistant.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/assistant.jpg" loading="lazy" alt="Screenshot: Master the song for streaming (with the assistant)"></a></div></section><section class="m-task" id="finishing-and-exporting--export-stems"><h3><a href="#finishing-and-exporting--export-stems">Export stems</a></h3><p>In <b>File &gt; Export...</b>, choose <b>Stems (one file per track, folder and bus)</b> and a folder. Stems leave out their sends (those are in the bus stems), so dropped into another DAW at the same start they add up to the mix. Drum channels and tracks inside a VCA get stems of their own.</p></section><section class="m-task" id="finishing-and-exporting--export-each-section-as-its-own-file"><h3><a href="#finishing-and-exporting--export-each-section-as-its-own-file">Export each section as its own file</a></h3><p>Add section markers first, then in <b>File &gt; Export...</b> choose <b>Each section (one file per section)</b>: one numbered file per section, from marker to marker. Take 5 asks for a folder to put them in. The option is greyed out until the song has section markers (see "Add and name sections (intro, verse, chorus)").</p></section><section class="m-task" id="finishing-and-exporting--export-just-part-of-the-song"><h3><a href="#finishing-and-exporting--export-just-part-of-the-song">Export just part of the song</a></h3><p>Set a loop range by dragging in the ruler and choose <b>Loop range</b> in <b>File &gt; Export...</b>. To save what each track plays in a marquee range (with its effects) as separate files, use <b>File &gt; Export Range as WAV...</b>.</p></section><section class="m-task" id="finishing-and-exporting--put-songs-together-as-an-album-or-ep"><h3><a href="#finishing-and-exporting--put-songs-together-as-an-album-or-ep">Put songs together as an album or EP</a></h3><p><b>File &gt; Album...</b> opens a window: the album's <b>Title</b>, <b>Artist</b> and <b>Year</b>, and its songs. <b>Add Songs...</b> adds songs (their .tracktionedit files) at the end; <b>Move Up</b>, <b>Move Down</b> and <b>Remove</b> put them in order. For the selected song, <b>Then</b>: <b>a gap of</b> some seconds before the next, or <b>crossfade over</b> some seconds into it; <b>Trim (dB)</b> turns it up or down by hand after matching. <b>Match to</b> sets the loudness every song is brought to (-14 LUFS for streaming, -16 a little gentler, -11 or -9 loud; never over -1 dB true peak, a song that can't get there under it is left a little quieter and says so), or <b>Off</b> to leave them as mixed. <b>Measure</b> shows each song's loudness now. <b>Render Album...</b> asks for a folder and writes:</p><ul><li>a WAV per song ("01 Hearts Explode.wav"...), matched, with its title, artist, album, year and track number in it;</li><li>one WAV of them all, in order with the gaps and crossfades, with a marker where each song starts;</li><li>a cue sheet (.cue) beside it, to burn a CD or for a distributor.</li></ul><p>Each song is rendered from its file, through its own master, so a change to a mix is in the next render (the open song is saved first if it's one of them). <b>Save...</b> keeps the album as an .t5album file next to the songs; <b>Open...</b> brings it back.</p></section><section class="m-task" id="finishing-and-exporting--hand-a-song-to-bitwig-studio-one-or-another-daw-dawproject"><h3><a href="#finishing-and-exporting--hand-a-song-to-bitwig-studio-one-or-another-daw-dawproject">Hand a song to Bitwig, Studio One or another DAW (DAWproject)</a></h3><p><b>File &gt; Export Other Formats &gt; Export DAWproject...</b> saves the song as a .dawproject file, the open format Bitwig, Studio One and others read: the tracks and folders (as submixes), buses (as effect channels), MIDI clips and their notes, audio clips (the audio files go inside it) with their fades, each channel's fader, pan, mute and sends, the automation of faders, pans and sends, the markers, and the tempo. Installed VST3 plugins go across with their settings; CLAP and AU plugins by name (load their settings again there). The built-in EQ and Compressor become the other DAW's own; Take 5's other effects (the amp, the delay...) can't go across, and are listed in each track's comment. Afterwards Take 5 says what didn't go across. For Pro Tools, Media Composer or Resolve, export an AAF instead.</p></section><section class="m-task" id="finishing-and-exporting--export-an-aaf-for-pro-tools-resolve-or-media-composer"><h3><a href="#finishing-and-exporting--export-an-aaf-for-pro-tools-resolve-or-media-composer">Export an AAF for Pro Tools, Resolve or Media Composer</a></h3><p><b>File &gt; Export Other Formats &gt; Export AAF...</b> writes the song as an AAF session: audio tracks with their clips, fades and crossfades, clip gain, volume, pan and the markers, with the audio inside the AAF or as WAV files beside it. Clips an AAF can't describe (stretched, warped, reversed, looped, pitch-shifted, with envelopes) go out rendered as they sound. MIDI, muted tracks and clips, plugins, sends and automation don't go, and the export says so. A song imported from an AAF that started at a timecode starts there again. For MIDI parts, use <b>File &gt; Export Other Formats &gt; Export MIDI File...</b>.</p></section></section><section class="m-area" id="sharing-with-bandmates"><h2>Sharing with bandmates</h2><section class="m-task" id="sharing-with-bandmates--put-my-name-on-parts-and-comments"><h3><a href="#sharing-with-bandmates--put-my-name-on-parts-and-comments">Put my name on parts and comments</a></h3><p><b>Settings &gt; Your Name...</b>: the name on the parts you send and the comments you write ("Alan: retake this bar"). Set it once on each computer, before you send parts or leave comments, so bandmates can see who played what. Tracks a bandmate sends you arrive as alternatives named after them.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/your-name.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/your-name.jpg" loading="lazy" alt="Screenshot: Put my name on parts and comments"></a></div></section><section class="m-task" id="sharing-with-bandmates--send-a-song-to-a-bandmate-song-package"><h3><a href="#sharing-with-bandmates--send-a-song-to-a-bandmate-song-package">Send a song to a bandmate (song package)</a></h3><p><b>File &gt; Share with Bandmates &gt; Save Song Package...</b> makes one .take5song file with the song and only the audio it uses. Send it any way you like. Double-clicking it (or <b>File &gt; Open Song...</b>) opens it as a song of its own in Music/Take 5 ("&lt;song&gt; (2)" if the name is taken), with its plugins, takes and drum kits.</p></section><section class="m-task" id="sharing-with-bandmates--work-on-a-song-through-a-shared-band-folder"><h3><a href="#sharing-with-bandmates--work-on-a-song-through-a-shared-band-folder">Work on a song through a shared band folder</a></h3><ol><li>On your computer: <b>File &gt; Share with Bandmates &gt; Share in Band Folder...</b> and choose a folder your band shares (iCloud Drive, Dropbox, OneDrive, Syncthing). A folder named after the song appears there with the package and a Parts folder.</li><li>A bandmate double-clicks the package there: it opens as their own copy.</li><li>They record a part, then <b>Share with Bandmates &gt; Send Parts...</b>: their new tracks are ticked; <b>Send to Band Folder</b>.</li><li>Take 5 checks the folder every 20 seconds or so. When parts arrive, "&lt;name&gt; sent parts" asks to import them: <b>Import</b>, <b>Later</b> (asked again next time the song opens) or <b>Don't Import</b>.</li></ol><p>Nobody's song file is ever overwritten: only .take5song and .take5parts files go in the shared folder.</p></section><section class="m-task" id="sharing-with-bandmates--import-parts-a-bandmate-sent"><h3><a href="#sharing-with-bandmates--import-parts-a-bandmate-sent">Import parts a bandmate sent</a></h3><p>Double-click a .take5parts file, or <b>File &gt; Share with Bandmates &gt; Import Parts...</b>. New tracks land as new tracks, where they were played (on the same bars even if the tempo changed); a new version of a track you already have arrives as an alternative of it, named after who played it (right-click the track &gt; <b>Alternatives</b>). <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> takes them out again.</p></section><section class="m-task" id="sharing-with-bandmates--leave-a-comment-at-a-point-in-the-song"><h3><a href="#sharing-with-bandmates--leave-a-comment-at-a-point-in-the-song">Leave a comment at a point in the song</a></h3><p>Right-click the sections lane &gt; <b>Add Comment Here...</b>: a dot with your initial, signed with your name. Hover over the dot to read it (who, what, where); right-click it &gt; <b>Remove Comment</b>. Comments go to bandmates with the parts you send.</p></section></section><section class="m-area" id="backups-history-and-recovery"><h2>Backups, history and recovery</h2><section class="m-task" id="backups-history-and-recovery--undo-several-steps-at-once"><h3><a href="#backups-history-and-recovery--undo-several-steps-at-once">Undo several steps at once</a></h3><p><b>Edit &gt; Undo</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>, and <b>Redo</b>, <span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>Z</kbd></span>; the menu names the step. <b>Edit &gt; Undo History</b> lists the last steps: choose one to go back to before it in one go. Fader, pan, send and plugin-knob moves are undoable too (one step per drag), and each assistant request is a single step. Saving isn't a step: after a save, Undo still undoes your last edit. Insert Silence, Delete and Close Gap and deleting a range are one step each. For versions from earlier saves, see "Go back to an earlier save".</p></section><section class="m-task" id="backups-history-and-recovery--how-autosave-and-backups-work"><h3><a href="#backups-history-and-recovery--how-autosave-and-backups-work">How autosave and backups work</a></h3><p>While there are unsaved changes, Take 5 saves a recovery copy every 2 minutes. Each <b>File &gt; Save</b> (<span class="ks w"><kbd>Ctrl</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>S</kbd></span>) keeps the previous save in the song's Backups folder (at most one every 5 minutes, the newest 20). The song is also saved after each recorded take.</p></section><section class="m-task" id="backups-history-and-recovery--recover-after-a-crash"><h3><a href="#backups-history-and-recovery--recover-after-a-crash">Recover after a crash</a></h3><p>If Take 5 stopped without saving (a crash, a power cut, a force quit), the next time you open the song it offers the recovery copy: <b>Recover Changes</b> brings your unsaved work back; <b>Open Last Save</b> opens the song as last saved and drops the recovery copy. A recovered song counts as unsaved until you save it, so closing it asks whether to save; the recovery isn't offered again.</p></section><section class="m-task" id="backups-history-and-recovery--go-back-to-an-earlier-save"><h3><a href="#backups-history-and-recovery--go-back-to-an-earlier-save">Go back to an earlier save</a></h3><ul><li><b>File &gt; Revert to Backup</b> lists earlier saves by time; pick one.</li><li><b>File &gt; Song History...</b> lists backups and snapshots, newest first. Select one and press <b>Listen</b> (or double-click it) to hear 30 seconds of that version from the playhead (or the loop) without changing the song. <b>Restore...</b> makes it the song again; the song as last saved is kept as a backup.</li></ul><div class="m-shots"><a class="m-shot" href="screenshots/reference/song-history.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/song-history.jpg" loading="lazy" alt="Screenshot: Go back to an earlier save"></a></div></section><section class="m-task" id="backups-history-and-recovery--bring-back-a-deleted-track"><h3><a href="#backups-history-and-recovery--bring-back-a-deleted-track">Bring back a deleted track</a></h3><p><b>File &gt; Song History...</b>, pick a save from before you deleted it, then <b>Bring Back Track</b>: tracks you've deleted since are listed under "Deleted since then". It comes back where it was, with its clips and plugins. You can also bring back a copy of how a track used to be. <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> takes it away again.</p></section><section class="m-task" id="backups-history-and-recovery--save-a-named-snapshot"><h3><a href="#backups-history-and-recovery--save-a-named-snapshot">Save a named snapshot</a></h3><p><b>File &gt; Save Snapshot...</b> (or <b>Save Snapshot</b> in Song History) keeps the song as it is now under a name ("before the rewrite"), unsaved changes included. Snapshots show marked SNAPSHOT in <b>File &gt; Song History...</b> and are kept until you delete them from the song's Snapshots folder.</p><div class="m-shots"><a class="m-shot" href="screenshots/reference/save-snapshot.jpg" target="_blank" rel="noopener"><img src="screenshots/reference/save-snapshot.jpg" loading="lazy" alt="Screenshot: Save a named snapshot"></a></div></section><section class="m-task" id="backups-history-and-recovery--keep-a-second-copy-on-another-disk-or-in-the-cloud"><h3><a href="#backups-history-and-recovery--keep-a-second-copy-on-another-disk-or-in-the-cloud">Keep a second copy on another disk or in the cloud</a></h3><p><b>Settings &gt; Second Copy of Backups...</b> (or <b>Second Copy...</b> in Song History): choose a folder on another disk or one a cloud service syncs. After each save, a folder named after the song there gets its song file, backups, snapshots and audio. If the disk isn't connected, the status line says the copy wasn't made.</p></section><section class="m-task" id="backups-history-and-recovery--start-songs-from-a-template"><h3><a href="#backups-history-and-recovery--start-songs-from-a-template">Start songs from a template</a></h3><p>Set up a song the way you like to start (band tracks, inputs, buses, click), then <b>File &gt; Save as Song Template...</b>: tracks, plugins, buses and settings, no clips. <b>File &gt; New Song from Template</b> starts from it, and <b>Settings &gt; Template for New Songs</b> makes <b>File &gt; New Song</b> always use it (<b>None (one audio track)</b> goes back). A new song from a template starts with the playhead at the start, wherever it was when the template was saved.</p></section><section class="m-task" id="backups-history-and-recovery--tidy-up-a-song-folder"><h3><a href="#backups-history-and-recovery--tidy-up-a-song-folder">Tidy up a song folder</a></h3><ul><li><b>File &gt; Collect Audio into Song</b> copies audio the song uses from elsewhere into its Audio folder, so the folder works on its own.</li><li><b>File &gt; Clean Up Unused Audio...</b> lists files nothing uses and moves them to the Trash (Recycle Bin on Windows).</li></ul></section><section class="m-task" id="backups-history-and-recovery--find-files-a-song-is-missing"><h3><a href="#backups-history-and-recovery--find-files-a-song-is-missing">Find files a song is missing</a></h3><p>When a song opens and some of its files aren't where it says (it came from another computer, or a folder was moved or renamed), a message lists them: its clips' audio, the Capture Player's captures and cabinet IRs, the reference track. The rest of the song plays. <b>Find in Folder...</b> looks through a folder you choose, and the folders in it, for each by its file name and points the song at what it finds (one undo step); <b>Later</b> leaves them. <b>File &gt; Find Missing Files...</b> does it any time.</p></section></section>
+<nav class="m-pager" aria-label="Parts"><a class="prev" href="mixing.html"><span>Previous</span>Mixing</a><a class="next" href="help.html"><span>Next</span>Help</a></nav>
+</main>
+</div>
+<footer>Take 5 is free and open source. This manual is Take 5's user guide (docs/GUIDE.md), which the
+assistant in the app also answers "how do I…" from. Keys are the default set (the Logic-style one).</footer>
+</div>
+<script src="search.js"></script>
+<script>T5.manualPage();</script>
+
+</body>
+</html>
