@@ -309,10 +309,10 @@ html.lb-open { overflow: hidden; }
 
 <div class="wrap">
 
-<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.80.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v1.0.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
 
 <header class="top">
-  <div class="eyebrow">Take 5 v0.80.0 · cheat sheet</div>
+  <div class="eyebrow">Take 5 v1.0.0 · cheat sheet</div>
   <h1><img class="app-icon" src="icons/favicon.svg" alt="">Record <span class="sep">/</span> Edit <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
   <p class="about">Take 5 is an open-source music studio (a DAW) for Mac and Windows, made for bands and
   songwriters: record a whole band or yourself take by take, comp the best takes, edit audio and MIDI, write
@@ -323,9 +323,9 @@ html.lb-open { overflow: hidden; }
   are Take 5's default set. Single-letter keys work whenever you're not typing in a box,
   and almost everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
   <div class="download">
-    <span>Download Take 5 v0.80.0:</span>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.80.0/Take5-0.80.0-Setup.exe">Windows installer</a>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.80.0/Take5-0.80.0.dmg">Mac disk image</a>
+    <span>Download Take 5 v1.0.0:</span>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.0.0/Take5-1.0.0-Setup.exe">Windows installer</a>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.0.0/Take5-1.0.0.dmg">Mac disk image</a>
     <a class="all" href="https://github.com/AlanOne/takefive-releases/releases">All releases</a>
   </div>
   <div class="toggle" role="group" aria-label="Show keys for">
@@ -358,7 +358,7 @@ html.lb-open { overflow: hidden; }
       <h3>Set up your audio interface</h3>
       <ol>
         <li>Plug in the interface (and install its driver) before opening Take 5.</li>
-        <li><span class="menu">Settings &gt; Audio Settings…</span> <span class="ks w"><kbd>Ctrl</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>,</kbd></span>: pick the driver type (ASIO on Windows), then the interface for input and output.</li>
+        <li><span class="menu">Edit &gt; Audio Settings…</span> (or <span class="menu">Edit &gt; Preferences…</span> <span class="ks w"><kbd>Ctrl</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>,</kbd></span>, page Audio): pick the driver type (ASIO on Windows), then the interface for input and output.</li>
         <li>Tick the inputs you'll record from and the outputs you'll listen on. Press <b>Test</b> to hear a tone.</li>
         <li>Buffer size: <b>128</b> samples for recording, <b>512–1024</b> for mixing a big song. Hear crackles? Go up one step.</li>
       </ol>
@@ -371,18 +371,18 @@ html.lb-open { overflow: hidden; }
         <li><span class="menu">Help &gt; Tutorial</span>: a guided tour on the open song.</li>
         <li>Take 5 says when an update is available as it opens: <b>Install Now</b> gets it (on Windows it installs and opens again). <span class="menu">Help &gt; Check for Updates…</span> (the Take 5 menu on the Mac) asks any time. <span class="menu">About Take 5</span> says which version you have.</li>
         <li>Hover any button for a tooltip; the status line at the bottom gives hints.</li>
-        <li>Used to other keys? <span class="menu">Settings &gt; Key Commands…</span>: pick the key set you know (Set B to Set F), or change any key. A toolbar, status and info lines and a console-style mixer? <span class="menu">View &gt; Top Bars &gt; Console Layout</span>. Rather your own? <span class="menu">View &gt; Customize Top Bars…</span>: drag the blocks at the top between rows, hide the ones you don't need.</li>
-        <li>A song from another computer, or a moved folder? Take 5 lists any files it can't find; <span class="menu">File &gt; Find Missing Files…</span> finds them in a folder by name.</li>
+        <li>Used to other keys? <span class="menu">Edit &gt; Key Commands…</span>: pick the key set you know (Set B to Set F), or change any key. A toolbar, status and info lines and a console-style mixer? <span class="menu">Window &gt; Top Bars &gt; Console Layout</span>. Rather your own? <span class="menu">Window &gt; Top Bars &gt; Customize Top Bars…</span>: drag the blocks at the top between rows, hide the ones you don't need.</li>
+        <li>A song from another computer, or a moved folder? Take 5 lists any files it can't find; <span class="menu">Media &gt; Find Missing Files…</span> finds them in a folder by name.</li>
       </ul>
     </div>
     <div class="recipe">
       <h3>Get around the song</h3>
       <ul>
         <li>Click anywhere in the lanes (a clip, a section, a chord…) to move the playhead there, on the grid; the ruler puts it exactly where you click.</li>
-        <li><span class="ks"><kbd>←</kbd></span> <span class="ks"><kbd>→</kbd></span> a bar, <span class="ks"><kbd>Shift</kbd><kbd>←</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>→</kbd></span> a grid step, <span class="ks"><kbd>Page Up</kbd></span> <span class="ks"><kbd>Page Down</kbd></span> a screen, <span class="ks w"><kbd>Alt</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>,</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>.</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>.</kbd></span> a section, <span class="ks"><kbd>End</kbd></span> the song's end. The view follows it.</li>
+        <li><span class="ks"><kbd>Num -</kbd></span> <span class="ks"><kbd>Num </kbd><kbd></kbd></span> a bar, <span class="ks"><kbd>Shift</kbd><kbd>←</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>→</kbd></span> a grid step, <span class="ks"><kbd>Page Up</kbd></span> <span class="ks"><kbd>Page Down</kbd></span> a screen, <span class="ks"><kbd>Shift</kbd><kbd>B</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>N</kbd></span> a section, <span class="ks"><kbd>End</kbd></span> the song's end. The view follows it.</li>
         <li>Pinch or <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-scroll to zoom (around the pointer, or the playhead when it's near); drag up or down in the ruler to zoom, double-click it to fit the song.</li>
         <li>Two fingers scroll both ways; Shift-scroll goes along the song; middle-drag pans; <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-scroll makes tracks (or piano roll rows) taller or shorter.</li>
-        <li>While playing, the tracks follow the playhead (<span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>F</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>F</kbd></span> turns it off); an edit or a scroll pauses it until the next Play.</li>
+        <li>While playing, the tracks follow the playhead (<span class="ks"><kbd>F</kbd></span> turns it off); an edit or a scroll pauses it until the next Play.</li>
       </ul>
     </div>
   </div>
@@ -391,17 +391,17 @@ html.lb-open { overflow: hidden; }
     <div class="keys-title">The keys to learn first</div>
     <div class="keys">
       <div><span class="ks"><kbd>Space</kbd></span><span>Play / stop</span></div>
-      <div><span class="ks"><kbd>R</kbd></span><span>Record</span></div>
-      <div><span><span class="ks"><kbd>Return</kbd></span> <span class="ks"><kbd>Home</kbd></span></span><span>Go to start</span></div>
-      <div><span><span class="ks"><kbd>←</kbd></span> <span class="ks"><kbd>→</kbd></span></span><span>Back / on a bar</span></div>
-      <div><span class="ks"><kbd>K</kbd></span><span>Metronome (click) on/off</span></div>
-      <div><span class="ks"><kbd>C</kbd></span><span>Loop on/off</span></div>
-      <div><span class="ks"><kbd>X</kbd></span><span>Show / hide the mixer</span></div>
+      <div><span class="ks"><kbd>Num *</kbd></span><span>Record (R on a Mac)</span></div>
+      <div><span><span class="ks"><kbd>Home</kbd></span> <span class="ks"><kbd>Num .</kbd></span></span><span>To the project start</span></div>
+      <div><span><span class="ks"><kbd>Num -</kbd></span> <span class="ks"><kbd>Num </kbd><kbd></kbd></span></span><span>Back / on a bar (comma, full stop on a Mac)</span></div>
+      <div><span class="ks"><kbd>C</kbd></span><span>Activate Metronome (click) on/off</span></div>
+      <div><span class="ks"><kbd>Num /</kbd></span><span>Cycle (loop) on/off (/ on a Mac)</span></div>
+      <div><span class="ks"><kbd>F3</kbd></span><span>Show / hide the mixer</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>S</kbd></span><span>Save</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span><span>Undo</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>Z</kbd></span><span>Redo</span></div>
-      <div><span class="ks"><kbd>Z</kbd></span><span>Zoom to fit (again to go back)</span></div>
-      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>=</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>=</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>-</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>-</kbd></span></span><span>Zoom in / out</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>F</kbd></span><span>Zoom Full (again to go back)</span></div>
+      <div><span><span class="ks"><kbd>H</kbd></span> <span class="ks"><kbd>G</kbd></span></span><span>Zoom in / out</span></div>
       <div><span><span class="ks"><kbd>Shift</kbd><kbd>Z</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>Shift</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Shift</kbd><kbd>Z</kbd></span></span><span>Previous / next zoom</span></div>
       <div><span class="ks"><kbd>T</kbd></span><span>Tool menu (pointer, marquee, scissors, zoom, draw…)</span></div>
     </div>
@@ -465,8 +465,8 @@ html.lb-open { overflow: hidden; }
         <li>Add an audio track: <b>+ Track</b> or <span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>N</kbd></span>.</li>
         <li>Pick its input in the track header's input menu.</li>
         <li>Click the track's <b>R</b> to arm it. Play: the meter should move without hitting the top.</li>
-        <li>Press <span class="ks"><kbd>K</kbd></span> for the click and choose a <b>Count-in</b> (1 bar is a good start).</li>
-        <li>Press <span class="ks"><kbd>R</kbd></span> to record, <span class="ks"><kbd>Space</kbd></span> to stop.</li>
+        <li>Press <span class="ks"><kbd>C</kbd></span> for the click and choose a <b>Count-in</b> (1 bar is a good start).</li>
+        <li>Press <span class="ks"><kbd>Num *</kbd></span> to record, <span class="ks"><kbd>Space</kbd></span> to stop.</li>
         <li>Recorded over an old take? It's kept as a take, not lost.</li>
       </ol>
     </div>
@@ -483,11 +483,11 @@ html.lb-open { overflow: hidden; }
       <h3>Record a whole band at once</h3>
       <ol>
         <li>Tick every input in Audio Settings.</li>
-        <li><span class="menu">Track &gt; Other New Tracks &gt; New Tracks for Unused Inputs</span> makes a track for each.</li>
+        <li><span class="menu">Project &gt; Add Track &gt; Tracks for Unused Inputs</span> makes a track for each.</li>
         <li>Arm them: Shift-click an <b>R</b> arms the selected tracks; <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-click an <b>R</b> arms every track.</li>
-        <li>Press <span class="ks"><kbd>R</kbd></span>: each input records onto its own track.</li>
+        <li>Press <span class="ks"><kbd>Num *</kbd></span>: each input records onto its own track.</li>
       </ol>
-      <p class="tip">Headphone mixes per player: <span class="menu">Track &gt; New Cue Mix…</span>. Talk to them with <span class="ks"><kbd>Y</kbd></span> (the mic is set in <span class="menu">Transport &gt; Talkback Settings…</span>; it's turned down while recording).</p>
+      <p class="tip">Headphone mixes per player: <span class="menu">Project &gt; Add Track &gt; Cue Mix…</span>. Talk to them with <span class="ks"><kbd>Y</kbd></span> (the mic is set in <span class="menu">Transport &gt; Talkback Settings…</span>; it's turned down while recording).</p>
       <p class="tip">A stereo source (amp modeller, keys, overheads) on one track: its input menu &gt; <b>Make Input 1 + Input 2 One Stereo Input</b>.</p>
     </div>
     <div class="recipe">
@@ -495,23 +495,23 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>Drag in the ruler over the bars to fix.</li>
         <li>Turn on the punch button (it goes red).</li>
-        <li>Arm the track, start before the bars, press <span class="ks"><kbd>R</kbd></span>. Only the punched part is replaced.</li>
+        <li>Arm the track, start before the bars, press <span class="ks"><kbd>Num *</kbd></span>. Only the punched part is replaced.</li>
       </ol>
-      <p class="tip"><span class="menu">Transport &gt; Pre-roll for Punch-in</span> plays 1 or 2 bars first so you can play yourself in.</p>
+      <p class="tip"><span class="menu">Transport &gt; Pre-roll</span> plays 1 or 2 bars first so you can play yourself in.</p>
     </div>
     <div class="recipe">
       <h3>Lyrics for the singer</h3>
       <ol>
-        <li><span class="menu">View &gt; Lanes &gt; Lyrics Lane</span>, right-click it &gt; <span class="menu">Paste Lyrics from Here...</span>, then drag each line to where it's sung. Or have them heard: right-click the vocal &gt; <span class="menu">Transcribe Lyrics...</span>, each word at its time, to correct.</li>
+        <li><span class="menu">Project &gt; Lyrics Track</span>, right-click it &gt; <span class="menu">Paste Lyrics from Here...</span>, then drag each line to where it's sung. Or have them heard: right-click the vocal &gt; <span class="menu">Transcribe Lyrics...</span>, each word at its time, to correct.</li>
         <li>Click a line to select it, <span class="ks w"><kbd>Ctrl</kbd><kbd>C</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>C</kbd></span> and <span class="ks w"><kbd>Ctrl</kbd><kbd>V</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>V</kbd></span> to copy it to the playhead (a chorus's lines, say). Double-click the lane for every line and where it's sung, to type new words and positions.</li>
-        <li>Record: the <b>Lyrics</b> window opens by itself, the line big, the next under it (<span class="menu">View &gt; Lanes &gt; Lyrics Prompter</span> any time).</li>
+        <li>Record: the <b>Lyrics</b> window opens by itself, the line big, the next under it (<span class="menu">Project &gt; Lyrics Prompter</span> any time).</li>
       </ol>
     </div>
     <div class="recipe">
       <h3>Loop-record takes, then comp the best</h3>
       <ol>
-        <li>Drag in the ruler to set the range, press <span class="ks"><kbd>C</kbd></span> to loop.</li>
-        <li>Arm and press <span class="ks"><kbd>R</kbd></span>. Every pass becomes a take. Stop when you have enough.</li>
+        <li>Drag in the ruler to set the range, press <span class="ks"><kbd>Num /</kbd></span> to loop.</li>
+        <li>Arm and press <span class="ks"><kbd>Num *</kbd></span>. Every pass becomes a take. Stop when you have enough.</li>
         <li>Click the track's <b>Takes</b> button to show the take lanes.</li>
         <li>Drag across the best part of each take: it goes into the comp. Click a lane to use a whole take.</li>
         <li>Right-click the track &gt; <b>Flatten Comp</b> to make it one clip.</li>
@@ -530,7 +530,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Click, count-in and tuning</h3>
       <ul>
-        <li><span class="ks"><kbd>K</kbd></span> click on/off; the slider beside it is the click volume.</li>
+        <li><span class="ks"><kbd>C</kbd></span> click on/off; the slider beside it is the click volume.</li>
         <li><span class="menu">Transport &gt; Click Sound</span>: woodblock, cowbell, hi-hat, beep…</li>
         <li><span class="menu">Transport &gt; Click Only When Recording</span>.</li>
         <li><span class="menu">Transport &gt; Click Output</span>: send the click only to the drummer's headphones.</li>
@@ -543,24 +543,24 @@ html.lb-open { overflow: hidden; }
   <div>
     <div class="keys-title">Recording keys</div>
     <div class="keys">
-      <div><span class="ks"><kbd>R</kbd></span><span>Record / stop recording</span></div>
+      <div><span class="ks"><kbd>Num *</kbd></span><span>Record / stop recording</span></div>
       <div><span class="ks"><kbd>Space</kbd></span><span>Play / stop</span></div>
-      <div><span class="ks"><kbd>K</kbd></span><span>Metronome</span></div>
-      <div><span class="ks"><kbd>C</kbd></span><span>Loop</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>U</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>U</kbd></span><span>Loop the selected clips or range</span></div>
+      <div><span class="ks"><kbd>C</kbd></span><span>Metronome</span></div>
+      <div><span class="ks"><kbd>Num /</kbd></span><span>Loop</span></div>
+      <div><span class="ks"><kbd>P</kbd></span><span>Locators to Selection: cycle the selected clips or range</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>N</kbd></span><span>New audio track</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span><span>New instrument track</span></div>
-      <div><span class="ks"><kbd>Shift</kbd><kbd>R</kbd></span><span>Capture what you just played (MIDI keyboard, or the last minute of a track's input)</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>Num *</kbd></span><span>Capture what you just played (MIDI keyboard, or the last minute of a track's input)</span></div>
       <div><span class="ks"><kbd>Y</kbd></span><span>Talkback into the headphone mixes</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>K</kbd></span><span>Play notes from the computer keyboard</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>K</kbd></span><span>Play notes from the computer keyboard</span></div>
       <div><span class="ks w"><kbd>Alt</kbd><kbd>T</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>T</kbd></span><span>Tuner</span></div>
-      <div><span class="ks"><kbd>Shift</kbd><kbd>T</kbd></span><span>Tap tempo</span></div>
-      <div><span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span><span>Add a section marker at the playhead</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>Space</kbd></span><span>Tap tempo</span></div>
+      <div><span class="ks"><kbd>Insert</kbd></span><span>Add a section marker at the playhead</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>I</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>I</kbd></span><span>Import audio or MIDI files</span></div>
     </div>
   </div>
 
-  <p class="tip"><strong>Takes land late?</strong> Connect a cable from an output to an input, then <span class="menu">Settings &gt; Recording Latency…</span> &gt; <b>Measure</b>. Take 5 corrects every recording from then on.</p>
+  <p class="tip"><strong>Takes land late?</strong> Connect a cable from an output to an input, then <span class="menu">Studio &gt; Recording Latency…</span> &gt; <b>Measure</b>. Take 5 corrects every recording from then on.</p>
   </div>
 </details>
 
@@ -578,7 +578,7 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>Select the drum tracks (or their folder), <span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>G</kbd></span> <span class="menu">Group for Editing</span>: a clip on one mic now selects the whole kit (cuts, moves, fades and comps go to every mic).</li>
         <li>Drag a marquee over a section (or select a clip), press <span class="ks"><kbd>Q</kbd></span>: <span class="menu">Quantise Group</span> finds the hits on the kick and snare and cuts every mic at the same times, so the overheads and rooms stay in phase.</li>
-        <li><span class="ks"><kbd>Tab</kbd></span> / <span class="ks"><kbd>Shift</kbd><kbd>Tab</kbd></span> jump the playhead from hit to hit to check it.</li>
+        <li><span class="ks w"><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>N</kbd></span> / <span class="ks w"><kbd>Alt</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>B</kbd></span> jump the playhead from hit to hit to check it.</li>
         <li>Drums that follow the tempo or are warped: right-click &gt; <span class="menu">Stretch Mode &gt; Percussive</span> keeps the hits sharpest.</li>
       </ol>
     </div>
@@ -604,16 +604,16 @@ html.lb-open { overflow: hidden; }
         <li><span class="ks"><kbd>T</kbd></span> &gt; <b>Marquee Tool</b>, drag across the bars and tracks.</li>
         <li>Drag inside it to move what's there (clips cut at its edges, automation too); <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-drag copies.</li>
         <li>Drag its right edge to stretch it: audio keeps its pitch, MIDI notes spread out.</li>
-        <li><span class="ks"><kbd>Shift</kbd><kbd>Backspace</kbd></span> deletes it and closes the gap; <span class="menu">Edit &gt; Insert Silence</span> opens one.</li>
+        <li><span class="ks"><kbd>Shift</kbd><kbd>Backspace</kbd></span> deletes it and closes the gap; <span class="menu">Edit &gt; Functions &gt; Insert Silence</span> opens one.</li>
       </ol>
     </div>
     <div class="recipe">
       <h3>Find the exact spot</h3>
       <ul>
         <li>Drag the playhead in the ruler (or <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-drag anywhere in it) to scrub: the audio plays as it moves.</li>
-        <li><span class="ks"><kbd>Tab</kbd></span> / <span class="ks"><kbd>Shift</kbd><kbd>Tab</kbd></span>: the next or previous hit in the selected clip.</li>
+        <li><span class="ks w"><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>N</kbd></span> / <span class="ks w"><kbd>Alt</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>B</kbd></span>: the next or previous hit in the selected clip.</li>
         <li>Right-click a clip &gt; <b>Spot...</b>: type where it starts (17.3, 1:23.5).</li>
-        <li><span class="ks w"><kbd>Alt</kbd><kbd>←</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>←</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>→</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>→</kbd></span> nudge it a grid step.</li>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>←</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>←</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>→</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>→</kbd></span> nudge it a grid step.</li>
       </ul>
     </div>
     <div class="recipe">
@@ -626,7 +626,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Edit a clip in an ARA plugin</h3>
       <ol>
-        <li>A vocal or spectral editor with ARA, scanned in <span class="menu">Settings &gt; Plugins...</span>: right-click the clip &gt; <span class="menu">ARA &gt; Edit in</span> it (select several clips first for all of them).</li>
+        <li>A vocal or spectral editor with ARA, scanned in <span class="menu">Studio &gt; Plug-in Manager…</span>: right-click the clip &gt; <span class="menu">ARA &gt; Edit in</span> it (select several clips first for all of them).</li>
         <li>Edit in its window; the clip plays as edited and saves with the song. It runs inside Take 5: save first.</li>
         <li>Done: <span class="menu">ARA &gt; Render Edits to a New File</span>, a plain clip that plays without the plugin.</li>
       </ol>
@@ -634,7 +634,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Reuse a part</h3>
       <ul>
-        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>R</kbd></span> <span class="menu">Repeat</span>: a copy right after it.</li>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>D</kbd></span> <span class="menu">Duplicate</span>: a copy right after it.</li>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>R</kbd></span> <span class="menu">Repeat Linked</span>: copies that change together (notes, or an audio clip's fades, gain and effects). Right-click &gt; <b>Unlink</b> to vary one.</li>
         <li>Right-click a section marker: loop, duplicate or delete the whole section.</li>
       </ul>
@@ -642,7 +642,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Split a song into stems</h3>
       <ol>
-        <li>Right-click a mixed recording &gt; <span class="menu">Separate Stems...</span> (or <span class="menu">Edit &gt; Separate Stems...</span>).</li>
+        <li>Right-click a mixed recording &gt; <span class="menu">Separate Stems...</span> (or <span class="menu">Audio &gt; Separate Stems…</span>).</li>
         <li><b>4 stems</b> (vocals, drums, bass, the rest) or <b>6</b> (guitar and piano too); tick the ones you want, <b>Separate</b>. The first time it downloads its model.</li>
         <li>Each stem on a track under it, lined up; the original muted. Mute the guitar to play along, or Melody to MIDI a bass line.</li>
       </ol>
@@ -650,7 +650,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>A band take played without a click</h3>
       <ol>
-        <li><span class="menu">Transport &gt; Conduct Tempo</span>, play the take and tap <span class="ks"><kbd>Shift</kbd><kbd>T</kbd></span> on every beat.</li>
+        <li><span class="menu">Transport &gt; Conduct Tempo</span>, play the take and tap <span class="ks"><kbd>Shift</kbd><kbd>Space</kbd></span> on every beat.</li>
         <li>Stop, <b>Make the Tempo</b>: the bar lines fall on the played downbeats, the audio stays put.</li>
         <li>The click and MIDI parts now follow the band.</li>
       </ol>
@@ -666,17 +666,17 @@ html.lb-open { overflow: hidden; }
     <div class="keys-title">Editing keys</div>
     <div class="keys">
       <div><span class="ks"><kbd>T</kbd></span><span>Tool menu (pointer, marquee, scissors, glue, mute, zoom, draw, play)</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>T</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>T</kbd></span><span>Split clip at the playhead</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>X</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>X</kbd></span><span>Split at Cursor (the playhead)</span></div>
       <div><span class="ks"><kbd>Q</kbd></span><span>Quantise selected notes or audio</span></div>
-      <div><span><span class="ks"><kbd>Tab</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>Tab</kbd></span></span><span>Next / previous drum hit</span></div>
+      <div><span><span class="ks w"><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>N</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>B</kbd></span></span><span>Next / previous drum hit</span></div>
       <div><span><span class="ks"><kbd>Shift</kbd><kbd>←</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>→</kbd></span></span><span>Playhead back / on a grid step</span></div>
-      <div><span><span class="ks w"><kbd>Alt</kbd><kbd>,</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>,</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>.</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>.</kbd></span></span><span>Playhead to the section before / next</span></div>
+      <div><span><span class="ks"><kbd>Shift</kbd><kbd>B</kbd></span> <span class="ks"><kbd>Shift</kbd><kbd>N</kbd></span></span><span>Playhead to the section before / next</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>G</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>G</kbd></span><span>Group for editing (a multi-mic kit)</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>R</kbd></span><span>Repeat</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>D</kbd></span><span>Duplicate</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>R</kbd></span><span>Repeat linked</span></div>
       <div><span class="ks"><kbd>Shift</kbd><kbd>Backspace</kbd></span><span>Delete and close the gap</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>U</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>U</kbd></span><span>Loop the selection</span></div>
-      <div><span class="ks"><kbd>Z</kbd></span><span>Zoom to fit</span></div>
+      <div><span class="ks"><kbd>P</kbd></span><span>Locators to Selection</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>F</kbd></span><span>Zoom Full</span></div>
     </div>
   </div>
   </div>
@@ -696,7 +696,7 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span> <span class="menu">New Instrument Track</span>: a built-in Synth, Drum Machine, Keys, Bass, Guitar, Strings or Sampler, or your plugins.</li>
         <li>Double-click in its lane for a clip, double-click the clip for the piano roll; double-click to add notes.</li>
-        <li>No keyboard? <span class="ks w"><kbd>Ctrl</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>K</kbd></span> plays notes from the computer keys. Played something good without recording? <span class="ks"><kbd>Shift</kbd><kbd>R</kbd></span> keeps it.</li>
+        <li>No keyboard? <span class="ks w"><kbd>Alt</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>K</kbd></span> plays notes from the computer keys. Played something good without recording? <span class="ks"><kbd>Shift</kbd><kbd>Num *</kbd></span> keeps it.</li>
       </ol>
     </div>
     <div class="recipe">
@@ -710,16 +710,16 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>A drum part in a minute</h3>
       <ol>
-        <li>Add section markers (<span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span>) and name them: intro, verse, chorus.</li>
-        <li><span class="menu">Track &gt; New Drummer Track</span>, press Play.</li>
-        <li><span class="menu">Track &gt; Drummer...</span>: a style (Rock, Punk, Metal...), how busy and loud each section is, its fills, and the kick following the bass.</li>
+        <li>Add section markers (<span class="ks"><kbd>Insert</kbd></span>) and name them: intro, verse, chorus.</li>
+        <li><span class="menu">Project &gt; Add Track &gt; Drummer</span>, press Play.</li>
+        <li><span class="menu">Project &gt; Drummer…</span>: a style (Rock, Punk, Metal...), how busy and loud each section is, its fills, and the kick following the bass.</li>
         <li><b>Turn into MIDI</b> to edit every hit in the drum editor.</li>
       </ol>
     </div>
     <div class="recipe">
       <h3>Chords and ideas</h3>
       <ul>
-        <li><span class="menu">View &gt; Lanes &gt; Chord Lane</span>, double-click to add a chord (Am7, F#dim).</li>
+        <li><span class="menu">Project &gt; Chord Track</span>, double-click to add a chord (Am7, F#dim).</li>
         <li>Right-click the lane &gt; <b>Chords</b> &gt; <b>Chord Ideas</b> or <b>Melody Idea</b>, then <b>Make a Clip from the Chords</b> to hear them.</li>
         <li>Hum the tune into a mic, right-click the clip &gt; <b>Melody to MIDI</b>: the notes on a new instrument track.</li>
       </ul>
@@ -727,14 +727,14 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Open a Guitar Pro tab</h3>
       <ol>
-        <li>Drag a .gp, .gpx or .gp5 file into the song (or <span class="menu">File &gt; Import Audio or MIDI...</span>). Keep <b>Use the file's tempo and time signature</b>.</li>
+        <li>Drag a .gp, .gpx or .gp5 file into the song (or <span class="menu">File &gt; Import Audio or MIDI…</span>). Keep <b>Use the file's tempo and time signature</b>.</li>
         <li>A track per instrument, repeats played out, sections as markers, chords and lyrics in their lanes.</li>
         <li>Open a clip, Notation: the tab as the file wrote it, in its tuning and capo, with its hammer-ons, slides, bends and palm mutes.</li>
       </ol>
     </div>
     <div class="recipe">
       <h3>Write parts faster</h3>
-      <p>In the piano roll, <span class="menu">MIDI &gt; Transform Notes</span> on the selected notes:</p>
+      <p>In the piano roll, <span class="menu">MIDI &gt; Functions</span> on the selected notes:</p>
       <ul>
         <li><b>Strum Chords</b> down, up or alternating, like a guitar.</li>
         <li><b>Add Flams</b>, <b>Grace Notes</b>, <b>Ratchets</b>, <b>Chop into Repeats</b>.</li>
@@ -746,7 +746,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Try the song in another order</h3>
       <ol>
-        <li><span class="menu">Track &gt; Arranger Chains</span>: click the sections in the order to try (a chorus twice, no bridge).</li>
+        <li><span class="menu">Project &gt; Arranger Chains</span>: click the sections in the order to try (a chorus twice, no bridge).</li>
         <li><b>Play Chain</b> to hear it; make more chains to compare.</li>
         <li><b>Flatten into Song...</b> when one wins: every track rewritten in that order, one undo.</li>
       </ol>
@@ -754,10 +754,12 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Words and parts on paper</h3>
       <ul>
-        <li><span class="menu">View &gt; Lanes &gt; Lyrics Lane</span>: paste the words, drag each line to where it's sung.</li>
-        <li><span class="menu">Edit &gt; Transcribe Lyrics...</span> on a recorded vocal: its words into the lyrics lane, each where it's sung (the band separated out first if it's in the clip). Nothing leaves the computer.</li>
+        <li><span class="menu">Project &gt; Lyrics Track</span>: paste the words, drag each line to where it's sung.</li>
+        <li><span class="menu">Audio &gt; Transcribe Lyrics…</span> on a recorded vocal: its words into the lyrics lane, each where it's sung (the band separated out first if it's in the clip). Nothing leaves the computer.</li>
+        <li><span class="menu">Audio &gt; Transcribe to Tab…</span> on a recorded guitar or bass: its notes as tab on a new track, strings and frets worked out (one at a time for a bass line or lead, chords too for strumming). Nothing leaves the computer.</li>
+        <li><span class="menu">Studio &gt; Tab as You Play...</span> on a guitar or bass track: what you play as tab, scrolling by as you play (keep a phrase as a clip). Right-click the track &gt; <b>Tab While Recording</b>: each take gets its tab when recording stops.</li>
         <li>Right-click a MIDI track &gt; <b>Notation</b>: sheet music, or tab for a guitar or bass part.</li>
-        <li><span class="menu">File &gt; Export Other Formats &gt; Sheet Music...</span> prints it or saves a PDF or MusicXML.</li>
+        <li><span class="menu">Score &gt; Sheet Music…</span> prints it or saves a PDF or MusicXML.</li>
       </ul>
     </div>
   </div>
@@ -774,10 +776,10 @@ html.lb-open { overflow: hidden; }
     <div class="keys-title">Writing keys</div>
     <div class="keys">
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span><span>New instrument track</span></div>
-      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>K</kbd></span><span>Play notes from the computer keyboard</span></div>
-      <div><span class="ks"><kbd>Shift</kbd><kbd>R</kbd></span><span>Capture what you just played</span></div>
-      <div><span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span><span>Add a section marker at the playhead</span></div>
-      <div><span class="ks"><kbd>Shift</kbd><kbd>T</kbd></span><span>Tap tempo</span></div>
+      <div><span class="ks w"><kbd>Alt</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>K</kbd></span><span>Play notes from the computer keyboard</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>Num *</kbd></span><span>Capture what you just played</span></div>
+      <div><span class="ks"><kbd>Insert</kbd></span><span>Add a section marker at the playhead</span></div>
+      <div><span class="ks"><kbd>Shift</kbd><kbd>Space</kbd></span><span>Tap tempo</span></div>
       <div><span class="ks"><kbd>Q</kbd></span><span>Quantise selected notes</span></div>
     </div>
   </div>
@@ -788,7 +790,7 @@ html.lb-open { overflow: hidden; }
 <details class="stage mixing">
   <summary class="stage-head">
     <h2>Mixing</h2>
-    <p>Press <span class="ks"><kbd>X</kbd></span> for the mixer (or click its <b>×</b>, top right, to close it). <span class="menu">View &gt; Windows &gt; Mixer Below Tracks</span> or <span class="menu">Mixer in Own Window</span> to place it.</p>
+    <p>Press <span class="ks"><kbd>F3</kbd></span> for the mixer (or click its <b>×</b>, top right, to close it). <span class="menu">Window &gt; Windows &gt; Mixer in Project Window</span> or <span class="menu">Mixer in Own Window</span> to place it (<span class="ks w"><kbd>Alt</kbd><kbd>F3</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>F3</kbd></span> puts it under the tracks).</p>
   </summary>
   <div class="stage-body">
 
@@ -832,12 +834,12 @@ html.lb-open { overflow: hidden; }
         <li><span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click <b>S</b>: solo only this track.</li>
         <li>Shift-click <b>S</b>: dry solo, without its reverb and delay (shows <b>D</b>).</li>
         <li>Right-click <b>S</b> &gt; <b>Solo-Safe</b>: a reverb bus that stays on.</li>
-        <li><span class="menu">Mix &gt; Unsolo All</span> / <span class="menu">Unmute All</span>.</li>
+        <li><span class="menu">Studio &gt; Unsolo All</span> / <span class="menu">Unmute All</span>.</li>
       </ul>
     </div>
     <div class="recipe">
       <h3>Clean up and shape each track</h3>
-      <p>Select a track, <span class="menu">Mix &gt; Add Channel Strip</span>: a Gate, EQ and Compressor before the fader.</p>
+      <p>Select a track, <span class="menu">Studio &gt; Add Channel Strip</span>: a Gate, EQ and Compressor before the fader.</p>
       <ul>
         <li><b>Gate</b>: raise Threshold to silence noise between notes.</li>
         <li><b>EQ</b>: cut what's muddy or harsh before boosting anything.</li>
@@ -847,7 +849,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Reverb and delay on a bus</h3>
       <ol>
-        <li><span class="menu">Track &gt; Other New Tracks &gt; New Bus</span>, then add <b>Reverb</b>, <b>Convolution Reverb</b> or <b>Delay</b> on it: on a bus they start fully wet.</li>
+        <li><span class="menu">Project &gt; Add Track &gt; Group Channel (Bus)</span>, then add <b>Reverb</b>, <b>Convolution Reverb</b> or <b>Delay</b> on it: on a bus they start fully wet.</li>
         <li>On each track: right-click &gt; <b>Send To</b> &gt; the bus (or <b>+ Send</b> on the strip).</li>
         <li>Turn each send's knob for how much of that track goes in.</li>
         <li>A throw on one word: cut it into its own clip, right-click &gt; <span class="menu">Clip Effects &gt; Add an Effect...</span>; it moves with the clip. <span class="menu">Render Into the Clip</span> bakes it in (and can be taken back).</li>
@@ -858,7 +860,7 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>The button under the track headers &gt; <b>Show Only</b> &gt; <b>Drums</b> (or Vocals, a folder, a set of your own): only those tracks, in the tracks and the mixer.</li>
         <li>Select tracks and move one's fader: the others follow (pans, mutes and sends too).</li>
-        <li><span class="menu">Mix &gt; Save Mix Snapshot...</span> to compare versions of the mix; <span class="menu">Mix &gt; Mix Snapshots</span> recalls one.</li>
+        <li><span class="menu">Studio &gt; Save Mix Snapshot…</span> to compare versions of the mix; <span class="menu">Studio &gt; Mix Snapshots</span> recalls one.</li>
         <li>Crackles? Click the CPU reading at the bottom right: the busiest track and plugin are at the top.</li>
       </ol>
     </div>
@@ -866,7 +868,7 @@ html.lb-open { overflow: hidden; }
       <h3>Group tracks</h3>
       <ul>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>D</kbd></span> <span class="menu">Group into Folder</span>: a folder is a bus, so one fader and plugins for all the drums.</li>
-        <li><span class="menu">Track &gt; Group &gt; Group into VCA</span>: one fader moves all their faders together.</li>
+        <li><span class="menu">Project &gt; Group &gt; Group into VCA</span>: one fader moves all their faders together.</li>
       </ul>
     </div>
     <div class="recipe">
@@ -882,8 +884,8 @@ html.lb-open { overflow: hidden; }
     </div>
     <div class="recipe">
       <h3>An analog desk's sound</h3>
-      <p><span class="menu">Mix &gt; Console Mode</span>: a <b>Console</b> on every channel and the mix, rounding off peaks with a little warmth. Its <b>Drive</b> sets how much; the same command takes them off.</p>
-      <p class="tip">Stems from another studio? <span class="menu">Track &gt; Colour Tracks by Instrument</span> colours them and gives each an icon.</p>
+      <p><span class="menu">Studio &gt; Console Mode</span>: a <b>Console</b> on every channel and the mix, rounding off peaks with a little warmth. Its <b>Drive</b> sets how much; the same command takes them off.</p>
+      <p class="tip">Stems from another studio? <span class="menu">Project &gt; Colorize by Instrument</span> colours them and gives each an icon.</p>
     </div>
     <div class="recipe">
       <h3>Duck the bass under the kick</h3>
@@ -901,7 +903,7 @@ html.lb-open { overflow: hidden; }
       <h3>Fewer knobs, less CPU</h3>
       <ul>
         <li><span class="ks"><kbd>B</kbd></span> <span class="menu">Smart Controls</span>: a few big knobs (Drive, Tone, Squash, Space) that each move several settings.</li>
-        <li>Right-click any knob &gt; <b>Modulate With</b>: an LFO in time with the song, or an envelope follower on another track to duck it (<span class="menu">View &gt; Panels &gt; Modulators</span>).</li>
+        <li>Right-click any knob &gt; <b>Modulate With</b>: an LFO in time with the song, or an envelope follower on another track to duck it (<span class="menu">Window &gt; Panels &gt; Modulators</span>).</li>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Control</kbd><kbd>B</kbd></span> <span class="menu">Bounce in Place</span>: the track becomes audio, effects and all.</li>
         <li>Right-click a track &gt; <b>Freeze</b> to free CPU and keep it playing.</li>
       </ul>
@@ -930,13 +932,13 @@ html.lb-open { overflow: hidden; }
   <div>
     <div class="keys-title">Mixing keys</div>
     <div class="keys">
-      <div><span class="ks"><kbd>X</kbd></span><span>Mixer</span></div>
+      <div><span class="ks"><kbd>F3</kbd></span><span>Mixer</span></div>
       <div><span class="ks"><kbd>I</kbd></span><span>Inspector: the selected track's and clip's settings and its channel strip</span></div>
       <div><span class="ks"><kbd>B</kbd></span><span>Smart Controls for the selected track</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>D</kbd></span><span class="ks m"><kbd>Shift</kbd><kbd>Cmd</kbd><kbd>D</kbd></span><span>Group selected tracks into a folder</span></div>
       <div><span class="ks w"><kbd>Ctrl</kbd><kbd>B</kbd></span><span class="ks m"><kbd>Control</kbd><kbd>B</kbd></span><span>Bounce in place</span></div>
-      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>↑</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↑</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>↓</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↓</kbd></span></span><span>Taller / shorter tracks</span></div>
-      <div><span><span class="ks w"><kbd>Alt</kbd><kbd>←</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>←</kbd></span> <span class="ks w"><kbd>Alt</kbd><kbd>→</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>→</kbd></span></span><span>Nudge clips one grid step</span></div>
+      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>↓</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↓</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>↑</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>↑</kbd></span></span><span>Zoom in / out tracks (taller / shorter)</span></div>
+      <div><span><span class="ks w"><kbd>Ctrl</kbd><kbd>←</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>←</kbd></span> <span class="ks w"><kbd>Ctrl</kbd><kbd>→</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>→</kbd></span></span><span>Nudge clips one grid step</span></div>
       <div><span class="ks w"><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>R</kbd></span><span>Switch to the reference track and back</span></div>
       <div><span class="ks w"><kbd>Alt</kbd><kbd>M</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>M</kbd></span><span>Master Off (matched loudness)</span></div>
     </div>
@@ -986,7 +988,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Compare with a reference song</h3>
       <ol>
-        <li><span class="menu">Mix &gt; Choose Reference Track…</span>: pick a finished song you like.</li>
+        <li><span class="menu">Studio &gt; Reference Track &gt; Choose Reference Track…</span>: pick a finished song you like.</li>
         <li><span class="ks w"><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>R</kbd></span> (or <b>Mix / Ref</b>) switches between your mix and it, at the same place in the song.</li>
         <li>Leave <span class="menu">Match Reference Loudness</span> on so louder doesn't fool you. After changes: <span class="menu">Measure Mix Loudness Again</span>.</li>
       </ol>
@@ -995,10 +997,10 @@ html.lb-open { overflow: hidden; }
       <h3>Check the master</h3>
       <ul>
         <li><span class="ks w"><kbd>Alt</kbd><kbd>M</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>M</kbd></span> <span class="menu">Master Off</span>: the mix without the master's plugins, at the same loudness. Does the master actually help?</li>
-        <li><span class="menu">Mix &gt; Mono</span>: does the bass or vocal disappear?</li>
-        <li><span class="menu">Mix &gt; Dim</span>: does it still work quietly?</li>
-        <li><span class="menu">Mix &gt; Analyser</span>: the spectrum, a spectrogram, a vectorscope (is it wide? out of phase?) or the level over the last minute, with the stereo correlation.</li>
-        <li><span class="menu">Mix &gt; Listen Bus…</span>: room or headphone correction on what you hear only, never in the export (<b>Listen</b> on the master strip).</li>
+        <li><span class="menu">Studio &gt; Mono</span>: does the bass or vocal disappear?</li>
+        <li><span class="menu">Studio &gt; Dim</span>: does it still work quietly?</li>
+        <li><span class="menu">Studio &gt; Analyser</span>: the spectrum, a spectrogram, a vectorscope (is it wide? out of phase?) or the level over the last minute, with the stereo correlation.</li>
+        <li><span class="menu">Studio &gt; Listen Bus…</span>: room or headphone correction on what you hear only, never in the export (<b>Listen</b> on the master strip).</li>
       </ul>
     </div>
     <div class="recipe">
@@ -1012,7 +1014,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Export the song</h3>
       <ol>
-        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>E</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>E</kbd></span> <span class="menu">File &gt; Export…</span></li>
+        <li><span class="menu">File &gt; Export &gt; Audio Mixdown…</span></li>
         <li>Tick formats: WAV, AIFF, FLAC, MP3 (one file each). 24-bit for masters, 16-bit for CDs.</li>
         <li><b>Whole song</b> (with the reverb's tail after the last clip), or <b>Loop range</b> for part of it.</li>
         <li>Loudness: <b>As mixed</b>, or a target from the table below.</li>
@@ -1022,14 +1024,14 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>A bandmate listens from home</h3>
       <ol>
-        <li><span class="menu">Transport &gt; Listen Together...</span>, <b>Start Listening Together</b>.</li>
+        <li><span class="menu">Transport &gt; Listen Together…</span>, <b>Start Listening Together</b>.</li>
         <li>Send them the address: they hear what you play in a browser, and their comments land in the song.</li>
       </ol>
     </div>
     <div class="recipe">
       <h3>An album or EP</h3>
       <ol>
-        <li><span class="menu">File &gt; Album...</span>, <b>Add Songs...</b> in order, a gap or crossfade after each.</li>
+        <li><span class="menu">File &gt; Album…</span>, <b>Add Songs...</b> in order, a gap or crossfade after each.</li>
         <li><b>Match to</b> -14 LUFS, <b>Render Album...</b>: a WAV per song as loud as the others, one long WAV with track marks, and a cue sheet.</li>
       </ol>
     </div>
@@ -1037,12 +1039,12 @@ html.lb-open { overflow: hidden; }
       <h3>Other exports</h3>
       <ul>
         <li><b>Stems</b>: one file per track, folder and bus, for another studio. They add up to the mix before the master's plugins.</li>
-        <li><b>Each section</b>: one file per section marker (add markers with <span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span>).</li>
-        <li><span class="menu">File &gt; Export Other Formats &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
-        <li><span class="menu">File &gt; Export Other Formats &gt; Export AAF…</span> for other music apps and video editors.</li>
-        <li><span class="menu">File &gt; Export Other Formats &gt; Export DAWproject...</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
-        <li><span class="menu">File &gt; Import Video...</span>: music to picture; the video window follows the playhead, <b>Markers at Cuts</b>, <b>Timecode...</b> (the song's start, as 01:00:00:00, and the frame rate; <span class="menu">View &gt; Lanes &gt; Timecode in Ruler</span> shows it in the ruler), <b>Export with the Mix...</b>.</li>
-        <li><span class="menu">File &gt; Export Video...</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
+        <li><b>Each section</b>: one file per section marker (add markers with <span class="ks"><kbd>Insert</kbd></span>).</li>
+        <li><span class="menu">File &gt; Export &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
+        <li><span class="menu">File &gt; Export &gt; Export AAF…</span> for other music apps and video editors.</li>
+        <li><span class="menu">File &gt; Export &gt; Export DAWproject…</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
+        <li><span class="menu">File &gt; Import Video…</span>: music to picture; the video window follows the playhead, <b>Markers at Cuts</b>, <b>Timecode...</b> (the song's start, as 01:00:00:00, and the frame rate; <span class="menu">Project &gt; Timecode in Ruler</span> shows it in the ruler), <b>Export with the Mix...</b>.</li>
+        <li><span class="menu">File &gt; Export &gt; Export Video…</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
         <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
       </ul>
     </div>
@@ -1073,12 +1075,12 @@ html.lb-open { overflow: hidden; }
   <div>
     <div class="keys-title">If something goes wrong</div>
     <div class="trouble">
-      <p><strong>No sound:</strong> Audio Settings &gt; <b>Test</b>; check Dim is off and nothing is soloed (<span class="menu">Mix &gt; Unsolo All</span>).</p>
+      <p><strong>No sound:</strong> Audio Settings &gt; <b>Test</b>; check Dim is off and nothing is soloed (<span class="menu">Studio &gt; Unsolo All</span>).</p>
       <p><strong>Crackles:</strong> raise the buffer size; freeze heavy tracks; on Windows use ASIO.</p>
       <p><strong>MIDI keyboard silent:</strong> play an armed instrument track; check it's ticked in <span class="menu">MIDI &gt; MIDI Inputs</span>.</p>
       <p><strong>Stuck notes:</strong> <span class="menu">Transport &gt; Panic</span>, or double-click the play button.</p>
-      <p><strong><span class="ks"><kbd>Space</kbd></span> or <span class="ks"><kbd>R</kbd></span> does nothing:</strong> you're typing in a box. Click an empty part of the tracks.</p>
-      <p><strong>Lost work:</strong> <span class="menu">File &gt; Song History…</span> lists earlier saves to listen to and restore. Take 5 also keeps a recovery copy every 2 minutes.</p>
+      <p><strong><span class="ks"><kbd>Space</kbd></span> or <span class="ks"><kbd>Num *</kbd></span> does nothing:</strong> you're typing in a box. Click an empty part of the tracks.</p>
+      <p><strong>Lost work:</strong> <span class="menu">File &gt; Project History…</span> lists earlier saves to listen to and restore. Take 5 also keeps a recovery copy every 2 minutes.</p>
     </div>
   </div>
   </div>
@@ -1095,9 +1097,9 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Play a gig from a setlist</h3>
       <ol>
-        <li><span class="menu">File &gt; Stage Mode...</span>, <b>Add Songs...</b> in the order you play them. Give each a <b>Note</b> and what comes <b>Then</b>: wait for you, or a gap.</li>
+        <li><span class="menu">File &gt; Stage Mode…</span>, <b>Add Songs...</b> in the order you play them. Give each a <b>Note</b> and what comes <b>Then</b>: wait for you, or a gap.</li>
         <li><b>In-ear output</b>: the interface output the in-ear mix is on. The click, cues and tracks named Click, Cue or Guide go there; the rest to the PA.</li>
-        <li><b>Start Show</b>. <span class="ks"><kbd>Space</kbd></span> plays, <span class="ks"><kbd>Return</kbd></span> the next song, <b>Esc</b> stops everything.</li>
+        <li><b>Start Show</b>. <span class="ks"><kbd>Space</kbd></span> plays, <b>Return</b> the next song, <b>Esc</b> stops everything.</li>
       </ol>
     </div>
     <div class="recipe">
@@ -1110,7 +1112,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>The song follows the drummer</h3>
       <ol>
-        <li><span class="menu">Transport &gt; Follow the Drummer...</span>, tick the drum tracks.</li>
+        <li><span class="menu">Transport &gt; Follow the Drummer…</span>, tick the drum tracks.</li>
         <li><b>Follow</b>, play: backing tracks and the click follow the band's tempo (up to 6 BPM either way).</li>
         <li><b>Write the Band's Tempo</b> keeps what was played in the song.</li>
       </ol>
@@ -1125,7 +1127,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Record from across the room</h3>
       <ol>
-        <li><span class="menu">Transport &gt; Phone Remote...</span>, <b>Start the Remote</b>.</li>
+        <li><span class="menu">Transport &gt; Phone Remote…</span>, <b>Start the Remote</b>.</li>
         <li>Type the address it shows into the phone's browser (same Wi-Fi).</li>
         <li>Play, Rec, sections, markers, arm and mute from the phone; <b>Rec from Here after 2 Bars</b> counts you in on the phone, time to get to the kit.</li>
       </ol>
@@ -1133,7 +1135,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Jam with loops</h3>
       <ol>
-        <li><span class="menu">View &gt; Panels &gt; Clip Launcher</span>. <b>Scenes from Sections</b>, or right-click a slot &gt; <b>Copy Selected Clip Here</b>.</li>
+        <li><span class="menu">Window &gt; Panels &gt; Clip Launcher</span>. <b>Scenes from Sections</b>, or right-click a slot &gt; <b>Copy Selected Clip Here</b>.</li>
         <li>Click a clip or a scene: it starts on the next bar. Click again to stop.</li>
         <li><b>Record Jam</b> on, play, off: the jam is written into the timeline.</li>
         <li>Looper: right-click a slot &gt; <b>Record a Loop Here</b> (1 to 8 bars, or until finished), then <b>Overdub a Layer</b>; <b>Learn Loop Switch</b> for a pedal.</li>
@@ -1142,7 +1144,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Chord charts and the setlist</h3>
       <ol>
-        <li><span class="menu">File &gt; Export Other Formats &gt; Chord Chart...</span>: sections, bars, chords and lyrics on a page, from the song.</li>
+        <li><span class="menu">Score &gt; Chord Chart…</span>: sections, bars, chords and lyrics on a page, from the song.</li>
         <li><b>For</b> guitar (chord diagrams in its tuning), bass (roots) or drums (sections, hits); <b>Key</b> or <b>Capo</b> to play it elsewhere; Nashville numbers.</li>
         <li><b>Print...</b>, <b>Save Every Part...</b> for the whole band, <b>Setlist...</b> for the gig's list in big print.</li>
       </ol>
@@ -1150,7 +1152,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Record the rehearsal</h3>
       <ol>
-        <li><span class="menu">File &gt; Rehearsal Recorder...</span>, tick the inputs (a room mic is enough), <b>Setlist...</b> to name the songs.</li>
+        <li><span class="menu">File &gt; Rehearsal Recorder…</span>, tick the inputs (a room mic is enough), <b>Setlist...</b> to name the songs.</li>
         <li><b>Record Rehearsal</b>, play for as long as you like, <b>Stop</b>: it's cut into its songs, the talk left out.</li>
         <li>Star the good takes (1 to 5), <b>Find a song</b> to hear it from every rehearsal, <b>Share as MP3</b> to send one round.</li>
       </ol>
@@ -1158,7 +1160,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Learn a song from a recording</h3>
       <ol>
-        <li><span class="menu">File &gt; Practice...</span>, <b>Open...</b> the recording: the bars and chords are found as it opens.</li>
+        <li><span class="menu">File &gt; Practice…</span>, <b>Open...</b> the recording: the bars and chords are found as it opens.</li>
         <li>Drag across the hard part to loop it (double-click a bar number: that bar), turn <b>Speed</b> down (the pitch stays), <span class="ks"><kbd>Space</kbd></span>.</li>
         <li><b>Speed up each pass</b> to bring it up to 100%; <b>Save Loop...</b> keeps it for next time.</li>
         <li><b>Separate Stems...</b>, untick the guitar: play it yourself, through the Amp on your <b>Play along</b> input.</li>
@@ -1167,7 +1169,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Patch changes at each section</h3>
       <ol>
-        <li><span class="menu">MIDI &gt; Rig Changes...</span>, <b>Add Rig</b>: the MIDI output and channel your modeller or pedal switcher is on.</li>
+        <li><span class="menu">MIDI &gt; Rig Changes…</span>, <b>Add Rig</b>: the MIDI output and channel your modeller or pedal switcher is on.</li>
         <li>Select <b>Song start</b> or a section, choose its <b>Patch</b> (or <b>Learn</b> and pick it on the unit).</li>
         <li>Play from anywhere: the right patch is sent first, then each change at its section.</li>
       </ol>
@@ -1180,7 +1182,7 @@ html.lb-open { overflow: hidden; }
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 257 tasks from Take 5's user guide, in nine parts, with
+    <p>Every feature, step by step: all 261 tasks from Take 5's user guide, in nine parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
@@ -1188,11 +1190,11 @@ html.lb-open { overflow: hidden; }
 <div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">19</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>13</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>6</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="tracks-and-arranging.html">Tracks and arranging</a><span class="ref-count">21</span></h3><p>Tracks and how they&#x27;re organised, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="tracks-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="tracks-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="editing-audio.html">Editing audio</a><span class="ref-count">39</span></h3><p>Cutting, moving, fading and comping clips, timing and tuning, stretching to the tempo, and repairing a recording.</p><ul><li><a href="editing-audio.html#editing-audio">Editing audio</a><span>39</span></li></ul></div>
-<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">34</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>27</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
+<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">37</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>30</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
 <div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
 <div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">21</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>15</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li></ul></div>
 <div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">27</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>27</span></li></ul></div>
-<div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">29</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>3</span></li></ul></div>
+<div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">30</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>4</span></li></ul></div>
 </div>
 </section>
 
