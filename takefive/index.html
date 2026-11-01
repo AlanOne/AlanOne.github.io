@@ -29,6 +29,7 @@
   --edit: #7446b8;
   --write: #a55d0c;
   --start: #4b5563;
+  --live: #b5306e;
   --pin-ink: #ffffff;
   --mark: #ffe28a;
   --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
@@ -39,13 +40,13 @@
   :root:not([data-theme="light"]) {
     --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
     --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
-    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --live: #ef6fa8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
   --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
-  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --live: #ef6fa8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
 }
 
 body {
@@ -95,6 +96,7 @@ h1 .sep { color: var(--muted); font-weight: 500; }
 .stage.write, .ref-part.write { --accent: var(--write); }
 .stage.mixing, .ref-part.mixing { --accent: var(--mix); }
 .stage.master, .ref-part.master { --accent: var(--master); }
+.stage.live, .ref-part.live { --accent: var(--live); }
 .stage-body { display: grid; gap: 22px; padding-top: 22px; }
 summary { cursor: pointer; list-style: none; }
 summary::-webkit-details-marker { display: none; }
@@ -210,7 +212,7 @@ nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
 .site-parts { display: flex; flex-wrap: wrap; gap: 4px 14px; }
 .site-parts a { --accent: var(--start); border-bottom: 2px solid transparent; padding-bottom: 2px; }
 .site-parts a.rec { --accent: var(--rec); } .site-parts a.edit { --accent: var(--edit); } .site-parts a.write { --accent: var(--write); }
-.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); }
+.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); } .site-parts a.live { --accent: var(--live); }
 .site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* The manual's contents on the front page */
@@ -308,10 +310,10 @@ html.lb-open { overflow: hidden; }
 
 <div class="wrap">
 
-<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.19.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="start" href="help.html">Help</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.80.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help.html">Help</a></div></nav>
 
 <header class="top">
-  <div class="eyebrow">Take 5 v0.19.0 · cheat sheet</div>
+  <div class="eyebrow">Take 5 v0.80.0 · cheat sheet</div>
   <h1><img class="app-icon" src="icons/favicon.svg" alt="">Record <span class="sep">/</span> Edit <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
   <p class="about">Take 5 is an open-source music studio (a DAW) for Mac and Windows, made for bands and
   songwriters: record a whole band or yourself take by take, comp the best takes, edit audio and MIDI, write
@@ -322,9 +324,9 @@ html.lb-open { overflow: hidden; }
   are Take 5's default set. Single-letter keys work whenever you're not typing in a box,
   and almost everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
   <div class="download">
-    <span>Download Take 5 v0.19.0:</span>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.19.0/Take5-0.19.0-Setup.exe">Windows installer</a>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.19.0/Take5-0.19.0.dmg">Mac disk image</a>
+    <span>Download Take 5 v0.80.0:</span>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.80.0/Take5-0.80.0-Setup.exe">Windows installer</a>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v0.80.0/Take5-0.80.0.dmg">Mac disk image</a>
     <a class="all" href="https://github.com/AlanOne/takefive-releases/releases">All releases</a>
   </div>
   <div class="toggle" role="group" aria-label="Show keys for">
@@ -501,7 +503,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Lyrics for the singer</h3>
       <ol>
-        <li><span class="menu">View &gt; Lanes &gt; Lyrics Lane</span>, right-click it &gt; <span class="menu">Paste Lyrics from Here...</span>, then drag each line to where it's sung.</li>
+        <li><span class="menu">View &gt; Lanes &gt; Lyrics Lane</span>, right-click it &gt; <span class="menu">Paste Lyrics from Here...</span>, then drag each line to where it's sung. Or have them heard: right-click the vocal &gt; <span class="menu">Transcribe Lyrics...</span>, each word at its time, to correct.</li>
         <li>Click a line to select it, <span class="ks w"><kbd>Ctrl</kbd><kbd>C</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>C</kbd></span> and <span class="ks w"><kbd>Ctrl</kbd><kbd>V</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>V</kbd></span> to copy it to the playhead (a chorus's lines, say). Double-click the lane for every line and where it's sung, to type new words and positions.</li>
         <li>Record: the <b>Lyrics</b> window opens by itself, the line big, the next under it (<span class="menu">View &gt; Lanes &gt; Lyrics Prompter</span> any time).</li>
       </ol>
@@ -623,12 +625,28 @@ html.lb-open { overflow: hidden; }
       </ol>
     </div>
     <div class="recipe">
+      <h3>Edit a clip in an ARA plugin</h3>
+      <ol>
+        <li>A vocal or spectral editor with ARA, scanned in <span class="menu">Settings &gt; Plugins...</span>: right-click the clip &gt; <span class="menu">ARA &gt; Edit in</span> it (select several clips first for all of them).</li>
+        <li>Edit in its window; the clip plays as edited and saves with the song. It runs inside Take 5: save first.</li>
+        <li>Done: <span class="menu">ARA &gt; Render Edits to a New File</span>, a plain clip that plays without the plugin.</li>
+      </ol>
+    </div>
+    <div class="recipe">
       <h3>Reuse a part</h3>
       <ul>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>R</kbd></span> <span class="menu">Repeat</span>: a copy right after it.</li>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>R</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>R</kbd></span> <span class="menu">Repeat Linked</span>: copies that change together (notes, or an audio clip's fades, gain and effects). Right-click &gt; <b>Unlink</b> to vary one.</li>
         <li>Right-click a section marker: loop, duplicate or delete the whole section.</li>
       </ul>
+    </div>
+    <div class="recipe">
+      <h3>Split a song into stems</h3>
+      <ol>
+        <li>Right-click a mixed recording &gt; <span class="menu">Separate Stems...</span> (or <span class="menu">Edit &gt; Separate Stems...</span>).</li>
+        <li><b>4 stems</b> (vocals, drums, bass, the rest) or <b>6</b> (guitar and piano too); tick the ones you want, <b>Separate</b>. The first time it downloads its model.</li>
+        <li>Each stem on a track under it, lined up; the original muted. Mute the guitar to play along, or Melody to MIDI a bass line.</li>
+      </ol>
     </div>
     <div class="recipe">
       <h3>A band take played without a click</h3>
@@ -683,6 +701,14 @@ html.lb-open { overflow: hidden; }
       </ol>
     </div>
     <div class="recipe">
+      <h3>Loops from your sample libraries</h3>
+      <ol>
+        <li>Browser (<b>F</b>): places list &gt; <b>Add Sample Library...</b>, a folder of samples.</li>
+        <li>Search it: "funky bass 120 Am", Return.</li>
+        <li>Drag a loop in: it follows the song's tempo and moves to its key.</li>
+      </ol>
+    </div>
+    <div class="recipe">
       <h3>A drum part in a minute</h3>
       <ol>
         <li>Add section markers (<span class="ks w"><kbd>Alt</kbd><kbd>'</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>'</kbd></span>) and name them: intro, verse, chorus.</li>
@@ -700,12 +726,22 @@ html.lb-open { overflow: hidden; }
       </ul>
     </div>
     <div class="recipe">
+      <h3>Open a Guitar Pro tab</h3>
+      <ol>
+        <li>Drag a .gp, .gpx or .gp5 file into the song (or <span class="menu">File &gt; Import Audio or MIDI...</span>). Keep <b>Use the file's tempo and time signature</b>.</li>
+        <li>A track per instrument, repeats played out, sections as markers, chords and lyrics in their lanes.</li>
+        <li>Open a clip, Notation: the tab as the file wrote it, in its tuning and capo.</li>
+      </ol>
+    </div>
+    <div class="recipe">
       <h3>Write parts faster</h3>
       <p>In the piano roll, <span class="menu">MIDI &gt; Transform Notes</span> on the selected notes:</p>
       <ul>
         <li><b>Strum Chords</b> down, up or alternating, like a guitar.</li>
         <li><b>Add Flams</b>, <b>Grace Notes</b>, <b>Ratchets</b>, <b>Chop into Repeats</b>.</li>
         <li><b>Chance</b>: a hi-hat note that plays some of the time; <b>Euclidean Rhythm...</b> for a pattern.</li>
+        <li><b>Expression (MPE)</b>: a bend, scoop, vibrato or swell on single notes; <span class="menu">MIDI &gt; MPE Inputs</span> for an MPE controller.</li>
+        <li><b>Articulation</b>: staccato, legato... by name, once the track has an <b>Articulation Map...</b>; the keyswitch goes in by itself.</li>
       </ul>
     </div>
     <div class="recipe">
@@ -720,6 +756,7 @@ html.lb-open { overflow: hidden; }
       <h3>Words and parts on paper</h3>
       <ul>
         <li><span class="menu">View &gt; Lanes &gt; Lyrics Lane</span>: paste the words, drag each line to where it's sung.</li>
+        <li><span class="menu">Edit &gt; Transcribe Lyrics...</span> on a recorded vocal: its words into the lyrics lane, each where it's sung (the band separated out first if it's in the clip). Nothing leaves the computer.</li>
         <li>Right-click a MIDI track &gt; <b>Notation</b>: sheet music, or tab for a guitar or bass part.</li>
         <li><span class="menu">File &gt; Export Other Formats &gt; Sheet Music...</span> prints it or saves a PDF or MusicXML.</li>
       </ul>
@@ -886,7 +923,7 @@ html.lb-open { overflow: hidden; }
           <li>Your favourites and the plugins added lately are at the top of <b>+</b>; right-click a slot &gt; <b>Add to Favourites</b>.</li>
           <li>Right-click a slot: <b>Bypass</b>, <b>Compare</b> (A/B), <b>Save Preset…</b>, <b>Load Preset</b>, <b>Remove</b>.</li>
         </ul>
-        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low Pass, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, De-esser, Level Rider, Doubler, Live Tune, Reverb, Convolution Reverb, Delay, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, Hardware Insert, Channel Strip, Split.</p>
+        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low Pass, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, De-esser, Level Rider, Doubler, Live Tune, Reverb, Convolution Reverb, Delay, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, 3D Panner, Hardware Insert, Channel Strip, Split.</p>
       </div>
     </div>
   </figure>
@@ -968,7 +1005,7 @@ html.lb-open { overflow: hidden; }
     <div class="recipe">
       <h3>Or let the assistant master it</h3>
       <ol>
-        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>A</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>A</kbd></span> opens the <b>Assistant</b> (needs Claude Code installed and signed in).</li>
+        <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>A</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>A</kbd></span> opens the <b>Assistant</b>: on Claude Code, a free Gemini key, or a model on this computer (<b>Settings &gt; Assistant… &gt; Local Models…</b> installs one with a click).</li>
         <li>Ask: “master this for streaming, punchy” or “master it like the reference, −14 LUFS”.</li>
         <li>It measures, sets the EQ, compressor and Limiter, and checks again. One <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> undoes it all.</li>
       </ol>
@@ -981,6 +1018,13 @@ html.lb-open { overflow: hidden; }
         <li><b>Whole song</b> (with the reverb's tail after the last clip), or <b>Loop range</b> for part of it.</li>
         <li>Loudness: <b>As mixed</b>, or a target from the table below.</li>
         <li>Fill in Title, Artist, Album, Year for an MP3. When it's done it shows the loudness and true peak.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>A bandmate listens from home</h3>
+      <ol>
+        <li><span class="menu">Transport &gt; Listen Together...</span>, <b>Start Listening Together</b>.</li>
+        <li>Send them the address: they hear what you play in a browser, and their comments land in the song.</li>
       </ol>
     </div>
     <div class="recipe">
@@ -998,6 +1042,8 @@ html.lb-open { overflow: hidden; }
         <li><span class="menu">File &gt; Export Other Formats &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
         <li><span class="menu">File &gt; Export Other Formats &gt; Export AAF…</span> for other music apps and video editors.</li>
         <li><span class="menu">File &gt; Export Other Formats &gt; Export DAWproject...</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
+        <li><span class="menu">File &gt; Import Video...</span>: music to picture; the video window follows the playhead, <b>Markers at Cuts</b>, <b>Export with the Mix...</b>.</li>
+        <li><span class="menu">File &gt; Export Video...</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
         <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
       </ul>
     </div>
@@ -1039,21 +1085,113 @@ html.lb-open { overflow: hidden; }
   </div>
 </details>
 
+<details class="stage live">
+  <summary class="stage-head">
+    <h2>On stage &amp; at practice</h2>
+    <p>Play the backing tracks at a gig, the click and cues in the in-ears only.</p>
+  </summary>
+  <div class="stage-body">
+
+  <div class="grid">
+    <div class="recipe">
+      <h3>Play a gig from a setlist</h3>
+      <ol>
+        <li><span class="menu">File &gt; Stage Mode...</span>, <b>Add Songs...</b> in the order you play them. Give each a <b>Note</b> and what comes <b>Then</b>: wait for you, or a gap.</li>
+        <li><b>In-ear output</b>: the interface output the in-ear mix is on. The click, cues and tracks named Click, Cue or Guide go there; the rest to the PA.</li>
+        <li><b>Start Show</b>. <span class="ks"><kbd>Space</kbd></span> plays, <span class="ks"><kbd>Return</kbd></span> the next song, <b>Esc</b> stops everything.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Cues and a foot switch</h3>
+      <ul>
+        <li><b>Say each section a bar before it</b>: "Chorus" in the in-ears a bar ahead (your own recording if it's in the Stage Cues folder).</li>
+        <li><b>Learn Foot Switch</b>, press the pedal: it starts a waiting song and the next song between songs (twice quickly to skip mid-song).</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>The song follows the drummer</h3>
+      <ol>
+        <li><span class="menu">Transport &gt; Follow the Drummer...</span>, tick the drum tracks.</li>
+        <li><b>Follow</b>, play: backing tracks and the click follow the band's tempo (up to 6 BPM either way).</li>
+        <li><b>Write the Band's Tempo</b> keeps what was played in the song.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>In time with other apps (Link)</h3>
+      <ul>
+        <li><span class="menu">Transport &gt; Link</span>: the tempo and beat shared over Wi-Fi with phone and computer apps that have Link.</li>
+        <li><span class="menu">Share Start and Stop with Link</span>: playing starts them too.</li>
+      </ul>
+    </div>
+    <div class="recipe">
+      <h3>Record from across the room</h3>
+      <ol>
+        <li><span class="menu">Transport &gt; Phone Remote...</span>, <b>Start the Remote</b>.</li>
+        <li>Type the address it shows into the phone's browser (same Wi-Fi).</li>
+        <li>Play, Rec, sections, markers, arm and mute from the phone.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Jam with loops</h3>
+      <ol>
+        <li><span class="menu">View &gt; Panels &gt; Clip Launcher</span>. <b>Scenes from Sections</b>, or right-click a slot &gt; <b>Copy Selected Clip Here</b>.</li>
+        <li>Click a clip or a scene: it starts on the next bar. Click again to stop.</li>
+        <li><b>Record Jam</b> on, play, off: the jam is written into the timeline.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Chord charts and the setlist</h3>
+      <ol>
+        <li><span class="menu">File &gt; Export Other Formats &gt; Chord Chart...</span>: sections, bars, chords and lyrics on a page, from the song.</li>
+        <li><b>For</b> guitar (chord diagrams in its tuning), bass (roots) or drums (sections, hits); <b>Key</b> or <b>Capo</b> to play it elsewhere; Nashville numbers.</li>
+        <li><b>Print...</b>, <b>Save Every Part...</b> for the whole band, <b>Setlist...</b> for the gig's list in big print.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Record the rehearsal</h3>
+      <ol>
+        <li><span class="menu">File &gt; Rehearsal Recorder...</span>, tick the inputs (a room mic is enough), <b>Setlist...</b> to name the songs.</li>
+        <li><b>Record Rehearsal</b>, play for as long as you like, <b>Stop</b>: it's cut into its songs, the talk left out.</li>
+        <li>Star the good takes (1 to 5), <b>Find a song</b> to hear it from every rehearsal, <b>Share as MP3</b> to send one round.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Learn a song from a recording</h3>
+      <ol>
+        <li><span class="menu">File &gt; Practice...</span>, <b>Open...</b> the recording: the bars and chords are found as it opens.</li>
+        <li>Drag across the hard part to loop it (double-click a bar number: that bar), turn <b>Speed</b> down (the pitch stays), <span class="ks"><kbd>Space</kbd></span>.</li>
+        <li><b>Speed up each pass</b> to bring it up to 100%; <b>Save Loop...</b> keeps it for next time.</li>
+        <li><b>Separate Stems...</b>, untick the guitar: play it yourself, through the Amp on your <b>Play along</b> input.</li>
+      </ol>
+    </div>
+    <div class="recipe">
+      <h3>Patch changes at each section</h3>
+      <ol>
+        <li><span class="menu">MIDI &gt; Rig Changes...</span>, <b>Add Rig</b>: the MIDI output and channel your modeller or pedal switcher is on.</li>
+        <li>Select <b>Song start</b> or a section, choose its <b>Patch</b> (or <b>Learn</b> and pick it on the unit).</li>
+        <li>Play from anywhere: the right patch is sent first, then each change at its section.</li>
+      </ol>
+    </div>
+  </div>
+  </div>
+</details>
+
 <!-- ============ THE MANUAL ============ -->
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 207 tasks from Take 5's user guide, in seven parts, with
+    <p>Every feature, step by step: all 255 tasks from Take 5's user guide, in eight parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
 <div class="m-card ref-part start"><h3><a href="setting-up.html">Setting up</a><span class="ref-count">27</span></h3><p>Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p><ul><li><a href="setting-up.html#getting-started">Getting started</a><span>11</span></li><li><a href="setting-up.html#audio-and-midi-setup">Audio and MIDI setup</a><span>8</span></li><li><a href="setting-up.html#customising">Customising</a><span>8</span></li></ul></div>
 <div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">19</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>13</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>6</span></li></ul></div>
-<div class="m-card ref-part edit"><h3><a href="editing-and-arranging.html">Editing and arranging</a><span class="ref-count">55</span></h3><p>Tracks and how they&#x27;re organised, editing audio clips, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="editing-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="editing-and-arranging.html#editing-audio">Editing audio</a><span>34</span></li><li><a href="editing-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
-<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">28</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>21</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
-<div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">37</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>30</span></li><li><a href="mixing.html#plugins">Plugins</a><span>7</span></li></ul></div>
-<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">24</span></h3><p>Mastering against a reference, exporting, sharing a song with the band, and backups and history.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>9</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>5</span></li><li><a href="finishing-and-sharing.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li></ul></div>
-<div class="m-card ref-part start"><h3><a href="help.html">Help</a><span class="ref-count">17</span></h3><p>The assistant, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help.html#the-assistant">The assistant</a><span>4</span></li><li><a href="help.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help.html#windows-and-mac-differences">Windows and Mac differences</a><span>3</span></li></ul></div>
+<div class="m-card ref-part edit"><h3><a href="editing-and-arranging.html">Editing and arranging</a><span class="ref-count">60</span></h3><p>Tracks and how they&#x27;re organised, editing audio clips, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="editing-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="editing-and-arranging.html#editing-audio">Editing audio</a><span>39</span></li><li><a href="editing-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
+<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">34</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>27</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
+<div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
+<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">30</span></h3><p>Mastering against a reference, exporting, sharing a song with the band, and backups and history.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>14</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li><li><a href="finishing-and-sharing.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li></ul></div>
+<div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">26</span></h3><p></p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>26</span></li></ul></div>
+<div class="m-card ref-part start"><h3><a href="help.html">Help</a><span class="ref-count">19</span></h3><p>The assistant, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help.html#windows-and-mac-differences">Windows and Mac differences</a><span>3</span></li></ul></div>
 </div>
 </section>
 

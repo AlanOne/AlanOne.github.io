@@ -29,6 +29,7 @@
   --edit: #7446b8;
   --write: #a55d0c;
   --start: #4b5563;
+  --live: #b5306e;
   --pin-ink: #ffffff;
   --mark: #ffe28a;
   --display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
@@ -39,13 +40,13 @@
   :root:not([data-theme="light"]) {
     --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
     --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
-    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+    --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --live: #ef6fa8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
   }
 }
 :root[data-theme="dark"] {
   --paper: #121417; --card: #1a1d22; --ink: #e7eaee; --muted: #9ba4af; --line: #2b3038;
   --key-bg: #23272e; --key-edge: #3d444f; --rec: #f0645a; --mix: #62a0f2; --master: #3fc48d;
-  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
+  --edit: #b392f0; --write: #e9a650; --start: #a3acb8; --live: #ef6fa8; --pin-ink: #101215; --mark: #6a5410; color-scheme: dark;
 }
 
 body {
@@ -95,6 +96,7 @@ h1 .sep { color: var(--muted); font-weight: 500; }
 .stage.write, .ref-part.write { --accent: var(--write); }
 .stage.mixing, .ref-part.mixing { --accent: var(--mix); }
 .stage.master, .ref-part.master { --accent: var(--master); }
+.stage.live, .ref-part.live { --accent: var(--live); }
 .stage-body { display: grid; gap: 22px; padding-top: 22px; }
 summary { cursor: pointer; list-style: none; }
 summary::-webkit-details-marker { display: none; }
@@ -210,7 +212,7 @@ nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
 .site-parts { display: flex; flex-wrap: wrap; gap: 4px 14px; }
 .site-parts a { --accent: var(--start); border-bottom: 2px solid transparent; padding-bottom: 2px; }
 .site-parts a.rec { --accent: var(--rec); } .site-parts a.edit { --accent: var(--edit); } .site-parts a.write { --accent: var(--write); }
-.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); }
+.site-parts a.mixing { --accent: var(--mix); } .site-parts a.master { --accent: var(--master); } .site-parts a.live { --accent: var(--live); }
 .site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* The manual's contents on the front page */
@@ -307,9 +309,9 @@ html.lb-open { overflow: hidden; }
 <body>
 
 <div class="wrap manual ref-part rec">
-<nav class="site" aria-label="The manual"><a class="brand" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.19.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec here" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="start" href="help.html">Help</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.80.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec here" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help.html">Help</a></div></nav>
 <header class="m-head">
-  <div class="eyebrow">Take 5 v0.19.0 · manual · 19 tasks</div>
+  <div class="eyebrow">Take 5 v0.80.0 · manual · 19 tasks</div>
   <h1>Recording</h1>
   <p class="lede">Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p>
   <div class="toggle" role="group" aria-label="Show keys for">
