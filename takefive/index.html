@@ -216,7 +216,8 @@ nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
 .site-parts a:hover, .site-parts a.here { color: var(--accent); border-bottom-color: var(--accent); }
 
 /* The manual's contents on the front page */
-.m-contents { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; margin-top: 12px; }
+.m-contents { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; margin-top: 12px; }   /* nine parts: three by three */
+@media (max-width: 760px) { .m-contents { grid-template-columns: 1fr; } }
 .m-card { background: var(--card); border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: 8px; padding: 14px 16px; display: grid; gap: 8px; align-content: start; margin: 0; }
 .m-card h3 { display: flex; align-items: center; gap: 10px; margin: 0; font: 700 22px/1.1 var(--display); text-transform: uppercase; letter-spacing: 0.03em; }
 .m-card h3 a { color: var(--accent); text-decoration: none; }
@@ -228,8 +229,6 @@ nav.site .brand span { color: var(--muted); font-weight: 500; font-size: 14px; }
 .m-card li a:hover { color: var(--accent); text-decoration: underline; }
 .m-card li span { color: var(--muted); font-variant-numeric: tabular-nums; }
 /* Seven parts in rows of three (or two): the last, Help, takes a row of its own, its areas side by side */
-.m-card:last-child { grid-column: 1 / -1; }
-.m-card:last-child ul { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); column-gap: 28px; }
 
 /* Search results from the manual (under the quick sheet's search, and in a part page's sidebar) */
 .m-results { display: grid; gap: 6px; }
@@ -310,7 +309,7 @@ html.lb-open { overflow: hidden; }
 
 <div class="wrap">
 
-<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.80.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="editing-and-arranging.html">Editing and arranging</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help.html">Help</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v0.80.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
 
 <header class="top">
   <div class="eyebrow">Take 5 v0.80.0 · cheat sheet</div>
@@ -1042,7 +1041,7 @@ html.lb-open { overflow: hidden; }
         <li><span class="menu">File &gt; Export Other Formats &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
         <li><span class="menu">File &gt; Export Other Formats &gt; Export AAF…</span> for other music apps and video editors.</li>
         <li><span class="menu">File &gt; Export Other Formats &gt; Export DAWproject...</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
-        <li><span class="menu">File &gt; Import Video...</span>: music to picture; the video window follows the playhead, <b>Markers at Cuts</b>, <b>Export with the Mix...</b>.</li>
+        <li><span class="menu">File &gt; Import Video...</span>: music to picture; the video window follows the playhead, <b>Markers at Cuts</b>, <b>Timecode...</b> (the song's start, as 01:00:00:00, and the frame rate; <span class="menu">View &gt; Lanes &gt; Timecode in Ruler</span> shows it in the ruler), <b>Export with the Mix...</b>.</li>
         <li><span class="menu">File &gt; Export Video...</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
         <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
       </ul>
@@ -1180,18 +1179,19 @@ html.lb-open { overflow: hidden; }
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 255 tasks from Take 5's user guide, in eight parts, with
+    <p>Every feature, step by step: all 256 tasks from Take 5's user guide, in nine parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
 <div class="m-card ref-part start"><h3><a href="setting-up.html">Setting up</a><span class="ref-count">27</span></h3><p>Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p><ul><li><a href="setting-up.html#getting-started">Getting started</a><span>11</span></li><li><a href="setting-up.html#audio-and-midi-setup">Audio and MIDI setup</a><span>8</span></li><li><a href="setting-up.html#customising">Customising</a><span>8</span></li></ul></div>
 <div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">19</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>13</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>6</span></li></ul></div>
-<div class="m-card ref-part edit"><h3><a href="editing-and-arranging.html">Editing and arranging</a><span class="ref-count">60</span></h3><p>Tracks and how they&#x27;re organised, editing audio clips, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="editing-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="editing-and-arranging.html#editing-audio">Editing audio</a><span>39</span></li><li><a href="editing-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
+<div class="m-card ref-part edit"><h3><a href="tracks-and-arranging.html">Tracks and arranging</a><span class="ref-count">21</span></h3><p>Tracks and how they&#x27;re organised, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="tracks-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="tracks-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
+<div class="m-card ref-part edit"><h3><a href="editing-audio.html">Editing audio</a><span class="ref-count">39</span></h3><p>Cutting, moving, fading and comping clips, timing and tuning, stretching to the tempo, and repairing a recording.</p><ul><li><a href="editing-audio.html#editing-audio">Editing audio</a><span>39</span></li></ul></div>
 <div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">34</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>27</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
 <div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
-<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">30</span></h3><p>Mastering against a reference, exporting, sharing a song with the band, and backups and history.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>14</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li><li><a href="finishing-and-sharing.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li></ul></div>
-<div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">26</span></h3><p></p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>26</span></li></ul></div>
-<div class="m-card ref-part start"><h3><a href="help.html">Help</a><span class="ref-count">19</span></h3><p>The assistant, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help.html#windows-and-mac-differences">Windows and Mac differences</a><span>3</span></li></ul></div>
+<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">21</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>15</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li></ul></div>
+<div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">26</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>26</span></li></ul></div>
+<div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">29</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>3</span></li></ul></div>
 </div>
 </section>
 
