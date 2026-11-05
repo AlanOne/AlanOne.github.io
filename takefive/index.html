@@ -370,7 +370,9 @@ html.lb-open { overflow: hidden; }
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>/</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>/</kbd></span> <span class="menu">Shortcuts</span> panel: every key and mouse gesture, beside the tracks.</li>
         <li><span class="menu">Help &gt; Tutorial</span>: a guided tour on the open song.</li>
         <li>Take 5 says when an update is available as it opens: <b>Install Now</b> gets it (on Windows it installs and opens again). <span class="menu">Help &gt; Check for Updates…</span> (the Take 5 menu on the Mac) asks any time. <span class="menu">About Take 5</span> says which version you have.</li>
-        <li>Hover any button for a tooltip; the status line at the bottom gives hints.</li>
+        <li>Hover any button for a tooltip (with its key); the status line at the bottom gives hints.</li>
+        <li>The start window as Take 5 opens (<span class="menu">File &gt; Start Window…</span>): your recent songs with their tempo, key and length, a few seconds of each to hear.</li>
+        <li>A setting somewhere? <span class="menu">Edit &gt; Preferences…</span> and type in its search box: settings on every page, and commands with their keys.</li>
         <li>Used to other keys? <span class="menu">Edit &gt; Key Commands…</span>: pick the key set you know (Set B to Set F), or change any key. A toolbar, status and info lines and a console-style mixer? <span class="menu">Window &gt; Top Bars &gt; Console Layout</span>. Rather your own? <span class="menu">Window &gt; Top Bars &gt; Customize Top Bars…</span>: drag the blocks at the top between rows, hide the ones you don't need.</li>
         <li>A song from another computer, or a moved folder? Take 5 lists any files it can't find; <span class="menu">Media &gt; Find Missing Files…</span> finds them in a folder by name.</li>
       </ul>
@@ -695,7 +697,9 @@ html.lb-open { overflow: hidden; }
       <h3>Add an instrument</h3>
       <ol>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>S</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>S</kbd></span> <span class="menu">New Instrument Track</span>: a built-in Synth, Drum Machine, Keys, Bass, Guitar, Strings or Sampler, or your plugins.</li>
+        <li>Your own sample in the Sampler: its note is found as it loads (<b>Detect Pitch</b> again); <b>Ø</b> flips a sample or a Drum Machine pad, and <b>Compare with…</b> says if two layered pads are in phase.</li>
         <li>Double-click in its lane for a clip, double-click the clip for the piano roll; double-click to add notes.</li>
+        <li>Select some notes: drag the frame's right edge to make them faster or slower, its round handle to make them speed up or slow down.</li>
         <li>No keyboard? <span class="ks w"><kbd>Alt</kbd><kbd>K</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>K</kbd></span> plays notes from the computer keys. Played something good without recording? <span class="ks"><kbd>Shift</kbd><kbd>Num *</kbd></span> keeps it.</li>
       </ol>
     </div>
@@ -918,13 +922,13 @@ html.lb-open { overflow: hidden; }
         <ul>
           <li>Drag a knob up or down (Shift-drag: fine steps); double-click or <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click it for its default; type a value in the box under it.</li>
           <li>EQ: drag a numbered handle for frequency and gain, Shift-drag for frequency only, scroll over it for width (Q), double-click it for 0 dB.</li>
-          <li>The power button bypasses the plugin, to hear before and after; <b>A | b</b> compares two sets of settings.</li>
+          <li>The power button bypasses the plugin, to hear before and after; <b>A</b> and <b>B</b> compare two sets of settings.</li>
           <li>A slot's light: green on, red off; click it to switch. Amber with a ! means it crashed: click to reload.</li>
           <li>Drag a slot to reorder it, or onto another track to move it; <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span> as you let go copies it.</li>
           <li>Your favourites and the plugins added lately are at the top of <b>+</b>; right-click a slot &gt; <b>Add to Favourites</b>.</li>
           <li>Right-click a slot: <b>Bypass</b>, <b>Compare</b> (A/B), <b>Save Preset…</b>, <b>Load Preset</b>, <b>Remove</b>.</li>
         </ul>
-        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low Pass, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, De-esser, Level Rider, Doubler, Live Tune, Reverb, Convolution Reverb, Delay, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, 3D Panner, Hardware Insert, Channel Strip, Split.</p>
+        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low and High Pass, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, Drum Enhancer, De-esser, Level Rider, Doubler, Live Tune, Vocal Polish, Reverb, Convolution Reverb, Shimmer, Delay, Echo, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, Underwater, 3D Panner, Hardware Insert, Channel Strip, Split.</p>
       </div>
     </div>
   </figure>
@@ -1182,17 +1186,17 @@ html.lb-open { overflow: hidden; }
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 261 tasks from Take 5's user guide, in nine parts, with
+    <p>Every feature, step by step: all 266 tasks from Take 5's user guide, in nine parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
-<div class="m-card ref-part start"><h3><a href="setting-up.html">Setting up</a><span class="ref-count">27</span></h3><p>Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p><ul><li><a href="setting-up.html#getting-started">Getting started</a><span>11</span></li><li><a href="setting-up.html#audio-and-midi-setup">Audio and MIDI setup</a><span>8</span></li><li><a href="setting-up.html#customising">Customising</a><span>8</span></li></ul></div>
+<div class="m-card ref-part start"><h3><a href="setting-up.html">Setting up</a><span class="ref-count">28</span></h3><p>Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p><ul><li><a href="setting-up.html#getting-started">Getting started</a><span>12</span></li><li><a href="setting-up.html#audio-and-midi-setup">Audio and MIDI setup</a><span>8</span></li><li><a href="setting-up.html#customising">Customising</a><span>8</span></li></ul></div>
 <div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">19</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>13</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>6</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="tracks-and-arranging.html">Tracks and arranging</a><span class="ref-count">21</span></h3><p>Tracks and how they&#x27;re organised, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="tracks-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="tracks-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="editing-audio.html">Editing audio</a><span class="ref-count">39</span></h3><p>Cutting, moving, fading and comping clips, timing and tuning, stretching to the tempo, and repairing a recording.</p><ul><li><a href="editing-audio.html#editing-audio">Editing audio</a><span>39</span></li></ul></div>
-<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">37</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>30</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
+<div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">40</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>33</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
 <div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
-<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">21</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>15</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li></ul></div>
+<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">22</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>16</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li></ul></div>
 <div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">27</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>27</span></li></ul></div>
 <div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">30</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>10</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>4</span></li></ul></div>
 </div>
