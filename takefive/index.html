@@ -309,10 +309,10 @@ html.lb-open { overflow: hidden; }
 
 <div class="wrap">
 
-<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v1.6.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v1.7.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
 
 <header class="top">
-  <div class="eyebrow">Take 5 v1.6.0 · cheat sheet</div>
+  <div class="eyebrow">Take 5 v1.7.0 · cheat sheet</div>
   <h1><img class="app-icon" src="icons/favicon.svg" alt="">Record <span class="sep">/</span> Edit <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
   <p class="about">Take 5 is an open-source music studio (a DAW) for Mac and Windows, made for bands and
   songwriters: record a whole band or yourself take by take, comp the best takes, edit audio and MIDI, write
@@ -323,9 +323,9 @@ html.lb-open { overflow: hidden; }
   are Take 5's default set. Single-letter keys work whenever you're not typing in a box,
   and almost everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
   <div class="download">
-    <span>Download Take 5 v1.6.0:</span>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.6.0/Take5-1.6.0-Setup.exe">Windows installer</a>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.6.0/Take5-1.6.0.dmg">Mac disk image</a>
+    <span>Download Take 5 v1.7.0:</span>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.7.0/Take5-1.7.0-Setup.exe">Windows installer</a>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.7.0/Take5-1.7.0.dmg">Mac disk image</a>
     <a class="all" href="https://github.com/AlanOne/takefive-releases/releases">All releases</a>
   </div>
   <div class="toggle" role="group" aria-label="Show keys for">
@@ -466,10 +466,11 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>Add an audio track: <b>+ Track</b> or <span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>N</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>N</kbd></span>.</li>
         <li>Pick its input in the track header's input menu.</li>
-        <li>Click the track's <b>R</b> to arm it. Play: the meter should move without hitting the top.</li>
+        <li>Click the track's <b>&#9679;</b> to arm it. Play: the meter should move without hitting the top (<span class="menu">Transport &gt; Check My Level…</span> says how far to turn the interface's gain; a red mark at the meter's top means it clipped: click it to put it out).</li>
         <li>Press <span class="ks"><kbd>C</kbd></span> for the click and choose a <b>Count-in</b> (1 bar is a good start).</li>
         <li>Press <span class="ks"><kbd>Num *</kbd></span> to record, <span class="ks"><kbd>Space</kbd></span> to stop.</li>
-        <li>Recorded over an old take? It's kept as a take, not lost.</li>
+        <li>Wrong note? <span class="ks w"><kbd>Ctrl</kbd><kbd>Num *</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Num *</kbd></span> <span class="menu">Retake</span> throws the take away and records again from the same place.</li>
+        <li>Recorded over an old take? It's kept as a take, not lost. A take that clipped shows red ticks where.</li>
       </ol>
     </div>
     <div class="recipe">
@@ -486,7 +487,7 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>Tick every input in Audio Settings.</li>
         <li><span class="menu">Project &gt; Add Track &gt; Tracks for Unused Inputs</span> makes a track for each.</li>
-        <li>Arm them: Shift-click an <b>R</b> arms the selected tracks; <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-click an <b>R</b> arms every track.</li>
+        <li>Arm them: Shift-click a <b>&#9679;</b> arms the selected tracks; <span class="ks w"><kbd>Ctrl</kbd></span><span class="ks m"><kbd>Cmd</kbd></span>-click one arms every track.</li>
         <li>Press <span class="ks"><kbd>Num *</kbd></span>: each input records onto its own track.</li>
       </ol>
       <p class="tip">Headphone mixes per player: <span class="menu">Project &gt; Add Track &gt; Cue Mix…</span>. Talk to them with <span class="ks"><kbd>Y</kbd></span> (the mic is set in <span class="menu">Transport &gt; Talkback Settings…</span>; it's turned down while recording).</p>
@@ -500,6 +501,7 @@ html.lb-open { overflow: hidden; }
         <li>Arm the track, start before the bars, press <span class="ks"><kbd>Num *</kbd></span>. Only the punched part is replaced.</li>
       </ol>
       <p class="tip"><span class="menu">Transport &gt; Pre-roll</span> plays 1 or 2 bars first so you can play yourself in.</p>
+      <p class="tip">Or punch on the fly: while recording, <span class="ks"><kbd>Num *</kbd></span> drops out and the song plays on; press it again to drop back in. Each stretch is a take.</p>
     </div>
     <div class="recipe">
       <h3>Lyrics for the singer</h3>
@@ -513,11 +515,14 @@ html.lb-open { overflow: hidden; }
       <h3>Loop-record takes, then comp the best</h3>
       <ol>
         <li>Drag in the ruler to set the range, press <span class="ks"><kbd>Num /</kbd></span> to loop.</li>
-        <li>Arm and press <span class="ks"><kbd>Num *</kbd></span>. Every pass becomes a take. Stop when you have enough.</li>
+        <li>Arm and press <span class="ks"><kbd>Num *</kbd></span>. Every pass becomes a take. Stop when you have enough. A pass going wrong? Retake throws away only that pass.</li>
         <li>Click the track's <b>Takes</b> button to show the take lanes.</li>
+        <li>Click a take's headphones (or <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click its lane) to hear it in place of the comp; again, or Esc, for the comp.</li>
+        <li>Click a take's stars to rate it, then right-click &gt; <b>Comp from Best Takes</b>: the best-rated take everywhere it covers, the next best around a punch-in. Right-click &gt; <b>Hide Unrated Takes</b> keeps only the starred lanes.</li>
         <li>Drag across the best part of each take: it goes into the comp. Click a lane to use a whole take. Drag a join's line to move it.</li>
         <li>Right-click the track &gt; <b>Flatten Comp</b> to make it one clip.</li>
       </ol>
+      <p class="tip">Hands on the guitar: <span class="menu">Transport &gt; Foot Switches…</span> learns a MIDI pedal for Record / Punch, Retake and Play / Stop (one pedal: tap to record or punch, double-tap to retake).</p>
     </div>
     <div class="recipe">
       <h3>Guitar and bass tone</h3>
@@ -545,7 +550,8 @@ html.lb-open { overflow: hidden; }
   <div>
     <div class="keys-title">Recording keys</div>
     <div class="keys">
-      <div><span class="ks"><kbd>Num *</kbd></span><span>Record / stop recording</span></div>
+      <div><span class="ks"><kbd>Num *</kbd></span><span>Record; while recording, drop out (the song plays on) and back in</span></div>
+      <div><span class="ks w"><kbd>Ctrl</kbd><kbd>Num *</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Num *</kbd></span><span>Retake: throw away this recording (or the one just made) and record again</span></div>
       <div><span class="ks"><kbd>Space</kbd></span><span>Play / stop</span></div>
       <div><span class="ks"><kbd>C</kbd></span><span>Metronome</span></div>
       <div><span class="ks"><kbd>Num /</kbd></span><span>Loop</span></div>
@@ -1044,12 +1050,14 @@ html.lb-open { overflow: hidden; }
       <ul>
         <li><b>Stems</b>: one file per track, folder and bus, for another studio. They add up to the mix before the master's plugins.</li>
         <li><b>Each section</b>: one file per section marker (add markers with <span class="ks"><kbd>Insert</kbd></span>).</li>
+        <li><span class="menu">File &gt; Export &gt; Export Minus-One Mixes…</span>: a practice mix per part ticked, the song without it (a folder is one part), as MP3s for phones; <b>Add the click</b>, <b>Also put them in the band folder</b>.</li>
         <li><span class="menu">File &gt; Export &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
         <li><span class="menu">File &gt; Export &gt; Export AAF…</span> for other music apps and video editors.</li>
         <li><span class="menu">File &gt; Export &gt; Export DAWproject…</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
         <li><span class="menu">File &gt; Import Video…</span>: music to picture; the video window follows the playhead, <b>Add Markers at Cuts</b>, <b>Timecode...</b> (the song's start, as 01:00:00:00, and the frame rate; <span class="menu">Project &gt; Timecode in Ruler</span> shows it in the ruler), <b>Export with the Mix...</b>.</li>
         <li><span class="menu">File &gt; Export &gt; Export Video…</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
         <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
+        <li><span class="menu">File &gt; Share with Bandmates &gt; Put a Review Page in Band Folder…</span>: an MP3 and a web page beside it; anyone opens it on a computer, writes comments at moments of the song, <b>Save Comments</b>, and puts the file in the band folder. Take 5 offers to bring them in.</li>
       </ul>
     </div>
   </div>
@@ -1137,6 +1145,15 @@ html.lb-open { overflow: hidden; }
       </ol>
     </div>
     <div class="recipe">
+      <h3>The band's phones</h3>
+      <p>On the phone remote's page (the recipe above), a tab each:</p>
+      <ul>
+        <li><b>My Mix</b>: choose your headphone mix, then a slider for each track in it and <b>Whole mix</b>. Only your mix changes; a drag is one Undo in Take 5. Make the mixes first: <span class="menu">Project &gt; Add Track &gt; Cue Mix…</span>.</li>
+        <li><b>Lyrics</b>: the section's lines with the chords above the words, the line being sung lit, the next section under it. <b>A-</b> <b>A+</b> for the size. Turn off the phone's auto-lock.</li>
+        <li><b>Memo</b>: <b>Send a Recording</b> puts a recording from the phone (up to 10 minutes) on the <b>Ideas</b> track at the playhead. Not while Take 5 is recording.</li>
+      </ul>
+    </div>
+    <div class="recipe">
       <h3>One song, two computers</h3>
       <ol>
         <li>On both: <span class="menu">Edit &gt; Preferences… &gt; General &gt; Second Copy of Backups…</span>, a folder Dropbox, iCloud Drive, OneDrive or Google Drive syncs. Keep the songs themselves in Take 5's own folder.</li>
@@ -1194,18 +1211,18 @@ html.lb-open { overflow: hidden; }
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 268 tasks from Take 5's user guide, in nine parts, with
+    <p>Every feature, step by step: all 281 tasks from Take 5's user guide, in nine parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
 <div class="m-card ref-part start"><h3><a href="setting-up.html">Setting up</a><span class="ref-count">28</span></h3><p>Installing, the window and its parts, the audio interface and MIDI, and making Take 5 look and work your way.</p><ul><li><a href="setting-up.html#getting-started">Getting started</a><span>12</span></li><li><a href="setting-up.html#audio-and-midi-setup">Audio and MIDI setup</a><span>8</span></li><li><a href="setting-up.html#customising">Customising</a><span>8</span></li></ul></div>
-<div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">19</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>13</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>6</span></li></ul></div>
+<div class="m-card ref-part rec"><h3><a href="recording.html">Recording</a><span class="ref-count">27</span></h3><p>Recording yourself or the whole band: inputs, the click and count-in, punch and loop recording, then choosing the best of the takes.</p><ul><li><a href="recording.html#recording">Recording</a><span>17</span></li><li><a href="recording.html#takes-and-comping">Takes and comping</a><span>10</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="tracks-and-arranging.html">Tracks and arranging</a><span class="ref-count">21</span></h3><p>Tracks and how they&#x27;re organised, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="tracks-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="tracks-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="editing-audio.html">Editing audio</a><span class="ref-count">39</span></h3><p>Cutting, moving, fading and comping clips, timing and tuning, stretching to the tempo, and repairing a recording.</p><ul><li><a href="editing-audio.html#editing-audio">Editing audio</a><span>39</span></li></ul></div>
 <div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">40</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>33</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
 <div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
-<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">22</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>16</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>6</span></li></ul></div>
-<div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">27</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>27</span></li></ul></div>
+<div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">24</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>17</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>7</span></li></ul></div>
+<div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">30</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>30</span></li></ul></div>
 <div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">32</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>12</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>4</span></li></ul></div>
 </div>
 </section>
