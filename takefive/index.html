@@ -309,10 +309,10 @@ html.lb-open { overflow: hidden; }
 
 <div class="wrap">
 
-<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v1.7.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
+<nav class="site" aria-label="The manual"><a class="brand here" href="index.html"><img src="icons/favicon.svg" alt="">Take 5 <span>v1.8.0</span></a><div class="site-parts"><a class="start" href="setting-up.html">Setting up</a><a class="rec" href="recording.html">Recording</a><a class="edit" href="tracks-and-arranging.html">Tracks and arranging</a><a class="edit" href="editing-audio.html">Editing audio</a><a class="write" href="writing-and-midi.html">Writing and MIDI</a><a class="mixing" href="mixing.html">Mixing</a><a class="master" href="finishing-and-sharing.html">Finishing and sharing</a><a class="live" href="on-stage-and-practice.html">On stage and practice</a><a class="start" href="help-and-backups.html">Help and backups</a></div></nav>
 
 <header class="top">
-  <div class="eyebrow">Take 5 v1.7.0 · cheat sheet</div>
+  <div class="eyebrow">Take 5 v1.8.0 · cheat sheet</div>
   <h1><img class="app-icon" src="icons/favicon.svg" alt="">Record <span class="sep">/</span> Edit <span class="sep">/</span> Mix <span class="sep">/</span> Master</h1>
   <p class="about">Take 5 is an open-source music studio (a DAW) for Mac and Windows, made for bands and
   songwriters: record a whole band or yourself take by take, comp the best takes, edit audio and MIDI, write
@@ -323,9 +323,9 @@ html.lb-open { overflow: hidden; }
   are Take 5's default set. Single-letter keys work whenever you're not typing in a box,
   and almost everything can be undone with <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span>.</p>
   <div class="download">
-    <span>Download Take 5 v1.7.0:</span>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.7.0/Take5-1.7.0-Setup.exe">Windows installer</a>
-    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.7.0/Take5-1.7.0.dmg">Mac disk image</a>
+    <span>Download Take 5 v1.8.0:</span>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.8.0/Take5-1.8.0-Setup.exe">Windows installer</a>
+    <a class="dl" href="https://github.com/AlanOne/takefive-releases/releases/download/v1.8.0/Take5-1.8.0.dmg">Mac disk image</a>
     <a class="all" href="https://github.com/AlanOne/takefive-releases/releases">All releases</a>
   </div>
   <div class="toggle" role="group" aria-label="Show keys for">
@@ -530,6 +530,7 @@ html.lb-open { overflow: hidden; }
         <li>Record the DI and play through <b>+</b> &gt; <b>Built-in</b> &gt; <b>Amp</b>: change the tone later without playing again.</li>
         <li>A real amp or pedal: <b>Built-in &gt; Capture Player</b>, <b>Load Capture...</b> (the NAM captures on this computer, with a search box; <b>Other File...</b> for a .nam anywhere, copied into the song) or <b>TONE3000</b> to pick one from tone3000.com.</li>
         <li>Pedals before it: <b>Overdrive</b> (tightens high gain), <b>Fuzz</b>, <b>Octaver</b>, <b>Pitch Shifter</b>.</li>
+        <li>A song in a lower tuning, without retuning: <b>Drop Tune</b> before the Amp, <b>Semitones</b> −1 to −7 (−2 is D standard). Riffs come out clean, chords warble a little.</li>
         <li>Through your real amp later: right-click the DI track &gt; <b>Reamp...</b>, <b>Measure</b>, <b>Set Up Reamp</b>, record: it lines up to the sample.</li>
       </ul>
       <p class="tip">Sing in tune while you record: <b>Live Tune</b> on the armed vocal track.</p>
@@ -629,6 +630,7 @@ html.lb-open { overflow: hidden; }
       <ol>
         <li>Right-click the clip &gt; <span class="menu">Repair</span>: <b>Remove Mouth Clicks</b>, <b>Remove Hum</b> (50 or 60 Hz).</li>
         <li><span class="menu">Repair &gt; Spectral Repair...</span>: drag a box over a squeak or click in the spectrogram, <b>Remove Selected</b>.</li>
+        <li>Hum or hiss all the way through: <b>+</b> &gt; <b>Built-in</b> &gt; <b>De-Hum and De-Noise</b>. <b>Hum</b> finds 50 or 60 Hz by itself and can stay on while recording. For hiss, play a stretch of only the noise, switch <b>Learn noise</b> on, then set <b>Reduce</b>; switch <b>Noise</b> off while you monitor live (it delays the sound).</li>
       </ol>
     </div>
     <div class="recipe">
@@ -929,12 +931,15 @@ html.lb-open { overflow: hidden; }
           <li>Drag a knob up or down (Shift-drag: fine steps); double-click or <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span>-click it for its default; type a value in the box under it.</li>
           <li>EQ: drag a numbered handle for frequency and gain, Shift-drag for frequency only, scroll over it for width (Q), double-click it for 0 dB.</li>
           <li>The power button bypasses the plugin, to hear before and after; <b>A</b> and <b>B</b> compare two sets of settings.</li>
-          <li>A slot's light: green on, red off; click it to switch. Amber with a ! means it crashed: click to reload.</li>
+          <li>A slot's light: green on, red off; click it to switch. A plugin that crashes is reloaded by itself the first time; amber with a ! means it crashed again (or hung): click to reload.</li>
+          <li>A small amber <b>slow</b> on a slot: that plugin was too slow in the last 30 seconds and blocks passed through untouched. A larger buffer (<span class="menu">Edit &gt; Audio Settings…</span>) gives it more time; <span class="menu">Window &gt; Panels &gt; CPU Use</span> has a <b>Too slow</b> column.</li>
+          <li>The keyboard button in a plugin window's title bar (<b>Keys to Take 5</b>): on, Play/Stop, Record, Undo, Redo and Save keep their keys while the plugin has the keyboard; switch it off to type in the plugin.</li>
+          <li>A controller's knob for any setting: right-click it &gt; <b>MIDI Learn…</b>, or <span class="menu">MIDI &gt; MIDI Learn</span> &gt; <b>Touch a Control in a Plugin's Window</b> and move the plugin's own knob. The knob picks the setting up where it is (no jump); endless knobs work too (<span class="menu">MIDI &gt; MIDI Mappings…</span> sets <b>Pick up</b> or <b>Jump</b>, and the knob's kind).</li>
           <li>Drag a slot to reorder it, or onto another track to move it; <span class="ks w"><kbd>Alt</kbd></span><span class="ks m"><kbd>Option</kbd></span> as you let go copies it.</li>
           <li>Your favourites and the plugins added lately are at the top of <b>+</b>; right-click a slot &gt; <b>Add to Favourites</b>.</li>
           <li>Right-click a slot: <b>Bypass</b>, <b>Compare</b> (A/B), <b>Save Preset…</b>, <b>Load Preset</b>, <b>Remove</b>.</li>
         </ul>
-        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low and High Pass, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, Drum Enhancer, De-esser, Level Rider, Doubler, Live Tune, Vocal Polish, Reverb, Convolution Reverb, Shimmer, Delay, Echo, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, Underwater, 3D Panner, Hardware Insert, Channel Strip, Split.</p>
+        <p class="tip"><strong>Built in:</strong> Amp, Capture Player (NAM captures, TONE3000), Overdrive, Fuzz, Octaver, Drop Tune, Pitch Shifter, EQ, Dynamic EQ, Saturator, Low and High Pass, De-Hum and De-Noise, Compressor, Multiband Compressor, Gate, Transient Shaper, Limiter, Drum Enhancer, De-esser, Level Rider, Doubler, Live Tune, Vocal Polish, Reverb, Convolution Reverb, Shimmer, Delay, Echo, Chorus, Phaser, Flanger, Tremolo, Auto-Pan, Auto-Filter, Underwater, 3D Panner, Hardware Insert, Channel Strip, Split.</p>
       </div>
     </div>
   </figure>
@@ -1017,6 +1022,7 @@ html.lb-open { overflow: hidden; }
       <h3>Or let the assistant master it</h3>
       <ol>
         <li><span class="ks w"><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>A</kbd></span><span class="ks m"><kbd>Option</kbd><kbd>Cmd</kbd><kbd>A</kbd></span> opens the <b>Assistant</b>: on Claude Code, a free Gemini key, or a model on this computer (<b>Settings &gt; Assistant… &gt; Local Models…</b> installs one with a click).</li>
+        <li><span class="menu">Help &gt; Models…</span> lists the models Take 5 has downloaded (the assistant's, Transcribe Lyrics', Separate Stems'), what uses each and its size; <b>Delete...</b> frees the space, and it's downloaded again when needed.</li>
         <li>Ask: “master this for streaming, punchy” or “master it like the reference, −14 LUFS”.</li>
         <li>It measures, sets the EQ, compressor and Limiter, and checks again. One <span class="ks w"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="ks m"><kbd>Cmd</kbd><kbd>Z</kbd></span> undoes it all.</li>
       </ol>
@@ -1025,7 +1031,7 @@ html.lb-open { overflow: hidden; }
       <h3>Export the song</h3>
       <ol>
         <li><span class="menu">File &gt; Export &gt; Audio Mixdown…</span></li>
-        <li>Tick formats: WAV, AIFF, FLAC, MP3 (one file each). 24-bit for masters, 16-bit for CDs.</li>
+        <li>Tick formats: WAV, AIFF, FLAC, MP3 (one file each). 24-bit for masters, 16-bit for CDs (leave <b>Dither</b> ticked: quiet tails fade out smoothly).</li>
         <li><b>Whole song</b> (with the reverb's tail after the last clip), or <b>Loop range</b> for part of it.</li>
         <li>Loudness: <b>As mixed</b>, or a target from the table below.</li>
         <li>Fill in Title, Artist, Album, Year for an MP3. When it's done it shows the loudness and true peak.</li>
@@ -1042,7 +1048,8 @@ html.lb-open { overflow: hidden; }
       <h3>An album or EP</h3>
       <ol>
         <li><span class="menu">File &gt; Album…</span>, <b>Add Songs...</b> in order, a gap or crossfade after each.</li>
-        <li><b>Match to</b> -14 LUFS, <b>Render Album...</b>: a WAV per song as loud as the others, one long WAV with track marks, and a cue sheet.</li>
+        <li>For a release: the album's <b>UPC/EAN</b>, and each song's <b>Song</b> title, <b>Artist</b> and <b>ISRC</b> (with or without hyphens; red means it isn't whole and isn't written).</li>
+        <li><b>Match to</b> -14 LUFS, <b>Render Album...</b>: a WAV per song as loud as the others and tagged (title, artist, album, year, track, ISRC), one long WAV with track marks, and a cue sheet with the UPC/EAN and ISRCs.</li>
       </ol>
     </div>
     <div class="recipe">
@@ -1054,6 +1061,7 @@ html.lb-open { overflow: hidden; }
         <li><span class="menu">File &gt; Export &gt; Export Range as WAV…</span>: each track in a marquee range.</li>
         <li><span class="menu">File &gt; Export &gt; Export AAF…</span> for other music apps and video editors.</li>
         <li><span class="menu">File &gt; Export &gt; Export DAWproject…</span> for other music apps (the open format): MIDI, sends, automation, VST3 settings.</li>
+        <li>The other way: <span class="menu">File &gt; Import Project from Another DAW…</span> opens an .rpp project, an .als set, a DAWproject file, an AAF or a folder of stems as a new song. Tempo changes, time-signature changes and markers (as sections) come over from the first three.</li>
         <li><span class="menu">File &gt; Import Video…</span>: music to picture; the video window follows the playhead, <b>Add Markers at Cuts</b>, <b>Timecode...</b> (the song's start, as 01:00:00:00, and the frame rate; <span class="menu">Project &gt; Timecode in Ruler</span> shows it in the ruler), <b>Export with the Mix...</b>.</li>
         <li><span class="menu">File &gt; Export &gt; Export Video…</span>: a video for social media, 9:16, 1:1 or 16:9, bars or a ring moving with the music, the lyrics word by word.</li>
         <li><span class="menu">File &gt; Share with Bandmates</span> to send the song itself.</li>
@@ -1211,7 +1219,7 @@ html.lb-open { overflow: hidden; }
 <section class="reference" id="manual">
   <div class="ref-head">
     <h2>The manual</h2>
-    <p>Every feature, step by step: all 281 tasks from Take 5's user guide, in nine parts, with
+    <p>Every feature, step by step: all 285 tasks from Take 5's user guide, in nine parts, with
     screenshots. Search above, or pick a part.</p>
   </div>
   <div class="m-contents">
@@ -1220,10 +1228,10 @@ html.lb-open { overflow: hidden; }
 <div class="m-card ref-part edit"><h3><a href="tracks-and-arranging.html">Tracks and arranging</a><span class="ref-count">21</span></h3><p>Tracks and how they&#x27;re organised, and arranging the song: sections, markers, tempo and the timeline.</p><ul><li><a href="tracks-and-arranging.html#tracks">Tracks</a><span>11</span></li><li><a href="tracks-and-arranging.html#arranging">Arranging</a><span>10</span></li></ul></div>
 <div class="m-card ref-part edit"><h3><a href="editing-audio.html">Editing audio</a><span class="ref-count">39</span></h3><p>Cutting, moving, fading and comping clips, timing and tuning, stretching to the tempo, and repairing a recording.</p><ul><li><a href="editing-audio.html#editing-audio">Editing audio</a><span>39</span></li></ul></div>
 <div class="m-card ref-part write"><h3><a href="writing-and-midi.html">Writing and MIDI</a><span class="ref-count">40</span></h3><p>Instruments, the piano roll, chords, the arpeggiator and the drum machine, drum patterns and the session drummer.</p><ul><li><a href="writing-and-midi.html#midi-and-instruments">MIDI and instruments</a><span>33</span></li><li><a href="writing-and-midi.html#drums">Drums</a><span>7</span></li></ul></div>
-<div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">40</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>32</span></li><li><a href="mixing.html#plugins">Plugins</a><span>8</span></li></ul></div>
+<div class="m-card ref-part mixing"><h3><a href="mixing.html">Mixing</a><span class="ref-count">43</span></h3><p>The mixer, sends and buses, automation, and every built-in effect, amp and plugin.</p><ul><li><a href="mixing.html#mixing">Mixing</a><span>34</span></li><li><a href="mixing.html#plugins">Plugins</a><span>9</span></li></ul></div>
 <div class="m-card ref-part master"><h3><a href="finishing-and-sharing.html">Finishing and sharing</a><span class="ref-count">24</span></h3><p>Mastering against a reference, exporting, and sharing a song with the band.</p><ul><li><a href="finishing-and-sharing.html#finishing-and-exporting">Finishing and exporting</a><span>17</span></li><li><a href="finishing-and-sharing.html#sharing-with-bandmates">Sharing with bandmates</a><span>7</span></li></ul></div>
 <div class="m-card ref-part live"><h3><a href="on-stage-and-practice.html">On stage and practice</a><span class="ref-count">30</span></h3><p>Playing a show from a setlist, rig changes, practising with a recording, and recording a whole rehearsal.</p><ul><li><a href="on-stage-and-practice.html#on-stage-and-at-practice">On stage and at practice</a><span>30</span></li></ul></div>
-<div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">32</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>6</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>12</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>4</span></li></ul></div>
+<div class="m-card ref-part start"><h3><a href="help-and-backups.html">Help and backups</a><span class="ref-count">33</span></h3><p>The assistant, backups and the song&#x27;s history, what to do when something&#x27;s wrong, and how Windows and the Mac differ.</p><ul><li><a href="help-and-backups.html#the-assistant">The assistant</a><span>7</span></li><li><a href="help-and-backups.html#backups-history-and-recovery">Backups, history and recovery</a><span>12</span></li><li><a href="help-and-backups.html#troubleshooting">Troubleshooting</a><span>10</span></li><li><a href="help-and-backups.html#windows-and-mac-differences">Windows and Mac differences</a><span>4</span></li></ul></div>
 </div>
 </section>
 
